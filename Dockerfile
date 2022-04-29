@@ -2,9 +2,8 @@
 FROM python:3.9
 # Set the following enviroment variables
 #
-ENV REACT_APP_BASE_URL=https://tothemoon-investment-app.herokuapp.com/
 # REACT_APP_BASE_URL -> Your deployment URL
-
+ENV REACT_APP_BASE_URL=https://tothemoon-investment-app.herokuapp.com/
 # FLASK_APP -> entry point to your flask app
 ENV FLASK_APP=app
 # FLASK_ENV -> Tell flask to use the production server
@@ -17,7 +16,7 @@ WORKDIR /var/www
 COPY . .
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-COPY /react-app/build/* app/static
+COPY /react-app/build/* /app/static
 # Run the next two python install commands with PIP
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
