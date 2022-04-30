@@ -168,3 +168,22 @@
     font-size: 22px;
     color: grey;
 }
+
+.landing-content-box-4 {
+    background-color: rgb(240, 235, 230);
+    width:100vw;
+    height:627px;
+    padding: 84px 0px 60px;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 1px black;
+}
+
+.landing-content-box-4-textbox {
+    width: 467px;
+    height: 585px;
+}
+
+.box-4-image {
+
+}

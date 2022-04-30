@@ -8,6 +8,19 @@ class Wallet(db.Model):
     amount = db.Column(db.Float, nullable=False)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
     
-    users = db.relationship("User", back_populates="wallet")
+    user = db.relationship("User", back_populates="wallet")
     
-    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'amount': self.amount,
+            'user_id': self.user_id,
+            'user' : self.user.to_dict_no_wallet()         
+        }
+        
+    def to_dict_no_user(self):
+        return {
+            'id': self.id,
+            'amount': self.amount,
+            'user_id': self.user_id
+        }
