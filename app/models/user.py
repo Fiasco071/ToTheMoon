@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    wallet = db.relationship("Wallet", back_populates="users", uselist=False)
+    wallet = db.relationship("Wallet", back_populates="user", uselist=False)
 
     @property
     def password(self):
@@ -28,5 +28,13 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'wallet': self.wallet.to_dict_no_user()
+        }
+
+    def to_dict_no_wallet(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
         }
