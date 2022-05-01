@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
+import Dashboard from "./components/Dashboard"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,7 +46,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/home" exact={true}>
-          <h1>Logged In Landing Page</h1>
+          <Dashboard />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
