@@ -19,7 +19,7 @@ COPY . .
 COPY /react-app/build/* app/static/
 # Run the next two python install commands with PIP
 # RUN pip install -r requirements.txt
-RUN pip install --index-url https://pypi.org/simple
+RUN pip install pypi-simple
 # pip install https://pypi.python.org/simple/ 
 RUN pip install alembic==1.6.5
 RUN pip install click==7.1.2
