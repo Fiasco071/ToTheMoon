@@ -1,0 +1,98 @@
+.dashboard-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(110deg, rgb(72, 80, 194), rgb(154, 36, 201));
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard {
+    width: 95vw;
+    height: 90vh;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.dashboard-title-bar {
+    width: 100%;
+    height: 100px;
+    border-radius: 15px 15px 0 0;
+    border-bottom: rgb(204, 204, 204) solid 2px;
+}
+
+.dashboard-content-box {
+    height: 90%;
+    width: 100%;
+    background-color: rgb(235, 233, 233);
+    border-radius: 0 0 15px 15px;
+    display: flex;
+}
+.dashboard-content-navbar {
+    width: 250px;
+    height: 100%;
+    background-color:  white;
+    border-radius: 0 0 0 15px;
+    border-right: rgb(204, 204, 204) solid 2px;
+}
+
+.dashboard-content {
+    width: 70%;
+    background-color: rgb(230, 227, 227);
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-watchlist-box {
+    width: 410px;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 0 15px 0;
+    border-left: rgb(204, 204, 204) solid 2px;
+}
+
+
+.dashboard-content-box1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.dashboard-content-box1 > div {
+    width: 350px;
+    height: 200px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.dashboard-content-box1 > div:nth-child(1) {
+    background: linear-gradient(300deg, rgb(96, 96, 190), rgb(11, 11, 99));
+}
+
+.dashboard-content-box1 > div:nth-child(2) {
+    background: linear-gradient(300deg, rgb(115, 211, 151), rgb(16, 66, 18));
+}
+.dashboard-content-box1 > div:nth-child(3) {
+    background: linear-gradient(300deg, rgb(228, 186, 124), rgb(116, 54, 18));
+}
+
+.dashboard-content-box2 {
+    padding: 0 40px;
+    margin-bottom: 30px;
+}
+.dashboard-content-box2 > div {
+    height: 320px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+}
+
+.dashboard-content-box3 {
+    padding: 0 40px;
+}
+.dashboard-content-box3 > div {
+    height: 150px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+}
