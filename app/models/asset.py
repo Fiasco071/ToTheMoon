@@ -1,5 +1,7 @@
 from sqlalchemy import ForeignKey
 from .db import db
+import simplejson as json
+from decimal import Decimal
 
 class Asset(db.Model):
     __tablename__= "assets"
@@ -13,13 +15,33 @@ class Asset(db.Model):
     stock = db.relationship('Stock', back_populates='asset2')
     transaction = db.relationship('Transaction', back_populates='asset')
 
-    # def stock_to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         'ticker': self.ticker,
-    #         'long_name': self.long_name,
-    #         'i_price' : self.i_price,
-    #         'info1' : self.info1,
-    #         'info2' : self.info2,
-    #         'info3' : self.info3
-    #     }
+    def asset_to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'stock_id': self.stock_id,
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
+            'user': self.user.to_dict_no_wallet(),
+            'stock': self.stock.stock_to_dict(),
+            'transaction': self.transaction.transaction_to_dict_no_asset()
+        }
+
+    def asset_to_dict_no_user(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'stock_id': self.stock_id,
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
+            'stock': self.stock.stock_to_dict(),
+            'transaction': self.transaction.transaction_to_dict_no_asset()
+        }
+
+    def asset_to_dict_no_stock(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'stock_id': self.stock_id,
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
+            'user': self.user.to_dict_no_wallet(),
+            'transaction': self.transaction.transaction_to_dict_no_asset()
+        }
