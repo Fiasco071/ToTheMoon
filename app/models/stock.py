@@ -1,9 +1,8 @@
-from sqlalchemy import ForeignKey
 from .db import db
 
 class Stock(db.Model):
     __tablename__= "stocks"
-    
+
     id = db.Column(db.Integer, primary_key=True)
     ticker = db.Column(db.String(6))
     long_name = db.Column(db.String(50))
@@ -24,5 +23,3 @@ class Stock(db.Model):
             'info2' : self.info2,
             'info3' : self.info3
         }
-
-  
