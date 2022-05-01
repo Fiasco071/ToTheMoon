@@ -1,4 +1,6 @@
 from .db import db
+import simplejson as json
+from decimal import Decimal
 
 class Stock(db.Model):
     __tablename__= "stocks"
@@ -13,12 +15,13 @@ class Stock(db.Model):
 
     asset2 = db.relationship('Asset', back_populates='stock')
 
+
     def stock_to_dict(self):
         return {
             'id': self.id,
             'ticker': self.ticker,
             'long_name': self.long_name,
-            'i_price' : self.i_price,
+            'i_price' : json.dumps(Decimal(self.i_price), use_decimal=True),
             'info1' : self.info1,
             'info2' : self.info2,
             'info3' : self.info3
