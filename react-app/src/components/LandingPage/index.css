@@ -1,189 +1,184 @@
 .landing-wrapper {
-    width: 100vw;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .css-6qh47t {
-    position: absolute;
+  position: absolute;
 }
 
 .landing-nav-bar {
-    width: 100vw;
-    height: 65px;
-    display: flex;
-    border: 1px solid black;
+  width: 100vw;
+  height: 65px;
+  display: flex;
+  border: 1px solid black;
 }
 
 .landing-nav-bar-icon {
-    font-size: 25px;
-    width: 188px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid black;
+  font-size: 25px;
+  width: 188px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
 }
 
 .landing-nav-bar-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 88%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 88%;
 }
 
 .landing-nav-bar-nav-links {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 .landing-nav-bar-nav-links > a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    margin-right: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin-right: 20px;
 }
 
-
-.landing-nav-bar-log-buttons > a{
-    font-size: 12px;
-    color: black;
-    text-decoration: none;
-    margin-left: 10px;
-    padding: 11px 28px;
-    border: 1px solid black;
-    border-radius: 25px;
-    font-weight: bold;
+.landing-nav-bar-log-buttons > a {
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  margin-left: 10px;
+  padding: 11px 28px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
 }
 
 .signup-button {
-    font-size: 18px;
-    text-decoration: none;
-    padding: 11px 28px;
-    border: 1px solid black;
-    border-radius: 25px;
-    font-weight: bold;
-    background-color: black;
-    color: white;
-    width: 68px;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 11px 28px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  width: 68px;
 }
 
-.landing-nav-bar-log-buttons > a:nth-child(2){
-    background-color: black;
-    color: white;
+.landing-nav-bar-log-buttons > a:nth-child(2) {
+  background-color: black;
+  color: white;
 }
 
 .landing-content-box-1 {
-    height: 653px;
-    display: flex;
-    justify-content: center;
-    background-color: rgb(195,245,60);
-    border-bottom: 1px solid black;
+  height: 653px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(195, 245, 60);
+  border-bottom: 1px solid black;
 }
 
 .landing-content-box-1-textbox {
-    width: 492px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 492px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .landing-content-box-1-textbox > h1 {
-    font-size: 45px;
-    margin: 0 0 10px 0;
-    font-weight:bold;
+  font-size: 45px;
+  margin: 0 0 10px 0;
+  font-weight: bold;
 }
 
 .landing-content-box-1-textbox > p {
-    font-size: 25px;
-    line-height: 35px;
+  font-size: 25px;
+  line-height: 35px;
 }
 
 .landing-content-box-1-animationbox {
-    margin: 25px 0 0 10px;
-    width: 696px;
-    height: 100%;
+  margin: 25px 0 0 10px;
+  width: 696px;
+  height: 100%;
 }
-
 
 .landing-content-box-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    height: 92px;
-    border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  height: 92px;
+  border-bottom: 1px solid black;
 }
 
-
 .landing-content-box-3 {
-    width: 100vw;
-    height: 691px;
-    display: flex;
-    justify-content: center;
-    padding-top:40px;
-    box-sizing: border-box;
-    border-bottom: 1px solid black;
+  width: 100vw;
+  height: 691px;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
 }
 
 .landing-content-box-3-textbox {
-    width:595px;
+  width: 595px;
 }
 
 .box-3-textbox-bullet-box {
-    display: flex;
-    margin-bottom: 40px;
+  display: flex;
+  margin-bottom: 40px;
 }
 
 .landing-content-box-3-imgbox {
-    position: relative;
-    top:-30px;
+  position: relative;
+  top: -30px;
 }
 
-.landing-content-box-3-textbox > p:nth-child(2){
-    margin:0 0 50px 0;
-    font-size: 19px;
-    line-height: 30px;
+.landing-content-box-3-textbox > p:nth-child(2) {
+  margin: 0 0 50px 0;
+  font-size: 19px;
+  line-height: 30px;
 }
 
-.box-3-textbox-bullet { 
-    margin-left: 15px;
-    font-size: 17px;
+.box-3-textbox-bullet {
+  margin-left: 15px;
+  font-size: 17px;
 }
-    
+
 .box-3-textbox-bullet > p:first-child {
-    margin: 0 0 10px 0;
-    font-weight: bolder;
+  margin: 0 0 10px 0;
+  font-weight: bolder;
 }
 
 .box-3-textbox-bullet > p:nth-child(2) {
-    margin: 0 0 10px 0;
-    
+  margin: 0 0 10px 0;
 }
 
 .box-3-link {
-    margin-top: 80px;
-    font-size: 22px;
-    color: grey;
+  margin-top: 80px;
+  font-size: 22px;
+  color: grey;
 }
 
 .landing-content-box-4 {
-    background-color: rgb(240, 235, 230);
-    width:100vw;
-    height:627px;
-    padding: 84px 0px 60px;
-    display: flex;
-    justify-content: center;
-    border-bottom: solid 1px black;
+  background-color: rgb(240, 235, 230);
+  width: 100vw;
+  height: 627px;
+  padding: 84px 0px 60px;
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 1px black;
 }
 
 .landing-content-box-4-textbox {
-    width: 467px;
-    height: 585px;
+  width: 467px;
+  height: 585px;
 }
 
 .box-4-image {
-
 }
