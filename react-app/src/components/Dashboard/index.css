@@ -1,0 +1,5 @@
+.dashboard-wrapper {
+    width: 100vw;
+    height: 100vw;
+    background: linear-gradient(110deg, rgb(26, 38, 196), rgb(154, 36, 201));
+}

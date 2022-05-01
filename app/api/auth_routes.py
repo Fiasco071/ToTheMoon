@@ -71,12 +71,16 @@ def sign_up():
         db.session.commit()
         login_user(user)
         
+        
+    ###Creating Wallet Upon Sign Up###
         wallet = Wallet(
             amount=0,
             user_id = user.id
         )
         db.session.add(wallet)
         db.session.commit()
+    ##################################    
+        
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

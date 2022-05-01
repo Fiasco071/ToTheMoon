@@ -10,7 +10,7 @@ class Wallet(db.Model):
     
     user = db.relationship("User", back_populates="wallet")
     
-    def to_dict(self):
+    def wallet_to_dict(self):
         return {
             'id': self.id,
             'amount': self.amount,
