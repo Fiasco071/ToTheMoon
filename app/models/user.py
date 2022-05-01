@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
 
     wallet = db.relationship("Wallet", back_populates="user", uselist=False)
     asset = db.relationship('Asset', back_populates='user')
+    transaction = db.relationship('Transaction', back_populates='user')
 
     @property
     def password(self):
