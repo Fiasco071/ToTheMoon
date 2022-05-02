@@ -22,6 +22,14 @@ const WalletForm = () => {
         setValidationErrors(errors);
     }, [amount])
 
+    const cashoutWallet = async (e) => {
+        e.preventDefault();
+        // console.log(redux_wallet[1].amount * -1)
+        const wallet = {
+            amount: redux_wallet[1].amount * -1 
+        };
+        await dispatch(addAWallet(wallet));
+    }
 
     const submitForm = async (e) => {
         e.preventDefault();
@@ -54,6 +62,7 @@ const WalletForm = () => {
 
     return (
         <div>
+            <a onClick={cashoutWallet}>CASHOUT</a>
              <form onSubmit={(e) => submitForm(e)}>
                     <h3 className="wallet-form-title">Wallet</h3>
                     <div className='wallet-form-input-box'>
