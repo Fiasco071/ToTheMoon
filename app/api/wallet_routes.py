@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Wallet, db
+from app.forms.wallet_form import WalletForm
 
 wallet_routes = Blueprint('wallet', __name__)
 
@@ -10,16 +11,23 @@ def getWalletAmount():
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     return wallet.wallet_to_dict()
 
-@wallet_routes.route('/add')
+@wallet_routes.route('/add' , methods=['GET', "POST"])
 @login_required
 def addToWallet():
 
-    wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
-    wallet.amount = wallet.amount + 1000.0
-    db.session.add(wallet)
-    db.session.commit()
+    form = WalletForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    return wallet.wallet_to_dict()
+    if form.validate_on_submit():
+
+        wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
+        wallet.amount = wallet.amount + form.data["amount"]
+        db.session.add(wallet)
+        db.session.commit()
+
+        return wallet.to_dict_no_user()
+
+    return { "error": form.errors }
 
 
 @wallet_routes.route('/del')

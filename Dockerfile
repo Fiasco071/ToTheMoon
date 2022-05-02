@@ -44,6 +44,7 @@ RUN pip install six==1.15.0
 RUN pip install sqlalchemy==1.4.19
 RUN pip install werkzeug==2.0.1
 RUN pip install wtforms==2.3.3
+RUN pip install simplejson==3.17.6
 
 RUN pip install psycopg2
 
