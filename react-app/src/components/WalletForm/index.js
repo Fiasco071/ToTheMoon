@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { getAWallet, addAWallet } from '../../store/wallet'
+import { cashMeOutside, addAWallet } from '../../store/wallet'
 import './index.css'
 
 
@@ -25,10 +25,10 @@ const WalletForm = () => {
     const cashoutWallet = async (e) => {
         e.preventDefault();
         // console.log(redux_wallet[1].amount * -1)
-        const wallet = {
-            amount: redux_wallet[1].amount * -1 
-        };
-        await dispatch(addAWallet(wallet));
+        // const wallet = {
+        //     amount: redux_wallet[1].amount * -1 
+        // };
+        await dispatch(cashMeOutside());
     }
 
     const submitForm = async (e) => {
