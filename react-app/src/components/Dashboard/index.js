@@ -13,6 +13,7 @@ import MainGraph from './MainGraph';
 const Dashboard = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    const wallet = useSelector(state => state.wallet);
 
     useEffect(() => {
         dispatch(getAWallet())
@@ -41,7 +42,7 @@ const Dashboard = () => {
                                 <h2>Wallet</h2>
                                     <WalletFormModal />
                                 <div>
-                                    <p>$</p><p>{user?.wallet.amount}</p>
+                                    <p>$</p><p>{wallet[1]?.amount}</p>
                                 </div>
                                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
 

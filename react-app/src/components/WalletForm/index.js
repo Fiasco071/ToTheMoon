@@ -13,6 +13,7 @@ const WalletForm = () => {
     const [amount, setAmount] = useState(0.00);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    
 
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const WalletForm = () => {
 
     return (
         <div>
-             <form onSubmit={(e) => submitForm(e)} method="POST" action="/api/wallet/add/">
+             <form onSubmit={(e) => submitForm(e)}>
                     <h3 className="wallet-form-title">Wallet</h3>
                     <div className='wallet-form-input-box'>
                         <p> Add funds </p>

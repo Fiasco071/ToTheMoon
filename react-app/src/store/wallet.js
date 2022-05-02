@@ -29,7 +29,7 @@ export const getAWallet = () => async (dispatch) => {
 
 
 export const addAWallet = (data) => async (dispatch) => {
-    const response = await fetch(`/api/wallet/add/`, {
+    const response = await fetch(`/api/wallet/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -45,11 +45,12 @@ export const addAWallet = (data) => async (dispatch) => {
 
 const walletReducer = (state = {}, action) => {
     switch (action.type) {
-        case GET_WALLET:
+        case GET_WALLET: {
             // return { ...state, [action.payload.id]: action.payload }
             const newState = { ...state }
             newState[action.payload.id] = action.payload
             return newState;
+        }
         case POST_WALLET: {
             const newState = { ...state }
             newState[action.payload.id] = action.payload
