@@ -30,7 +30,7 @@ def addToWallet():
     return { "error": form.errors }
 
 
-@wallet_routes.route('/del')
+@wallet_routes.route('/del', methods=['POST'])
 @login_required
 def cashOutWallet():
 

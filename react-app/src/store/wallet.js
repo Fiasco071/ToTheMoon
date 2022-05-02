@@ -42,11 +42,23 @@ export const addAWallet = (data) => async (dispatch) => {
     }
 };
 
+export const cashMeOutside = () => async (dispatch) => {
+    const response = await fetch(`/api/wallet/del`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+        const wallet = await response.json();
+        dispatch(addWallet(wallet));
+        return response;
+    }
+};
+
 
 const walletReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_WALLET: {
-            // return { ...state, [action.payload.id]: action.payload }
             const newState = { ...state }
             newState[action.payload.id] = action.payload
             return newState;
