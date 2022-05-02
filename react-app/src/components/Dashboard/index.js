@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
 import AssetChart from './PieChart'
-import WalletFormModal from '../WalletForm';
+import WalletFormModal from '../WalletForm/WalletFormModal';
 
 const Dashboard = () => {
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
                                 <div>
                                     <p>$</p><p>{user?.wallet.amount}</p>
                                 </div>
-                                <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div>
+                                {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
                                 
                             </div>
                             <div className='asset-box'>

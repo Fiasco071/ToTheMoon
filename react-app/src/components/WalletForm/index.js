@@ -5,7 +5,7 @@ import './index.css'
 
 const WalletForm = () => {
     const currentUser = useSelector((state) => state.session.user);
-    const [amount, setAmount] = useState();
+    const [amount, setAmount] = useState(0.00);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 

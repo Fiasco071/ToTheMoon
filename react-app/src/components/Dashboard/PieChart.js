@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, LabelList,Lab } from 'recharts';
 
 const data = [
   { name: 'Group A', value: 400 },
@@ -25,9 +25,10 @@ export default class AssetChart extends PureComponent {
             cx="50%"
             cy="50%"
             outerRadius={70}
-            fill="#8884d8"
+            fill="#FB881D"
             label
           />
+           <LabelList dataKey="name" position="insideTop" />
         </PieChart>
       </ResponsiveContainer>
     );
