@@ -1,24 +1,27 @@
 .dashboard-wrapper {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(110deg, rgb(72, 80, 194), rgb(154, 36, 201));
+    background: linear-gradient(110deg, rgb(136, 147, 180), rgb(154, 97, 167));
     padding: 30px 0;
     display: flex;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .dashboard {
-    width: 95vw;
+    width: 92vw;
     height: 90vh;
     background-color: white;
     border-radius: 15px;
+    box-shadow: 3px 3px 15px rgb(104, 103, 103);
 }
 
 .dashboard-title-bar {
     width: 100%;
     height: 100px;
     border-radius: 15px 15px 0 0;
-    border-bottom: rgb(204, 204, 204) solid 2px;
+    border-bottom: rgb(204, 204, 204) solid 4px;
+    display: flex;
 }
 
 .dashboard-content-box {
@@ -33,12 +36,13 @@
     height: 100%;
     background-color:  white;
     border-radius: 0 0 0 15px;
-    border-right: rgb(204, 204, 204) solid 2px;
+    border-right: rgb(204, 204, 204) solid 4px;
 }
 
 .dashboard-content {
     width: 70%;
-    background-color: rgb(230, 227, 227);
+    background-color: rgb(236, 235, 242);
+    box-shadow: inset 3px 3px 10px rgb(199, 199, 199),inset -3px -3px 10px rgb(202, 202, 202);
     display: flex;
     flex-direction: column;
 }
@@ -48,7 +52,7 @@
     height: 100%;
     background-color: white;
     border-radius: 0 0 15px 0;
-    border-left: rgb(204, 204, 204) solid 2px;
+    border-left:  rgb(204, 204, 204) solid 4px;
 }
 
 
@@ -59,21 +63,31 @@
 }
 
 .dashboard-content-box1 > div {
-    width: 350px;
+    width: 340px;
     height: 200px;
     border-radius: 15px;
     background-color: white;
+    box-shadow: 3px 3px 7px grey;
 }
 
-.dashboard-content-box1 > div:nth-child(1) {
-    background: linear-gradient(300deg, rgb(96, 96, 190), rgb(11, 11, 99));
+.dashboard-content-box2 > div {
+    box-shadow: 3px 3px 10px grey;
+}
+
+.dashboard-content-box3 > div {
+    box-shadow: 3px 3px 10px grey;
+}
+
+.dashboard-content-box1 > div:nth-child(1) { 
+    background: linear-gradient(230deg, rgb(255, 207, 96), rgb(238, 123, 71));
 }
 
 .dashboard-content-box1 > div:nth-child(2) {
-    background: linear-gradient(300deg, rgb(115, 211, 151), rgb(16, 66, 18));
+    background: linear-gradient(230deg, rgb(131, 200, 223), rgb(83, 130, 184));
+    
 }
 .dashboard-content-box1 > div:nth-child(3) {
-    background: linear-gradient(300deg, rgb(228, 186, 124), rgb(116, 54, 18));
+    background: linear-gradient(230deg, rgb(157, 208, 190), rgb(54, 121, 98));
 }
 
 .dashboard-content-box2 {
@@ -95,4 +109,77 @@
     width: 100%;
     background: white;
     border-radius: 15px;
+}
+
+.profile-icon-box {
+    width: 65px;
+    height: 65px;
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    background: linear-gradient(30deg, rgb(114, 30, 114), rgb(157, 157, 245));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0 0 35px;
+}
+
+.profile-icon {
+    color: white;
+    position: relative;
+    top: -1px;
+    font-size: 30px;
+}
+
+.profile-icon-box-wrapper {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+}
+
+
+.dashboard-username {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    left: 150px;
+    font-size: 35px;
+}
+
+
+.wallet-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:15px;
+    box-sizing: border-box;
+}
+
+.wallet-box > div {
+    display: flex;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.wallet-box > div > p:first-child {
+    position: relative;
+    color: white;
+    left:-30px;
+}
+
+.wallet-box > div > p:nth-child(2) {
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    margin-top:24px;
+}
+
+.add-button {
+    border-radius: 10px;
+    background-color: white;
+    position:relative;
+    left: 100px;
+    top: -145px;
+    padding: 5px 8px;
+}
+
+.add-icon {
+    font-size: 25px;
+    color: rgb(255, 207, 96);
 }
