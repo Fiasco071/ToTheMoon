@@ -7,14 +7,13 @@ import './index.css'
 const WalletForm = () => {
     const dispatch = useDispatch();
 
+    const redux_wallet = useSelector((state) => state.wallet);
     const currentUser = useSelector((state) => state.session.user);
+
     const [amount, setAmount] = useState(0.00);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    useEffect(() => {
-        dispatch(getAWallet())
-    }, [dispatch]);
 
     useEffect(() => {
         const errors = [];
@@ -54,7 +53,7 @@ const WalletForm = () => {
 
     return (
         <div>
-             <form onSubmit={(e) => submitForm(e)} method="POST" action="/api/wallet/add">
+             <form onSubmit={(e) => submitForm(e)} method="POST" action="/api/wallet/add/">
                     <h3 className="wallet-form-title">Wallet</h3>
                     <div className='wallet-form-input-box'>
                         <p> Add funds </p>
