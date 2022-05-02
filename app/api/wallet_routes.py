@@ -13,12 +13,12 @@ def getWalletAmount():
 @wallet_routes.route('/add')
 @login_required
 def addToWallet():
-        
+
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     wallet.amount = wallet.amount + 1000.0
     db.session.add(wallet)
     db.session.commit()
-    
+
     return wallet.wallet_to_dict()
 
 
@@ -30,5 +30,5 @@ def cashOutWallet():
     wallet.amount = 0.0
     db.session.add(wallet)
     db.session.commit()
-    
+
     return wallet.wallet_to_dict()
