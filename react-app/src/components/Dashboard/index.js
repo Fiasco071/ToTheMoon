@@ -2,15 +2,21 @@ import './index.css'
 import LogoutButton from '../auth/LogoutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAWallet, addAWallet } from '../../store/wallet';
 import AssetChart from './PieChart'
 import WalletFormModal from '../WalletForm/WalletFormModal';
 import MainGraph from './MainGraph';
 
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
 
-    const user = useSelector(state => state.session.user)
+    useEffect(() => {
+        dispatch(getAWallet())
+    }, [dispatch]);
 
     return (
 
@@ -38,7 +44,7 @@ const Dashboard = () => {
                                     <p>$</p><p>{user?.wallet.amount}</p>
                                 </div>
                                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
-                                
+
                             </div>
                             <div className='asset-box'>
                                 <h2>Assets</h2>
