@@ -9,7 +9,7 @@
 }
 
 .dashboard {
-    width: 92vw;
+    width: 1650px;
     height: 90vh;
     background-color: white;
     border-radius: 15px;
@@ -63,7 +63,7 @@
 }
 
 .dashboard-content-box1 > div {
-    width: 340px;
+    width: 300px;
     height: 200px;
     border-radius: 15px;
     background-color: white;
@@ -156,6 +156,8 @@
     display: flex;
     font-size: 30px;
     font-weight: bolder;
+    position: relative;
+    top: -20px;
 }
 
 .wallet-box > div > p:first-child {
@@ -175,11 +177,41 @@
     background-color: white;
     position:relative;
     left: 100px;
-    top: -145px;
+    top: -35px;
     padding: 5px 8px;
+    border: none;
 }
 
 .add-icon {
     font-size: 25px;
     color: rgb(255, 207, 96);
 }
+
+.asset-box {
+    padding-top: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.asset-box > h2 {
+    margin: 19px 0 0 0;
+}
+
+.recharts-surface {
+    position: relative;
+    top: -30px;
+    height: 300px;
+}
+
+.recharts-wrapper {
+    padding:0;
+    margin:0;
+}
+
+.asset-chart {
+    position: relative;
+    top:100px;
+}
+

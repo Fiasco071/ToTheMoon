@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import Transaction, Asset, Wallet, db
+from app.models import Transaction, Stock, Asset, Wallet, db
 
 transaction_routes = Blueprint('transactions', __name__)
 
@@ -13,15 +13,111 @@ def get_all_transactions():
 
 @transaction_routes.route('/add', methods=["GET", "POST"])
 @login_required
-def new_transaction():
+def new_transaction(): #need to add id back later
     curr_user = current_user.to_dict()
-    wallet_amount = current_user.to_dict()['wallet']['amount']
+    id=2 #will change later
+    # wallet_amount = curr_user['wallet']['amount']
+    wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
+    asset = Asset.query.filter(Asset.stock_id == id).one()
+    user_id = curr_user['id']
+    # num_shares = form.data.num_shares
+    num_shares = 5 #will change later
+    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+    total_price = float(price_at_transaction) * num_shares
 
-    user_id = current_user.to_dict()['id']
-    # asset_id = Asset.
-    # num_shares = 
-    # price_at_transaction = 
+    if wallet.amount >= total_price:
+        if asset:
+            asset_id = asset.id
+            asset.num_shares += num_shares
+        else:
+            num_shares += asset.num_shares
+            asset = Asset(
+                user_id=user_id,
+                stock_id=id,
+                num_shares=num_shares
+            )
+    
+        new_transaction = Transaction(
+            user_id=user_id,
+            asset_id=asset.id,
+            num_shares=num_shares,
+            price_at_transaction=price_at_transaction
+        )
+
+        wallet.amount -= total_price
+
+        db.session.add_all([wallet, asset, new_transaction])
+        db.session.commit()
+        return wallet.to_dict_no_user()
+        # return {'message': 'Purchase complete'}
+
+    else:
+        return {'message': 'YOU BROKE; Add funds'}
 
 
 
-    return str(current_user.to_dict()['wallet']['amount'])
+@transaction_routes.route('/sell', methods=['GET','PUT'])
+@login_required
+def sell_shares(): #need to add id back later
+    id=2
+    curr_user = current_user.to_dict()
+    wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
+    asset = Asset.query.filter(Asset.stock_id == id).one()
+    user_id = curr_user['id']
+    num_shares = 1 #will change later
+    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+    total_price = float(price_at_transaction) * num_shares
+
+    if asset.num_shares >= num_shares:
+        wallet.amount += total_price
+
+        new_transaction = Transaction(
+            user_id=user_id,
+            asset_id=asset.id,
+            num_shares=num_shares*-1,
+            price_at_transaction=price_at_transaction
+        )
+
+        asset.num_shares -= num_shares
+
+        db.session.add_all([wallet, asset, new_transaction])
+        db.session.commit()
+        
+        transactions = Transaction.query.filter(Transaction.user_id == current_user.to_dict()['id']).all()
+        return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
+    
+    else:
+        return {'message': 'You cannot sell more shares than you own!'}
+
+
+
+@transaction_routes.route('/cashout', methods=['GET','PUT'])
+@login_required
+def cash_out(): #will add id back later
+    id=2
+    curr_user = current_user.to_dict()
+    wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
+    # wallet_amount = curr_user['wallet']['amount']
+    asset = Asset.query.filter(Asset.stock_id == id).one()
+    user_id = curr_user['id']
+    # num_shares = asset['num_shares']
+    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+    total_price = float(price_at_transaction) * float(asset.num_shares)
+
+
+    wallet.amount += total_price
+
+    new_transaction = Transaction(
+        user_id=user_id,
+        asset_id=asset.id,
+        num_shares=asset.num_shares*-1,
+        price_at_transaction=price_at_transaction
+    )
+
+    asset.num_shares = 0
+
+    db.session.add_all([wallet, asset, new_transaction])
+    db.session.commit()
+
+    transactions = Transaction.query.filter(Transaction.user_id == current_user.to_dict()['id']).all()
+    return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
