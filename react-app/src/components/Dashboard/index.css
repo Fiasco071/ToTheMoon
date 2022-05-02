@@ -215,3 +215,7 @@
     top:100px;
 }
 
+div.dashboard-wrapper > div > div.dashboard-content-box > div.dashboard-content > div.dashboard-content-box2 > div > div > div > svg {
+    position: relative;
+    top: 20px;
+}
