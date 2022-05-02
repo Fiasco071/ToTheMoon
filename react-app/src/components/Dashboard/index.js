@@ -5,6 +5,8 @@ import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
 import AssetChart from './PieChart'
 import WalletFormModal from '../WalletForm/WalletFormModal';
+import MainGraph from './MainGraph';
+
 
 const Dashboard = () => {
 
@@ -47,7 +49,9 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className='dashboard-content-box2'>
-                            <div></div>
+                            <div>
+                                <MainGraph />
+                            </div>
                         </div>
                         <div className='dashboard-content-box3'>
                             <div></div>
