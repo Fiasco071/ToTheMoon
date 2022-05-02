@@ -156,6 +156,8 @@
     display: flex;
     font-size: 30px;
     font-weight: bolder;
+    position: relative;
+    top: -20px;
 }
 
 .wallet-box > div > p:first-child {
@@ -175,8 +177,9 @@
     background-color: white;
     position:relative;
     left: 100px;
-    top: -145px;
+    top: -35px;
     padding: 5px 8px;
+    border: none;
 }
 
 .add-icon {
@@ -198,8 +201,8 @@
 
 .recharts-surface {
     position: relative;
-    top: 50px;
-
+    top: -30px;
+    height: 300px;
 }
 
 .recharts-wrapper {
@@ -211,3 +214,4 @@
     position: relative;
     top:100px;
 }
+
