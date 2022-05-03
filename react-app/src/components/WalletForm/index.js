@@ -4,7 +4,7 @@ import { cashMeOutside, addAWallet } from '../../store/wallet'
 import './index.css'
 
 
-const WalletForm = () => {
+    const WalletForm = ({prop}) => {
     const dispatch = useDispatch();
 
     const redux_wallet = useSelector((state) => state.wallet);
@@ -14,7 +14,7 @@ const WalletForm = () => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     
-
+    
 
     useEffect(() => {
         const errors = [];
@@ -24,11 +24,8 @@ const WalletForm = () => {
 
     const cashoutWallet = async (e) => {
         e.preventDefault();
-        // console.log(redux_wallet[1].amount * -1)
-        // const wallet = {
-        //     amount: redux_wallet[1].amount * -1 
-        // };
         await dispatch(cashMeOutside());
+        prop.setShowModal(false)
     }
 
     const submitForm = async (e) => {
@@ -56,17 +53,25 @@ const WalletForm = () => {
         setAmount(0.00);
         setValidationErrors([]);
         setHasSubmitted(false);
-
+        prop.setShowModal(false)
     }
 
 
     return (
-        <div>
-            <a onClick={cashoutWallet}>CASHOUT</a>
+        <div className='wallet-form-box'>
+            
              <form onSubmit={(e) => submitForm(e)}>
+
                     <h3 className="wallet-form-title">Wallet</h3>
                     <div className='wallet-form-input-box'>
                         <p> Add funds </p>
+                        <p> Invest In </p>
+                        <p> Amount </p>
+                        
+                        <select className='dollar-input'>
+                            <option>Dollars</option>
+                        </select>
+
                         <input
                             name="amount"
                             className='wallet-form-input'
@@ -76,8 +81,9 @@ const WalletForm = () => {
                             >
                         </input>
                     </div>
-                    <button className="button">Submit</button>
+                    <button className="wallet-button">SUBMIT</button>
                 </form>
+                <a className='cashout-link' onClick={cashoutWallet}>CASHOUT</a>
         </div>
     );
 }
