@@ -23,8 +23,10 @@ const StockDetail = () => {
       <h2>{stock?.long_name}</h2>
       <h2>{stock?.ticker}</h2>
       <p>${stock?.i_price}</p>
+      <div>
+        <TransactionForm />
+      </div>
       <StockGraph />
-      <TransactionForm />
       <div>
         <div className="stockEquity">
           Your Equity
