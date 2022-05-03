@@ -14,9 +14,8 @@ def get_all_transactions():
 
 @transaction_routes.route('/add', methods=["GET", "POST"])
 @login_required
-def new_transaction(): #need to add id back later
+def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
-    id=2 #will change later
     # wallet_amount = curr_user['wallet']['amount']
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     asset = Asset.query.filter(Asset.stock_id == id).one()
@@ -55,7 +54,6 @@ def new_transaction(): #need to add id back later
             db.session.add_all([wallet, asset, new_transaction])
             db.session.commit()
             return wallet.to_dict_no_user()
-        # return {'message': 'Purchase complete'}
         else:
             return {'message': 'YOU BROKE; Add funds'}
     return {'error': form.errors}

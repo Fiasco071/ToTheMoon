@@ -26,7 +26,7 @@ const StockDetail = () => {
       <div>
         <TransactionForm />
       </div>
-      <StockGraph />
+      {/* <StockGraph /> */}
       <div>
         <div className="stockEquity">
           Your Equity

@@ -38,7 +38,7 @@ export const getAllTransactions = () => async (dispatch) => {
 };
 
 
-export const addAWallet = (data) => async (dispatch) => {
+export const addATransaction = (data) => async (dispatch) => {
     const response = await fetch(`/api/transactions/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
