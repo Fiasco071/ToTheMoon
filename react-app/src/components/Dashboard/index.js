@@ -2,13 +2,22 @@ import './index.css'
 import LogoutButton from '../auth/LogoutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAWallet, addAWallet } from '../../store/wallet';
 import AssetChart from './PieChart'
 import WalletFormModal from '../WalletForm/WalletFormModal';
+import MainGraph from './MainGraph';
+
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    const wallet = useSelector(state => state.wallet);
 
-    const user = useSelector(state => state.session.user)
+    useEffect(() => {
+        dispatch(getAWallet())
+    }, [dispatch]);
 
     return (
 
@@ -33,10 +42,10 @@ const Dashboard = () => {
                                 <h2>Wallet</h2>
                                     <WalletFormModal />
                                 <div>
-                                    <p>$</p><p>{user?.wallet.amount}</p>
+                                    <p>$</p><p>{wallet[1]?.amount}</p>
                                 </div>
                                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
-                                
+
                             </div>
                             <div className='asset-box'>
                                 <h2>Assets</h2>
@@ -47,7 +56,9 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className='dashboard-content-box2'>
-                            <div></div>
+                            <div>
+                                <MainGraph />
+                            </div>
                         </div>
                         <div className='dashboard-content-box3'>
                             <div></div>

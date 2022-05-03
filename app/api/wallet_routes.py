@@ -14,23 +14,23 @@ def getWalletAmount():
 @wallet_routes.route('/add' , methods=['GET', "POST"])
 @login_required
 def addToWallet():
-    
+
     form = WalletForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
-        
+
         wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
         wallet.amount = wallet.amount + form.data["amount"]
         db.session.add(wallet)
         db.session.commit()
-        
+
         return wallet.to_dict_no_user()
 
     return { "error": form.errors }
 
 
-@wallet_routes.route('/del')
+@wallet_routes.route('/del', methods=['POST'])
 @login_required
 def cashOutWallet():
 
@@ -38,5 +38,5 @@ def cashOutWallet():
     wallet.amount = 0.0
     db.session.add(wallet)
     db.session.commit()
-    
+
     return wallet.wallet_to_dict()
