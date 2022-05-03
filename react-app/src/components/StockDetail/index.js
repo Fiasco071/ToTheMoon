@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import StockGraph from "./stockGraph";
 import TransactionForm from "../Transaction";
 import "./index.css";
+import { getAllAssets } from "../../store/asset";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -12,7 +13,8 @@ const StockDetail = () => {
   console.log(id);
 
   let stock = useSelector((state) => state.stocks[id]);
-  console.log(stock);
+  let user = useSelector((state) => state.session.user);
+  console.log(user);
 
   useEffect(() => {
     dispatch(getAStock(id));
@@ -23,10 +25,10 @@ const StockDetail = () => {
       <h2>{stock?.long_name}</h2>
       <h2>{stock?.ticker}</h2>
       <p>${stock?.i_price}</p>
+      <StockGraph />
       <div>
         <TransactionForm />
       </div>
-      {/* <StockGraph /> */}
       <div>
         <div className="stockEquity">
           Your Equity
