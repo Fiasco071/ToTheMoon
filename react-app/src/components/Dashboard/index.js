@@ -12,6 +12,7 @@ import AssetChart from "./PieChart";
 import WalletFormModal from "../WalletForm/WalletFormModal";
 import MainGraph from "./MainGraph";
 import WatchList from "../WatchList";
+import { getAllAssets } from "../../store/asset";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getAWallet());
     dispatch(getAllStocks());
+    dispatch(getAllAssets());
   }, [dispatch]);
 
   return (

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getAStock } from "../../store/stock";
-import { addATransaction } from "../../store/transaction";
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { id } = useParams();
 
@@ -13,7 +13,7 @@ const TransactionForm = () => {
   let user = useSelector((state) => state.session.user);
   console.log(user.wallet.amount);
 
-  const [isBuy, setIsBuy] = useState(true);
+  const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
@@ -37,7 +37,7 @@ const TransactionForm = () => {
     setValidationErrors(errors);
   }, [num_shares, totalPrice, user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setHasSubmitted(true);
     const transaction = {
@@ -45,34 +45,33 @@ const TransactionForm = () => {
       price_at_transaction,
     };
 
-    // let newTransaction;
+    let newTransaction;
 
-    const newTransaction = await dispatch(addATransaction(transaction, id));
-
+    // newTransaction = await dispatch();
     setNumShares(0);
     setPriceAtTransaction(stock?.i_price);
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
+
+    history.push(`/home`);
   };
 
   return (
     <>
-      {isBuy && (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="number"
-            placeholder="Number of Shares"
-            value={num_shares}
-            onChange={(e) => setNumShares(e.target.value)}
-          ></input>
-          <p>Market Price ${stock?.i_price}</p>
-          <p>Total Price ${stock?.i_price * num_shares}</p>
-          <button type="submit" disabled={validationErrors.length > 0}>
-            Make an Order
-          </button>
-        </form>
-      )}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="number"
+          placeholder="Number of Shares"
+          value={num_shares}
+          onChange={(e) => setNumShares(e.target.value)}
+        ></input>
+        <p>Market Price ${stock?.i_price}</p>
+        <p>Total Price ${stock?.i_price * num_shares}</p>
+        <button type="submit" disabled={validationErrors.length > 0}>
+          Make an Order
+        </button>
+      </form>
     </>
   );
 };
