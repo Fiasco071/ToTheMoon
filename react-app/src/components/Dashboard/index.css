@@ -87,7 +87,7 @@
     
 }
 .dashboard-content-box1 > div:nth-child(3) {
-    background: linear-gradient(230deg, rgb(157, 208, 190), rgb(54, 121, 98));
+    background: linear-gradient(230deg, rgb(157, 208, 190), rgb(39, 145, 108));
 }
 
 .dashboard-content-box2 {
@@ -120,6 +120,21 @@
     justify-content: center;
     align-items: center;
     margin: 16px 0 0 35px;
+    z-index: 1;
+}
+
+.profile-icon-box-menu {
+    width: 65px;
+    height: 65px;
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    background: linear-gradient(30deg, rgb(29, 4, 29), rgb(18, 18, 104));
+    position: relative;
+    top:-80px;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0 0 35px;
 }
 
 .profile-icon {
@@ -135,6 +150,16 @@
     position: absolute;
 }
 
+.profile-icon-box-wrapper:hover .profile-icon-box-menu {
+    animation: move 0.2s linear normal forwards;
+}
+
+@keyframes move {
+    100%{
+        transform: translate(50px,30px);
+        z-index: 1;
+    }
+}
 
 .dashboard-username {
     position: relative;
