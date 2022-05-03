@@ -50,7 +50,6 @@ import './index.css'
                 }
         }
 
-        setAmount(0.00);
         setValidationErrors([]);
         setHasSubmitted(false);
         prop.setShowModal(false)
@@ -76,8 +75,10 @@ import './index.css'
                             name="amount"
                             className='wallet-form-input'
                             type="number"
+                            min="0.01" step="0.01"
                             onChange={(e) => setAmount(e.target.value)}
                             value={amount}
+                            placeholder="0.00"
                             >
                         </input>
                     </div>

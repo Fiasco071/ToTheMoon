@@ -1,10 +1,11 @@
 import './index.css'
 import LogoutButton from '../auth/LogoutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAWallet, addAWallet } from '../../store/wallet';
+import { logout } from '../../store/session';
 import { getAllStocks } from "../../store/stock";
 import AssetChart from './PieChart'
 import WalletFormModal from '../WalletForm/WalletFormModal';
@@ -16,6 +17,10 @@ const Dashboard = () => {
     const user = useSelector(state => state.session.user);
     const wallet = useSelector(state => state.wallet);
     const stocks = useSelector(state => state.stocks)
+
+    const onLogout = async (e) => {
+        await dispatch(logout());
+      };
 
     useEffect(() => {
         dispatch(getAWallet())
@@ -31,6 +36,10 @@ const Dashboard = () => {
                     <div className='profile-icon-box-wrapper'>
                         <div className='profile-icon-box'>
                             <FontAwesomeIcon icon={faUser} className='profile-icon' />
+                        </div>
+                        <div className='profile-icon-box-menu'>
+                            <FontAwesomeIcon icon={faDoorOpen} className='profile-icon'
+                            onClick={onLogout} />
                         </div>
                     </div>
                     <h2 className='dashboard-username'>{user?.username}</h2>

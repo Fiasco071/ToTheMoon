@@ -6,6 +6,7 @@ const WatchList = ({ stocks }) => {
     console.log(stocks)
     return (
         <div>
+            <h2 className='watch-list-title'>Stock List</h2>
             <div className='stocks-list'>
                 {Object.values(stocks).map((stock) => (
                     <div key={stock?.id} className="stock-box" onClick={() => {
@@ -15,9 +16,10 @@ const WatchList = ({ stocks }) => {
                             <h2 className="stock-ticker">{stock?.ticker}</h2>
                             <h2 className='stock-price'>${stock?.i_price}</h2>
                         </div>
-                        <div className="note-card-content-box">
-                            <p>{stock?.long_name}</p>
+                        <div>
+                            <p className='stock-lname'>{stock?.long_name}</p>
                         </div>
+
                     </div>
                 ))}
             </div>
