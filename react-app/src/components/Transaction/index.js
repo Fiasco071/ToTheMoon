@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getAStock } from "../../store/stock";
 import { addATransaction } from "../../store/transaction";
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { id } = useParams();
 
@@ -48,7 +47,7 @@ const TransactionForm = () => {
 
     // let newTransaction;
 
-    const newTransaction = await dispatch(addATransaction(transaction));
+    const newTransaction = await dispatch(addATransaction(transaction, id));
 
     setNumShares(0);
     setPriceAtTransaction(stock?.i_price);
@@ -60,7 +59,7 @@ const TransactionForm = () => {
   return (
     <>
       {isBuy && (
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="number"
             placeholder="Number of Shares"

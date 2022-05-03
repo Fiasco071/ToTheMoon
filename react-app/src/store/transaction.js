@@ -28,7 +28,7 @@ const updateATransaction = (transaction) => {
 
 
 export const getAllTransactions = () => async (dispatch) => {
-    const response = await fetch(`/api/transactions/`)
+    const response = await fetch(`/api/transactions`)
 
     if (response.ok) {
         const transactions = await response.json();
@@ -38,8 +38,8 @@ export const getAllTransactions = () => async (dispatch) => {
 };
 
 
-export const addATransaction = (data) => async (dispatch) => {
-    const response = await fetch(`/api/transactions/add`, {
+export const addATransaction = (data, id) => async (dispatch) => {
+    const response = await fetch(`/api/transactions/${id}/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

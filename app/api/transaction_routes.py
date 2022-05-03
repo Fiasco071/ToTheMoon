@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
+from decimal import Decimal
 from app.forms.transaction_form import TransactionFrom
 from app.models import Transaction, Stock, Asset, Wallet, db
 
@@ -12,7 +13,7 @@ def get_all_transactions():
     return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
 
 
-@transaction_routes.route('/add', methods=["GET", "POST"])
+@transaction_routes.route('/<int:id>/add', methods=["GET", "POST"])
 @login_required
 def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
@@ -49,7 +50,7 @@ def new_transaction(id): #need to add id back later
                 price_at_transaction=price_at_transaction
             )
 
-            wallet.amount -= total_price
+            wallet.amount -= Decimal(total_price)
 
             db.session.add_all([wallet, asset, new_transaction])
             db.session.commit()
