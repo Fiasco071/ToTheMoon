@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import walletReducer from './wallet';
 import stockReducer from './stock';
+import simReducer from './simulation_data';
 import transactionReducer from './transaction';
 
 const rootReducer = combineReducers({
   session,
   wallet: walletReducer,
   stocks: stockReducer,
+  simData: simReducer
   transactions: transactionReducer
 });
 
