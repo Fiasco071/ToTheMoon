@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { getAStock } from "../../store/stock";
 import { useParams } from "react-router-dom";
 import StockGraph from "./stockGraph";
+import TransactionForm from "../Transaction";
 import "./index.css";
 
 const StockDetail = () => {
@@ -23,6 +24,7 @@ const StockDetail = () => {
       <h2>{stock?.ticker}</h2>
       <p>${stock?.i_price}</p>
       <StockGraph />
+      <TransactionForm />
       <div>
         <div className="stockEquity">
           Your Equity
