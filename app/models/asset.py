@@ -31,9 +31,7 @@ class Asset(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'stock_id': self.stock_id,
-            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
-            # 'stock': self.stock.stock_to_dict(),
-            # 'transaction': self.transaction.transaction_to_dict_no_asset()
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True)
         }
 
     def asset_to_dict_no_stock(self):
@@ -41,7 +39,5 @@ class Asset(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'stock_id': self.stock_id,
-            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
-            # 'user': self.user.to_dict_no_wallet(),
-            # 'transaction': self.transaction.transaction_to_dict_no_asset()
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True)
         }

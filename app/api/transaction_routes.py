@@ -1,5 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required, current_user
+from decimal import Decimal
+from app.forms.transaction_form import TransactionFrom
 from app.models import Transaction, Stock, Asset, Wallet, db
 
 transaction_routes = Blueprint('transactions', __name__)
@@ -11,49 +13,51 @@ def get_all_transactions():
     return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
 
 
-@transaction_routes.route('/add', methods=["GET", "POST"])
+@transaction_routes.route('/<int:id>/add', methods=["GET", "POST"])
 @login_required
-def new_transaction(): #need to add id back later
+def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
-    id=2 #will change later
     # wallet_amount = curr_user['wallet']['amount']
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     asset = Asset.query.filter(Asset.stock_id == id).one()
     user_id = curr_user['id']
-    # num_shares = form.data.num_shares
-    num_shares = 5 #will change later
-    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
-    total_price = float(price_at_transaction) * num_shares
 
-    if wallet.amount >= total_price:
-        if asset:
-            asset_id = asset.id
-            asset.num_shares += num_shares
-        else:
-            num_shares += asset.num_shares
-            asset = Asset(
+    form = TransactionFrom()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        num_shares = form.data['num_shares']
+        price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+        total_price = float(price_at_transaction) * num_shares
+
+
+        if wallet.amount >= total_price:
+            if asset:
+                asset_id=asset.id
+                asset.num_shares += num_shares
+            else:
+                num_shares += asset.num_shares
+                asset = Asset(
+                    user_id=user_id,
+                    stock_id=id,
+                    num_shares=num_shares
+                )
+
+            new_transaction = Transaction(
                 user_id=user_id,
-                stock_id=id,
-                num_shares=num_shares
+                asset_id=asset.id,
+                num_shares=num_shares,
+                price_at_transaction=price_at_transaction
             )
-    
-        new_transaction = Transaction(
-            user_id=user_id,
-            asset_id=asset.id,
-            num_shares=num_shares,
-            price_at_transaction=price_at_transaction
-        )
 
-        wallet.amount -= total_price
+            wallet.amount -= Decimal(total_price)
 
-        db.session.add_all([wallet, asset, new_transaction])
-        db.session.commit()
-        return wallet.to_dict_no_user()
-        # return {'message': 'Purchase complete'}
-
-    else:
-        return {'message': 'YOU BROKE; Add funds'}
-
+            db.session.add_all([wallet, asset, new_transaction])
+            db.session.commit()
+            return wallet.to_dict_no_user()
+        else:
+            return {'message': 'YOU BROKE; Add funds'}
+    return {'error': form.errors}
 
 
 @transaction_routes.route('/sell', methods=['GET','PUT'])
@@ -82,10 +86,10 @@ def sell_shares(): #need to add id back later
 
         db.session.add_all([wallet, asset, new_transaction])
         db.session.commit()
-        
+
         transactions = Transaction.query.filter(Transaction.user_id == current_user.to_dict()['id']).all()
         return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
-    
+
     else:
         return {'message': 'You cannot sell more shares than you own!'}
 
