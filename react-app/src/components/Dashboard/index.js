@@ -5,18 +5,21 @@ import { faUser, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAWallet, addAWallet } from '../../store/wallet';
+import { getAllStocks } from "../../store/stock";
 import AssetChart from './PieChart'
 import WalletFormModal from '../WalletForm/WalletFormModal';
 import MainGraph from './MainGraph';
-
+import WatchList from '../WatchList';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const wallet = useSelector(state => state.wallet);
+    const stocks = useSelector(state => state.stocks)
 
     useEffect(() => {
         dispatch(getAWallet())
+        dispatch(getAllStocks())
     }, [dispatch]);
 
     return (
@@ -65,7 +68,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className='dashboard-watchlist-box'>
-
+                         <WatchList stocks={stocks} />
                     </div>
                 </div>
             </div>

@@ -6,12 +6,13 @@ import { faUser, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function WalletFormModal() {
   const [showModal, setShowModal] = useState(false);
+  const prop = { showModal, setShowModal }
   return (
     <>
       <button onClick={() => setShowModal(true)} className='add-button'><FontAwesomeIcon icon={faPlus} className='add-icon' /></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <WalletForm />
+          <WalletForm prop={prop} />
         </Modal>
       )}
     </>
