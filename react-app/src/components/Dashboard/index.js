@@ -12,6 +12,7 @@ import AssetChart from "./PieChart";
 import WalletFormModal from "../WalletForm/WalletFormModal";
 import MainGraph from "./MainGraph";
 import WatchList from "../WatchList";
+import { getAllSimData } from "../../store/simulation_data";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,19 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getAWallet());
     dispatch(getAllStocks());
+    dispatch(getAllSimData());
   }, [dispatch]);
+
+  // const response = await fetch(`/api/stocks/test`);
+  // const simData = await response.json();
+  
+  // let data = []
+  // for (let i = 0; i <= 252; i++) {
+  //   let obj = {}
+  //   obj["name"] = i
+  //   obj["price"] = simData.sim_data[i]
+  //   data.push(obj)
+  // }
 
   return (
     <div className="dashboard-wrapper">
