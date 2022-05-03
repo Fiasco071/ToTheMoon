@@ -1,17 +1,17 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, LabelList,Lab } from 'recharts';
-
+import React, { PureComponent } from "react";
+import { PieChart, Pie, ResponsiveContainer, LabelList } from "recharts";
+//Lab, Sector, Cell removed from recharts import to take away console warnings
 const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-  { name: 'Group E', value: 278 },
-  { name: 'Group F', value: 189 },
+  { name: "Group A", value: 400 },
+  { name: "Group B", value: 300 },
+  { name: "Group C", value: 300 },
+  { name: "Group D", value: 200 },
+  { name: "Group E", value: 278 },
+  { name: "Group F", value: 189 },
 ];
 
 export default class AssetChart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-of-straight-angle-oz0th';
+  static demoUrl = "https://codesandbox.io/s/pie-chart-of-straight-angle-oz0th";
 
   render() {
     return (
@@ -28,10 +28,9 @@ export default class AssetChart extends PureComponent {
             fill="#FB881D"
             label
           />
-           <LabelList dataKey="name" position="insideTop" />
+          <LabelList dataKey="name" position="insideTop" />
         </PieChart>
       </ResponsiveContainer>
     );
   }
 }
-
