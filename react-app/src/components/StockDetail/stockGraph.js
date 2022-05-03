@@ -54,15 +54,15 @@ export const data = [
   },
 ];
 
-export default class MainGraph extends PureComponent {
+export default class StockGraph extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/tiny-area-chart-uw0k8";
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="40%" height="20%">
         <AreaChart
           width={730}
-          height={250}
+          height={100}
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >

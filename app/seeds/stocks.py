@@ -13,7 +13,7 @@ def seed_stocks():
     stock8 = Stock(ticker='DFCJ', long_name='POKEMON', i_price=99999.99)
     stock9 = Stock(ticker='BVCF', long_name='TACO BELL', i_price=1234.56)
     
-
+    
     db.session.add_all([stock1, stock2, stock3, stock4, stock5, stock6, stock7, stock8, stock9])
   
 
