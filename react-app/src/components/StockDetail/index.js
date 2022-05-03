@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAStock } from "../../store/stock";
 import { useParams } from "react-router-dom";
-import MainGraph from "../Dashboard/MainGraph";
-import "../Dashboard/index.css";
+import StockGraph from "./stockGraph";
+import "./index.css";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -22,7 +22,7 @@ const StockDetail = () => {
       <h2>{stock?.long_name}</h2>
       <h2>{stock?.ticker}</h2>
       <p>${stock?.i_price}</p>
-      <MainGraph />
+      <StockGraph />
       <div>
         <div className="stockEquity">
           Your Equity
