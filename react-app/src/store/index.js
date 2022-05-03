@@ -5,6 +5,13 @@ import walletReducer from "./wallet";
 import stockReducer from "./stock";
 import transactionReducer from "./transaction";
 import assetReducer from "./asset";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import session from "./session";
+import walletReducer from "./wallet";
+import stockReducer from "./stock";
+import simReducer from "./simulation_data";
+import transactionReducer from "./transaction";
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +19,8 @@ const rootReducer = combineReducers({
   stocks: stockReducer,
   transactions: transactionReducer,
   assets: assetReducer,
+  simData: simReducer,
+  transactions: transactionReducer,
 });
 
 let enhancer;
