@@ -16,6 +16,12 @@ const CashoutStockForm = ({ prop }) => {
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
+  let assetOwned = []
+  Object.values(assets).forEach(asset => {
+    if (asset.stock.id == id) {
+      assetOwned.push(asset)
+    }
+  })
 
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
@@ -60,14 +66,15 @@ const CashoutStockForm = ({ prop }) => {
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
+    history.push(`/stocks/${id}`)
   };
 
   return (
     <div className="transaction-form-container">
         <form onSubmit={handleSubmit}>
-              <p>Total Shares Owned {assets[id]?.num_shares}</p>
+              <p>Total Shares Owned {assetOwned[0]?.num_shares}</p>
             <p>Market Price ${stock?.i_price}</p>
-            <p>Total Price ${stock?.i_price * assets[id]?.num_shares}</p>
+            <p>Total Price ${stock?.i_price * assetOwned[0]?.num_shares}</p>
             <button type="submit">
             Make an Order
             </button>
