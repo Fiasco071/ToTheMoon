@@ -59,7 +59,7 @@ const TransactionForm = () => {
   };
 
   return (
-    <>
+    <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
         <input
           type="number"
@@ -73,7 +73,7 @@ const TransactionForm = () => {
           Make an Order
         </button>
       </form>
-    </>
+    </div>
   );
 };
 export default TransactionForm;
