@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: -1;
 }
 .port-quickview-large-box > h2{
     padding: 15px 0 0 15px;
@@ -80,6 +81,7 @@
 
 .port-quickview-box:hover .port-quickview-large-box {
     animation: blink 0.4s linear normal forwards;
+    z-index: 1;
 }
 
 .port-qv-info-box {

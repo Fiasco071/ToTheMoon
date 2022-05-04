@@ -19,7 +19,7 @@ def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
     # wallet_amount = curr_user['wallet']['amount']
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
-    asset = Asset.query.filter(Asset.stock_id == id).first()
+    asset = Asset.query.filter(Asset.stock_id == id, Asset.user_id == curr_user['id']).first()
     user_id = curr_user['id']
 
     form = TransactionFrom()
@@ -32,7 +32,7 @@ def new_transaction(id): #need to add id back later
 
 
         if wallet.amount >= total_price:
-            if asset is not None:
+            if asset:
                 asset.num_shares += num_shares
             else:
                 asset = Asset(
@@ -41,6 +41,8 @@ def new_transaction(id): #need to add id back later
                     num_shares=num_shares
                 )
 
+            db.session.add(asset)
+            db.session.commit()
             new_transaction = Transaction(
                 user_id=user_id,
                 asset_id=asset.id,
@@ -50,7 +52,7 @@ def new_transaction(id): #need to add id back later
 
             wallet.amount -= Decimal(total_price)
 
-            db.session.add_all([wallet, asset, new_transaction])
+            db.session.add_all([wallet, new_transaction])
             db.session.commit()
             return wallet.to_dict_no_user()
         else:
