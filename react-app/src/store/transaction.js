@@ -47,9 +47,9 @@ export const addATransaction = (data, id) => async (dispatch) => {
   }
 };
 
-export const sellTransaction = (data) => async (dispatch) => {
-  const response = await fetch(`/api/transactions/sell`, {
-    method: "PUT",
+export const sellTransaction = (data, id) => async (dispatch) => {
+  const response = await fetch(`/api/transactions/${id}/sell`, {
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
