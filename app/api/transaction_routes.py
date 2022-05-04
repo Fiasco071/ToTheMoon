@@ -60,45 +60,48 @@ def new_transaction(id): #need to add id back later
     return {'error': form.errors}
 
 
-@transaction_routes.route('/sell', methods=['GET','PUT'])
+@transaction_routes.route('/<int:id>/sell', methods=['GET','POST'])
 @login_required
-def sell_shares(): #need to add id back later
-    id=2
+def sell_shares(id): #need to add id back later
     curr_user = current_user.to_dict()
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     asset = Asset.query.filter(Asset.stock_id == id).one()
     user_id = curr_user['id']
-    num_shares = 1 #will change later
-    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
-    total_price = float(price_at_transaction) * num_shares
+    form = TransactionFrom()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if asset.num_shares >= num_shares:
-        wallet.amount += total_price
+    if form.validate_on_submit():
+        num_shares = form.data['num_shares']
+        price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+        total_price = float(price_at_transaction) * num_shares
 
-        new_transaction = Transaction(
-            user_id=user_id,
-            asset_id=asset.id,
-            num_shares=num_shares*-1,
-            price_at_transaction=price_at_transaction
-        )
+        if asset.num_shares >= num_shares:
+            wallet.amount += Decimal(total_price)
 
-        asset.num_shares -= num_shares
+            new_transaction = Transaction(
+                user_id=user_id,
+                asset_id=asset.id,
+                num_shares=num_shares*-1,
+                price_at_transaction=price_at_transaction
+            )
 
-        db.session.add_all([wallet, asset, new_transaction])
-        db.session.commit()
+            asset.num_shares -= num_shares
 
-        transactions = Transaction.query.filter(Transaction.user_id == current_user.to_dict()['id']).all()
-        return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
+            db.session.add_all([wallet, asset, new_transaction])
+            db.session.commit()
 
-    else:
-        return {'message': 'You cannot sell more shares than you own!'}
+            transactions = Transaction.query.filter(Transaction.user_id == current_user.to_dict()['id']).all()
+            return {"transactions": [transaction.transaction_to_dict() for transaction in transactions]}
+
+        else:
+            return {'message': 'You cannot sell more shares than you own!'}
+    return {'error': form.errors}
 
 
 
-@transaction_routes.route('/cashout', methods=['GET','PUT'])
+@transaction_routes.route('/<int:id>/cashout', methods=['GET','POST'])
 @login_required
-def cash_out(): #will add id back later
-    id=2
+def cash_out(id): #will add id back later
     curr_user = current_user.to_dict()
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     # wallet_amount = curr_user['wallet']['amount']
@@ -109,7 +112,7 @@ def cash_out(): #will add id back later
     total_price = float(price_at_transaction) * float(asset.num_shares)
 
 
-    wallet.amount += total_price
+    wallet.amount += Decimal(total_price)
 
     new_transaction = Transaction(
         user_id=user_id,
