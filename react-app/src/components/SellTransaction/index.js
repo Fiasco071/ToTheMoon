@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { sellTransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
+import { getAllAssets } from "../../store/asset";
 
 const SellTransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const SellTransactionForm = ({ prop }) => {
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
+    dispatch(getAllAssets());
   };
 
   return (

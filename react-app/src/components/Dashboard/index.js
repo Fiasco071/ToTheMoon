@@ -16,6 +16,7 @@ import { getAllAssets } from "../../store/asset";
 import { getAllSimData } from "../../store/simulation_data";
 import QuickView from "./QuickView";
 import { useHistory } from "react-router-dom";
+import SearchBar from "../SearchBar";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,8 @@ const Dashboard = () => {
   //   obj["price"] = simData.sim_data[i]
   //   data.push(obj)
   // }
-  
+
+
 
   return (
     <div className="dashboard-wrapper">
@@ -69,6 +71,8 @@ const Dashboard = () => {
                 onClick={() => history.push('/home')}
               />
             </div>
+
+            <SearchBar />
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
         </div>

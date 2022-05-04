@@ -26,7 +26,7 @@ const StockDetail = () => {
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
   const [newTransaction, setNewTransaction] = useState(false);
-  const prop = { newTransaction, setNewTransaction }
+  const prop = { newTransaction, setNewTransaction, isShown, setIsShown }
 
   let assetOwned = []
   Object.values(assets).forEach(asset => {
@@ -119,7 +119,7 @@ const StockDetail = () => {
                       Sell
                     </button>
                   )}
-                  {assets[id]?.num_shares > 0 && (<button onClick={() => {
+                  {assetOwned.length > 0 && (<button onClick={() => {
                     showCashout();
                   }}>
                     Cashout
@@ -127,7 +127,7 @@ const StockDetail = () => {
                 </div>
                 {isCashedOut && <CashoutStockForm prop={prop}/>}
               {isShown === 1 && <TransactionForm prop={prop}/>}
-              {isShown === 2 && assets[id] && <SellTransactionForm prop={prop}/>}
+              {isShown === 2 && assetOwned.length > 0 && <SellTransactionForm prop={prop}/>}
             </div>
             </div>
             <div>
