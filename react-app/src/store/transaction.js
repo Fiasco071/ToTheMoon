@@ -61,9 +61,9 @@ export const sellTransaction = (data, id) => async (dispatch) => {
   }
 };
 
-export const cashoutTransaction = (data) => async (dispatch) => {
-  const response = await fetch(`/api/transactions/cashout`, {
-    method: "PUT",
+export const cashoutTransaction = (data, id) => async (dispatch) => {
+  const response = await fetch(`/api/transactions/${id}/cashout`, {
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });

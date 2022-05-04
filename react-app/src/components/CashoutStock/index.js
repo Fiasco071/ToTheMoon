@@ -1,35 +1,41 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { sellTransaction } from "../../store/transaction";
+import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
+import { getAllAssets } from "../../store/asset";
+import { cashoutTransaction } from "../../store/transaction";
 
-const SellTransactionForm = ({ prop }) => {
+const CashoutStockForm = ({ prop }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const { id } = useParams();
 
-  let stock = useSelector((state) => state.stocks[id]);
-  let user = useSelector((state) => state.session.user);
+  const stock = useSelector((state) => state.stocks[id]);
+  const user = useSelector((state) => state.session.user);
+  const assets = useSelector((state) => state.assets);
 
 
-  const [isOwned, setIsOwned] = useState(true);
-  const [num_shares, setNumShares] = useState(0);
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
   );
+
+  const [num_shares, setNum_Shares] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
-    dispatch(getAStock(id));
+      dispatch(getAStock(id));
+      dispatch(getAllAssets());
   }, [dispatch]);
 
   useEffect(() => {
     const errors = [];
-
+    if (user?.wallet?.amount < num_shares * price_at_transaction) {
+      errors.push("Insufficient funds");
+    }
     if (num_shares < 1) {
       errors.push("Must buy at least 1 share");
     }
@@ -42,15 +48,15 @@ const SellTransactionForm = ({ prop }) => {
     prop.setNewTransaction(!prop.newTransaction);
 
     const transaction = {
-      num_shares,
+      num_shares: assets[id]?.num_shares,
       price_at_transaction,
     };
 
-    let newTransaction;
+    let cashedOutTransaction;
 
-    newTransaction = await dispatch(sellTransaction(transaction, id));
-    setNumShares(0);
+    cashedOutTransaction = await dispatch(cashoutTransaction(transaction, id));
     setPriceAtTransaction(stock?.i_price);
+    setNum_Shares(0);
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
@@ -58,20 +64,15 @@ const SellTransactionForm = ({ prop }) => {
 
   return (
     <div className="transaction-form-container">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Number of Shares"
-          value={num_shares}
-          onChange={(e) => setNumShares(e.target.value)}
-        ></input>
-        <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${stock?.i_price * num_shares}</p>
-        <button type="submit" disabled={validationErrors.length > 0}>
-          Sell Your Order
-        </button>
+        <form onSubmit={handleSubmit}>
+              <p>Total Shares Owned {assets[id]?.num_shares}</p>
+            <p>Market Price ${stock?.i_price}</p>
+            <p>Total Price ${stock?.i_price * assets[id]?.num_shares}</p>
+            <button type="submit">
+            Make an Order
+            </button>
       </form>
     </div>
   );
 };
-export default SellTransactionForm;
+export default CashoutStockForm;

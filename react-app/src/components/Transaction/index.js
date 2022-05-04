@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 
-const TransactionForm = () => {
+const TransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -12,7 +12,7 @@ const TransactionForm = () => {
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
-  // console.log(user.wallet.amount);
+
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -38,9 +38,12 @@ const TransactionForm = () => {
     setValidationErrors(errors);
   }, [num_shares, totalPrice, user]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
+    prop.setNewTransaction(!prop.newTransaction);
+
     const transaction = {
       num_shares,
       price_at_transaction,
@@ -54,8 +57,6 @@ const TransactionForm = () => {
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
-
-    history.push(`/home`);
   };
 
   return (
