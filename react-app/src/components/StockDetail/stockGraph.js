@@ -59,7 +59,7 @@ export default class StockGraph extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="40%" height="20%">
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           width={730}
           height={100}

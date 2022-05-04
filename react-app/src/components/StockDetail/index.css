@@ -1,36 +1,57 @@
+.stock-details-content {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+.about-box {
+  width: 50vw;
+  padding: 20px;
+  margin: 20px;
+  height: 20vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px grey;
+}
+
+.transaction-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10vw;
+  margin: 20px;
+  padding: 20px;
+  height: 20vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px grey;
+}
+
 .stockDetailContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  border: 1px solid black;
-  border-radius: 25px;
+  width: 55vw;
+  padding: 5px;
   margin: 20px;
-  padding: 20px;
+  height: 10vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px grey;
 }
 
-.stockEquity {
+
+.graph-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  border-radius: 25px;
-  margin: 20px;
-  padding: 20px;
-  width: 20%;
+  justify-content: space-around;
 }
 
-.stockInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  border-radius: 25px;
-  margin: 20px;
+.stock-graph {
+  width: 40vw;
   padding: 20px;
-  width: 20%;
+  margin: 20px;
+  height: 20vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px grey;
 }
