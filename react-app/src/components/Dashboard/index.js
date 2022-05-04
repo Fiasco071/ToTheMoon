@@ -14,6 +14,7 @@ import MainGraph from "./MainGraph";
 import WatchList from "../WatchList";
 import { getAllAssets } from "../../store/asset";
 import { getAllSimData } from "../../store/simulation_data";
+import QuickView from "./QuickView";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const Dashboard = () => {
   //   obj["price"] = simData.sim_data[i]
   //   data.push(obj)
   // }
+  
 
   return (
     <div className="dashboard-wrapper">
@@ -70,7 +72,7 @@ const Dashboard = () => {
                 <WalletFormModal />
                 <div>
                   <p>$</p>
-                  <p>{wallet[1]?.amount}</p>
+                  <p>{wallet[1]?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 </div>
                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
               </div>
@@ -89,7 +91,9 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="dashboard-content-box3">
-              <div></div>
+              <div>
+                <QuickView />
+              </div>
             </div>
           </div>
           <div className="dashboard-watchlist-box">
