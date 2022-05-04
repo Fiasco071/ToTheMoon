@@ -28,6 +28,13 @@ const StockDetail = () => {
   const [newTransaction, setNewTransaction] = useState(false);
   const prop = { newTransaction, setNewTransaction }
 
+  let assetOwned = []
+  Object.values(assets).forEach(asset => {
+    if (asset.stock.id == id) {
+      assetOwned.push(asset)
+    }
+  })
+
   const onLogout = async (e) => {
     await dispatch(logout());
   };
@@ -103,7 +110,7 @@ const StockDetail = () => {
                   >
                     Buy
                   </button>
-                  {assets[id]?.num_shares > 0 && (
+                  {assetOwned.length > 0 && (
                     <button
                       onClick={() => {
                         changeTransactionSell();

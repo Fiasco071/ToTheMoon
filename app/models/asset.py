@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey
 from .db import db
 import simplejson as json
 from decimal import Decimal
+from .jtable import association_table
 
 class Asset(db.Model):
     __tablename__= "assets"
@@ -11,7 +12,7 @@ class Asset(db.Model):
     stock_id = db.Column(db.Integer, ForeignKey('stocks.id'))
     num_shares = db.Column(db.Numeric(precision=8, scale=2))
 
-    user = db.relationship('User', back_populates='asset')
+    user = db.relationship('User', secondary=association_table, back_populates='asset')
     stock = db.relationship('Stock', back_populates='asset2')
     transaction = db.relationship('Transaction', back_populates='asset')
 
@@ -21,7 +22,7 @@ class Asset(db.Model):
             'user_id': self.user_id,
             'stock_id': self.stock_id,
             'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
-            'user': self.user.to_dict_no_wallet(),
+            # 'user': self.user.to_dict_no_wallet(),
             'stock': self.stock.stock_to_dict(),
             # 'transaction': self.transaction.transaction_to_dict_no_asset()
         }
