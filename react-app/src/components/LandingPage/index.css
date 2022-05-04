@@ -1,8 +1,14 @@
 .landing-wrapper {
-  width: 100vw;
+  /* width: 100vw;
   background-color: white;
   margin: 0;
-  padding: 0;
+  padding: 0; */
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(110deg, rgb(136, 147, 180), rgb(154, 97, 167));
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -11,10 +17,16 @@
 }
 
 .landing-nav-bar {
-  width: 100vw;
+  /* width: 100vw;
   height: 65px;
   display: flex;
-  border: 1px solid black;
+  border: 1px solid black; */
+  width: 100%;
+  height: 100px;
+  border-radius: 15px 15px 0 0;
+  border-bottom: rgb(204, 204, 204) solid 4px;
+  display: flex;
+  padding-bottom: 30px;
 }
 
 .landing-nav-bar-icon {
@@ -25,6 +37,7 @@
   justify-content: center;
   align-items: center;
   border-right: 1px solid black;
+  margin-left: 20px;
 }
 
 .landing-nav-bar-nav {
@@ -42,7 +55,7 @@
   text-decoration: none;
   color: black;
   font-size: 18px;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .landing-nav-bar-log-buttons > a {
@@ -56,7 +69,7 @@
   font-weight: bold;
 }
 
-.signup-button {
+.landing-button {
   font-size: 18px;
   text-decoration: none;
   padding: 11px 28px;
@@ -65,7 +78,8 @@
   font-weight: bold;
   background-color: black;
   color: white;
-  width: 68px;
+  /* width: 68px; */
+  text-align: center;
 }
 
 .landing-nav-bar-log-buttons > a:nth-child(2) {
@@ -74,11 +88,18 @@
 }
 
 .landing-content-box-1 {
-  height: 653px;
+  /* height: 653px; */
+  height: 80%;
+  /* width: 80%; */
+  margin: 50px;
   display: flex;
-  justify-content: center;
-  background-color: rgb(195, 245, 60);
-  border-bottom: 1px solid black;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: rgb(195, 245, 60); */
+  background-color: white;
+  /* border-bottom: 1px solid black; */
+  /* border: 2px solid black; */
+  border-radius: 20px;
 }
 
 .landing-content-box-1-textbox {
@@ -87,6 +108,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  letter-spacing: 2px;
+
 }
 
 .landing-content-box-1-textbox > h1 {
@@ -102,6 +125,9 @@
 
 .landing-content-box-1-animationbox {
   margin: 25px 0 0 10px;
+  /* align-self: center; */
+  /* justify-content: center; */
+  /* margin: 50px; */
   width: 696px;
   height: 100%;
 }
@@ -123,6 +149,7 @@
   padding-top: 40px;
   box-sizing: border-box;
   border-bottom: 1px solid black;
+  background-color: rgb(240, 235, 230);
 }
 
 .landing-content-box-3-textbox {
@@ -166,13 +193,24 @@
 }
 
 .landing-content-box-4 {
-  background-color: rgb(240, 235, 230);
-  width: 100vw;
+  /* background-color: rgb(240, 235, 230); */
+  width: 95vw;
   height: 627px;
   padding: 84px 0px 60px;
   display: flex;
   justify-content: center;
   border-bottom: solid 1px black;
+  /* height: 80%; */
+
+  margin: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: white; */
+  border-radius: 20px;
+  /* background-color: rgb(240, 235, 230); */
+  background-color: white;
+  /* background: linear-gradient(110deg, rgb(136, 147, 180), rgb(154, 97, 167)); */
 }
 
 .landing-content-box-4-textbox {
@@ -180,5 +218,28 @@
   height: 585px;
 }
 
-.box-4-image {
+.box-4-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(110deg, rgb(136, 147, 180), rgb(154, 97, 167))
+  /* background: linear-gradient(110deg, rgb(136, 147, 180), rgb(154, 97, 167)); */
 }
+
+.btn {
+  font-size: 14px;
+  text-decoration: none;
+  padding: 8px 28px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  letter-spacing: 1px;
+  /* width: 68px; */
+  text-align: center;
+  margin: 5px;
+}
+
+/* .box-4-image {
+} */
