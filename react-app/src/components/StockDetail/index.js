@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllStocks, getAStock } from "../../store/stock";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import StockGraph from "./stockGraph";
 import TransactionForm from "../Transaction";
 import { logout } from "../../store/session";
 import WatchList from "../WatchList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faDoorOpen, faHome } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import { getAllAssets } from "../../store/asset";
 import SellTransactionForm from "../SellTransaction/index";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
   // console.log(id);
 
@@ -54,6 +55,13 @@ const StockDetail = () => {
                 icon={faDoorOpen}
                 className="profile-icon"
                 onClick={onLogout}
+              />
+            </div>
+            <div className="profile-icon-box-home">
+              <FontAwesomeIcon
+                icon={faHome}
+                className="profile-icon"
+                onClick={() => history.push('/home')}
               />
             </div>
           </div>
