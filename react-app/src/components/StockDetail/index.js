@@ -11,19 +11,22 @@ import { faUser, faDoorOpen, faHome } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import { getAllAssets } from "../../store/asset";
 import SellTransactionForm from "../SellTransaction/index";
+import CashoutStockForm from "../CashoutStock";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  // console.log(id);
 
   const stocks = useSelector((state) => state.stocks);
   const stock = useSelector((state) => state.stocks[id]);
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(1);
+  const [isCashedOut, setIsCashedOut] = useState(false);
+  const [newTransaction, setNewTransaction] = useState(false);
+  const prop = { newTransaction, setNewTransaction }
 
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -33,15 +36,23 @@ const StockDetail = () => {
     dispatch(getAStock(id));
     dispatch(getAllStocks());
     dispatch(getAllAssets());
-  }, [dispatch]);
+  }, [dispatch, newTransaction]);
 
   const changeTransactionBuy = () => {
-    setIsShown(false);
+    setIsCashedOut(false);
+    setIsShown(1);
   };
 
   const changeTransactionSell = () => {
-    setIsShown(true);
+    setIsCashedOut(false);
+    setIsShown(2);
   };
+
+  const showCashout = () => {
+    setIsCashedOut(true);
+    setIsShown(3)
+  };
+
   return (
     <div className="dashboard-wrapper">
       <div className="dashboard">
@@ -83,26 +94,34 @@ const StockDetail = () => {
               <div className="stock-graph">
                 <StockGraph />
               </div>
-              <div>
-                <button
-                  onClick={() => {
-                    changeTransactionSell();
-                  }}
-                >
-                  Buy
-                </button>
-                {assets[id] && (
+              <div className="transactions-form-container">
+                <div className="transactions-btns">
                   <button
                     onClick={() => {
                       changeTransactionBuy();
                     }}
                   >
-                    Sell
+                    Buy
                   </button>
-                )}
-              </div>
-              {isShown && <TransactionForm />}
-              {!isShown && assets[id] && <SellTransactionForm />}
+                  {assets[id]?.num_shares > 0 && (
+                    <button
+                      onClick={() => {
+                        changeTransactionSell();
+                      }}
+                    >
+                      Sell
+                    </button>
+                  )}
+                  {assets[id]?.num_shares > 0 && (<button onClick={() => {
+                    showCashout();
+                  }}>
+                    Cashout
+                  </button>)}
+                </div>
+                {isCashedOut && <CashoutStockForm prop={prop}/>}
+              {isShown === 1 && <TransactionForm prop={prop}/>}
+              {isShown === 2 && assets[id] && <SellTransactionForm prop={prop}/>}
+            </div>
             </div>
             <div>
               <section className="about-box" height={400}>

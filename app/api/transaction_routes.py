@@ -19,7 +19,7 @@ def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
     # wallet_amount = curr_user['wallet']['amount']
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
-    asset = Asset.query.filter(Asset.stock_id == id).one()
+    asset = Asset.query.filter(Asset.stock_id == id).first()
     user_id = curr_user['id']
 
     form = TransactionFrom()
@@ -32,11 +32,9 @@ def new_transaction(id): #need to add id back later
 
 
         if wallet.amount >= total_price:
-            if asset:
-                asset_id=asset.id
+            if asset is not None:
                 asset.num_shares += num_shares
             else:
-                num_shares += asset.num_shares
                 asset = Asset(
                     user_id=user_id,
                     stock_id=id,
