@@ -150,8 +150,8 @@
   height: 65px;
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   background: linear-gradient(130deg, rgb(212, 235, 83), rgb(85, 138, 16));
-  position: relative;
-  top: -80px;
+  position: absolute;
+  top: 0px;
   z-index: -1;
   display: flex;
   justify-content: center;
@@ -188,7 +188,7 @@
 
 @keyframes movetwo {
   100% {
-    transform: translate(-1px,-21px);
+    transform: translate(-1.5px, 61px);
     z-index: 1;
   }
 }
