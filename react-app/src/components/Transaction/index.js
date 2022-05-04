@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 
 const TransactionForm = () => {
@@ -11,7 +12,7 @@ const TransactionForm = () => {
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
-  console.log(user.wallet.amount);
+  // console.log(user.wallet.amount);
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -37,7 +38,7 @@ const TransactionForm = () => {
     setValidationErrors(errors);
   }, [num_shares, totalPrice, user]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
     const transaction = {
@@ -47,7 +48,7 @@ const TransactionForm = () => {
 
     let newTransaction;
 
-    // newTransaction = await dispatch();
+    newTransaction = await dispatch(addATransaction(transaction, id));
     setNumShares(0);
     setPriceAtTransaction(stock?.i_price);
     setTotalPrice(0);
