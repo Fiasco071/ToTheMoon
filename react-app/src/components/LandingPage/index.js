@@ -35,7 +35,7 @@ const LandingPage = () => {
               Certain limitations and fees apply.
             </p>
 
-            <a href="#" className="signup-button">
+            <a href="#" className="landing-button">
               Sign Up
             </a>
           </div>
@@ -109,32 +109,33 @@ const LandingPage = () => {
             <p className="box-3-link">IPO Accesss disclosure</p>
           </div>
         </div>
+        {/* <div className="box-4-wrapper"> */}
+        <div className="box-4-wrapper">
+          <div className="landing-content-box-4">
+            <div className="landing-content-box-1-textbox">
+              <h1>Our Products</h1>
+              <h2>Stocks & Funds </h2>
+              <p>Options Gold | Crypto</p>
+              <p>
+                Get mobile access to the markets. Invest commission-free in
+                individual companies or bundles of investments (ETFs).
+              </p>
 
-        <div className="landing-content-box-4">
-          <div className="landing-content-box-4-textbox">
-            <h1>Our Products</h1>
-            <h2>Stocks & Funds </h2>
-            <p>Options Gold | Crypto</p>
-            <p>
-              Get mobile access to the markets. Invest commission-free in
-              individual companies or bundles of investments (ETFs).
-            </p>
-
-            <a href="#" className="signup-button">
-              Learn about Stocks & Funds
-            </a>
-          </div>
-          <div>
-            <img
-              className="box-4-image"
-              draggable="false"
-              role="presentation"
-              src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png"
-              srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__5df2bc2eacf940aec8941d4618def751.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__7bdf5f4619ac7fb88345295d59f41c12.png 3x"
-            />
+              <a href="#" className="landing-button">
+                Learn about Stocks & Funds
+              </a>
+            </div>
+            <div>
+              <img
+                className="box-4-image"
+                draggable="false"
+                role="presentation"
+                src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png"
+                srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__5df2bc2eacf940aec8941d4618def751.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__7bdf5f4619ac7fb88345295d59f41c12.png 3x"
+              />
+            </div>
           </div>
         </div>
-
         <div className="landing-content-box-5"></div>
       </div>
     </div>
