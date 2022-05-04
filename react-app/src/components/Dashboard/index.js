@@ -1,7 +1,7 @@
 import "./index.css";
 // import LogoutButton from '../auth/LogoutButton';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faDoorOpen, faHome } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAWallet } from "../../store/wallet";
@@ -15,9 +15,11 @@ import WatchList from "../WatchList";
 import { getAllAssets } from "../../store/asset";
 import { getAllSimData } from "../../store/simulation_data";
 import QuickView from "./QuickView";
+import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const wallet = useSelector((state) => state.wallet);
   const stocks = useSelector((state) => state.stocks);
@@ -58,6 +60,13 @@ const Dashboard = () => {
                 icon={faDoorOpen}
                 className="profile-icon"
                 onClick={onLogout}
+              />
+            </div>
+            <div className="profile-icon-box-home">
+              <FontAwesomeIcon
+                icon={faHome}
+                className="profile-icon"
+                onClick={() => history.push('/home')}
               />
             </div>
           </div>

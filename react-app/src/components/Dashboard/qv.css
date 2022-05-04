@@ -21,7 +21,7 @@
     text-shadow: 1px 1px 1px rgb(78, 78, 78), -1px -1px 1px rgb(161, 161, 161);
 }
 
-.port-quickview-box > div {
+.port-quickview-box > div.qv-text-boxes {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,10 +57,69 @@
 .port-quickview-box:nth-child(n+3) {
     background: linear-gradient(210deg, #cfffc9, #6fb766);
 }
-div.foo:nth-child(7n+1) a:hover  { color: #f15123; }
-div.foo:nth-child(7n+2) a:hover  { color: #3491dd; }
-div.foo:nth-child(7n+3) a:hover  { color: #f4b138; }
-div.foo:nth-child(7n+4) a:hover  { color: #3d57a7; }
-div.foo:nth-child(7n+5) a:hover  { color: #fd7b23; }
-div.foo:nth-child(7n+6) a:hover  { color: #6fb766; }
-div.foo:nth-child(7n+7) a:hover  { color: #4dd4af; }
+
+.port-quickview-large-box {
+    width: 650px;
+    height: 450px;
+    background-color: rgba(227, 244, 255, 0.9);
+    position: absolute;
+    top:calc(50% - 200px);
+    left:calc(50% - 300px);
+    opacity: 0;
+    border-radius: 15px;
+    box-shadow: 3px 3px 4px rgb(90, 90, 90);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.port-quickview-large-box > h2{
+    padding: 15px 0 0 15px;
+    margin:0;
+    border-bottom: 4px solid rgb(104, 104, 104);
+}
+
+.port-quickview-box:hover .port-quickview-large-box {
+    animation: blink 0.4s linear normal forwards;
+}
+
+.port-qv-info-box {
+    display: flex;
+    justify-content: space-between;
+}
+.port-quickview-large-box {}
+
+@keyframes blink {
+    100% {
+        opacity:1;
+    }
+  }
+
+.qv-text-lboxes {
+    border-radius: 10px;
+    height: 70px;
+    background-color: white;
+    padding: 10px 25px;
+    margin: 0 15px 15px 15px;
+}
+
+.qv-text-lboxes >p {
+    margin:0;
+}
+
+.qvl-value {
+    font-weight: bolder;
+    font-size: 40px;
+    color: crimson;
+}
+
+.qvl-value.two{
+    color: rgb(20, 20, 150);
+}
+
+.port-quickview-large-box > div:nth-child(2){
+    margin-left: 60px;
+}
+
+.qvl-stockgraph-box {
+    position: relative;
+}
