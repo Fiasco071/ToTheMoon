@@ -42,6 +42,8 @@ const StockDetail = () => {
   const changeTransactionSell = () => {
     setIsShown(true);
   };
+
+
   return (
     <div className="dashboard-wrapper">
       <div className="dashboard">
@@ -86,7 +88,7 @@ const StockDetail = () => {
               <div>
                 <button
                   onClick={() => {
-                    changeTransactionSell();
+                    changeTransactionBuy();
                   }}
                 >
                   Buy
@@ -94,15 +96,15 @@ const StockDetail = () => {
                 {assets[id] && (
                   <button
                     onClick={() => {
-                      changeTransactionBuy();
+                      changeTransactionSell();
                     }}
                   >
                     Sell
                   </button>
                 )}
               </div>
-              {isShown && <TransactionForm />}
-              {!isShown && assets[id] && <SellTransactionForm />}
+              {isShown === false && <TransactionForm />}
+              {isShown === true && assets[id] && <SellTransactionForm />}
             </div>
             <div>
               <section className="about-box" height={400}>
