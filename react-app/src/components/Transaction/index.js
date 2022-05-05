@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 
 const TransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { id } = useParams();
 
