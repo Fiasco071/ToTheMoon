@@ -59,7 +59,7 @@ const BiggestChange = () => {
                     <div className='recent-change-wrapper'>
                         <div className='picked'>{stockName.split('*')[0]}</div>
                         <div className='arrow-up'></div>
-                        <div className='percentage'>{randomNum(4)}.{randomNum(99)}%</div>
+                        <div className='percentage'>{randomNum(4)}.{randomNum(100)}%</div>
                     </div>
                     <div className='recent-change-wrapper' id='down-box'>
                         <div className='picked'>{stockName.split('*')[1]}</div>
