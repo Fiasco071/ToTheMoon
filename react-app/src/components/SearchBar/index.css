@@ -1,3 +1,39 @@
 .searchresult-list > li{
     color: black
 }
+
+.search-bar-box {
+    position: relative;
+    top:30px;
+    left: calc(50%);   
+}
+
+.search-bar-box > form > input {
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px 0 10px 15px;
+    width: 450px;
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+    background-color: rgb(238, 238, 238);
+}
+
+.search-bar-box >form> input:focus {
+    outline: none;
+}
+
+.searchresult-list {
+    padding: 15px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 4px rgb(66, 66, 66);
+    list-style: none;
+}
+
+.searchresult-list > li {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
