@@ -82,6 +82,12 @@
   text-align: center;
 }
 
+.landing-button:hover {
+  background-color: rgb(59, 6, 51);
+  border: 1px solid rgb(59, 6, 51);
+  cursor: pointer;
+}
+
 .landing-nav-bar-log-buttons > a:nth-child(2) {
   background-color: black;
   color: white;
@@ -239,6 +245,12 @@
   /* width: 68px; */
   text-align: center;
   margin: 5px;
+}
+
+.btn:hover {
+  background-color: rgb(59, 6, 51);
+  border: 1px solid rgb(59, 6, 51);
+  cursor: pointer;
 }
 
 /* .box-4-image {

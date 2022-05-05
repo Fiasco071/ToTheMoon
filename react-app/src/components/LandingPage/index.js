@@ -11,11 +11,10 @@ const LandingPage = () => {
 
           <div className="landing-nav-bar-nav">
             <div className="landing-nav-bar-nav-links">
-              <a href="#">Link1</a>
-              <a href="#">Link2</a>
-              <a href="#">Link3</a>
-              <a href="#">Link4</a>
-              <a href="#">Link5</a>
+              <a href="https://www.linkedin.com/in/arianna-robinson/">Arianna Robinson</a>
+              <a href="https://www.linkedin.com/in/kristen-reid-a4b499202/">Kristen Reid</a>
+              <a href="https://www.linkedin.com/in/rami-martinez-2931099b/">Rami Martinez</a>
+              <a href="https://www.linkedin.com/in/schoi017/">Steve Choi</a>
             </div>
             <div className="landing-nav-bar-log-buttons">
               <LoginFormModal />
