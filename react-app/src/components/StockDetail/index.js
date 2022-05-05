@@ -30,11 +30,12 @@ const StockDetail = () => {
 
   let assetOwned = []
   Object.values(assets).forEach(asset => {
-    if (asset.stock.id == id) {
+    if (asset.stock?.id == id) {
       assetOwned.push(asset)
     }
-  })
+  });
 
+  
   const onLogout = async (e) => {
     await dispatch(logout());
   };
@@ -110,7 +111,7 @@ const StockDetail = () => {
                   >
                     Buy
                   </button>
-                  {assetOwned.length > 0 && (
+                  {assetOwned[0]?.num_shares > 0 && (
                     <button
                       onClick={() => {
                         changeTransactionSell();
@@ -119,7 +120,7 @@ const StockDetail = () => {
                       Sell
                     </button>
                   )}
-                  {assetOwned.length > 0 && (<button onClick={() => {
+                  {assetOwned[0]?.num_shares > 0 && (<button onClick={() => {
                     showCashout();
                   }}>
                     Cashout

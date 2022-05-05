@@ -12,7 +12,7 @@ const TransactionForm = ({ prop }) => {
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
-
+  const assets = useSelector((state) => state.assets);
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -23,6 +23,13 @@ const TransactionForm = ({ prop }) => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
+  let assetOwned = []
+  Object.values(assets).forEach(asset => {
+    if (asset.stock?.id == id) {
+      assetOwned.push(asset)
+    }
+  });
+
   useEffect(() => {
     dispatch(getAStock(id));
   }, [dispatch]);
@@ -32,7 +39,7 @@ const TransactionForm = ({ prop }) => {
     if (user?.wallet?.amount < num_shares * price_at_transaction) {
       errors.push("Insufficient funds");
     }
-    if (num_shares < 1) {
+    if (num_shares <= 0) {
       errors.push("Must buy at least 1 share");
     }
     setValidationErrors(errors);
@@ -64,12 +71,14 @@ const TransactionForm = ({ prop }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="number"
+          step='.1'
+          min='0'
           placeholder="Number of Shares"
           value={num_shares}
           onChange={(e) => setNumShares(e.target.value)}
         ></input>
         <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${stock?.i_price * num_shares}</p>
+        <p>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</p>
         <button type="submit" disabled={validationErrors.length > 0}>
           Make an Order
         </button>

@@ -74,7 +74,7 @@ const CashoutStockForm = ({ prop }) => {
         <form onSubmit={handleSubmit}>
               <p>Total Shares Owned {assetOwned[0]?.num_shares}</p>
             <p>Market Price ${stock?.i_price}</p>
-            <p>Total Price ${stock?.i_price * assetOwned[0]?.num_shares}</p>
+            <p>Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</p>
             <button type="submit">
             Make an Order
             </button>

@@ -13,7 +13,14 @@ const SellTransactionForm = ({ prop }) => {
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
+  const assets = useSelector((state) => state.assets);
 
+  let assetOwned = []
+  Object.values(assets).forEach(asset => {
+    if (asset.stock?.id == id) {
+      assetOwned.push(asset)
+    }
+  });
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -63,12 +70,16 @@ const SellTransactionForm = ({ prop }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="number"
+          step='.1'
+          min='0'
+          max={assetOwned[0]?.num_shares}
           placeholder="Number of Shares"
           value={num_shares}
           onChange={(e) => setNumShares(e.target.value)}
         ></input>
+        <p>Total Shares Owned {assetOwned[0]?.num_shares}</p>
         <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${stock?.i_price * num_shares}</p>
+        <p>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</p>
         <button type="submit" disabled={validationErrors.length > 0}>
           Sell Your Order
         </button>
