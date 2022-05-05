@@ -14,18 +14,6 @@
   box-shadow: 3px 3px 10px grey;
 }
 
-/* .transaction-form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10vw;
-  margin: 20px;
-  padding: 20px;
-  height: 20vh;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 3px 3px 10px grey;
-} */
 
 .stockDetailContainer {
   display: flex;
@@ -61,16 +49,63 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 10vw;
+  text-align: center;
+  width: 30%;
   margin: 20px;
   padding: 20px;
-  height: 20vh;
+  height: 80%;
   background: white;
   border-radius: 15px;
   box-shadow: 3px 3px 10px grey;
 }
 
 
+.transaction-form-input {
+  width: 50%;
+}
+
 .transactions-btns {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transactions-btns > button {
+  margin: 2%;
+  font-size: 12px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.ticker-header{
+  text-align: center;
+}
+
+.market-price-header {
+  text-align: center;
+}
+
+.company-name-header {
+  text-align: center;
+}
+
+.equity-header {
+  text-align: center;
+}
+
+
+.order-btn {
+  font-size: 12px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
 }

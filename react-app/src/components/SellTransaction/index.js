@@ -38,7 +38,7 @@ const SellTransactionForm = ({ prop }) => {
   useEffect(() => {
     const errors = [];
 
-    if (num_shares < 1) {
+    if (num_shares <= 0) {
       errors.push("Must buy at least 1 share");
     }
     setValidationErrors(errors);
@@ -70,17 +70,17 @@ const SellTransactionForm = ({ prop }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="number"
-          step='.1'
+          step='.01'
           min='0'
           max={assetOwned[0]?.num_shares}
           placeholder="Number of Shares"
           value={num_shares}
           onChange={(e) => setNumShares(e.target.value)}
         ></input>
-        <p>Total Shares Owned {assetOwned[0]?.num_shares}</p>
-        <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</p>
-        <button type="submit" disabled={validationErrors.length > 0}>
+        <h4>Total Shares Owned {assetOwned[0]?.num_shares}</h4>
+        <h4>Market Price ${stock?.i_price}</h4>
+        <h4>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</h4>
+        <button className="order-btn" type="submit" disabled={validationErrors.length > 0}>
           Sell Your Order
         </button>
       </form>

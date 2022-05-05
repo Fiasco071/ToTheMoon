@@ -69,16 +69,17 @@ const TransactionForm = ({ prop }) => {
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
         <input
+          className="transaction-form-input"
           type="number"
-          step='.1'
+          step='.01'
           min='0'
           placeholder="Number of Shares"
           value={num_shares}
           onChange={(e) => setNumShares(e.target.value)}
         ></input>
-        <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</p>
-        <button type="submit" disabled={validationErrors.length > 0}>
+        <h4>Market Price ${stock?.i_price}</h4>
+        <h4>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</h4>
+        <button className="order-btn" type="submit" disabled={validationErrors.length > 0}>
           Make an Order
         </button>
       </form>

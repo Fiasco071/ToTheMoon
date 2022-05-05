@@ -103,9 +103,9 @@ const StockDetail = () => {
                 <h3>${stock?.i_price}</h3>
               </div>
               {assetOwned[0]?.num_shares > 0 && (
-                <div>
-                <p>Your Equity</p>
-                <div>${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</div>
+                <div className="equity-header">
+                <h2>Your Equity</h2>
+                <h3>${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</h3>
                 </div>
                 )}
             </div>
