@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard";
 import StockDetail from "./components/StockDetail";
 import TransactionForm from "./components/Transaction";
+import Footer from "./components/About";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,7 @@ function App() {
           <StockDetail />
         </ProtectedRoute>
       </Switch>
+      {<Footer />}
     </BrowserRouter>
   );
 }
