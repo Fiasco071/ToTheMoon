@@ -15,7 +15,6 @@ const rootReducer = combineReducers({
   transactions: transactionReducer,
   assets: assetReducer,
   simData: simReducer,
-  transactions: transactionReducer,
 });
 
 let enhancer;

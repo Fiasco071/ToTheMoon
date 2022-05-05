@@ -24,7 +24,7 @@ const updateATransaction = (transaction) => {
 };
 
 export const getAllTransactions = () => async (dispatch) => {
-  const response = await fetch(`/api/transactions`);
+  const response = await fetch(`/api/transactions/`);
 
   if (response.ok) {
     const transactions = await response.json();
@@ -79,10 +79,10 @@ const transactionReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_TRANSACTION:
       const getAllTransactions = {};
-      action.payload.forEach((transactions) => {
+      action.payload.transactions.forEach((transactions) => {
         getAllTransactions[transactions.id] = transactions;
       });
-      return { ...getAllTransactions, ...state };
+      return getAllTransactions;
     case POST_TRANSACTION: {
       const newState = { ...state };
       newState[action.payload.id] = action.payload;

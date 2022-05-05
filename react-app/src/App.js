@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard";
 import StockDetail from "./components/StockDetail";
 import TransactionForm from "./components/Transaction";
 import Footer from "./components/About";
+import UserTransactionHistory from "./components/UserTransactions";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,6 +54,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/stocks/:id" exact={true}>
           <StockDetail />
+        </ProtectedRoute>
+        <ProtectedRoute path="/mytransactions" exact={true}>
+          <UserTransactionHistory />
         </ProtectedRoute>
       </Switch>
       {<Footer />}
