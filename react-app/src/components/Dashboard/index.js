@@ -1,7 +1,7 @@
 import "./index.css";
 // import LogoutButton from '../auth/LogoutButton';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faDoorOpen, faHome } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser, faDoorOpen, faHome, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAWallet } from "../../store/wallet";
@@ -9,6 +9,7 @@ import { getAWallet } from "../../store/wallet";
 import { logout } from "../../store/session";
 import { getAllStocks } from "../../store/stock";
 import AssetChart from "./PieChart";
+import LPieChart from "./LPieChart";
 import WalletFormModal from "../WalletForm/WalletFormModal";
 import MainGraph from "./MainGraph";
 import WatchList from "../WatchList";
@@ -18,6 +19,7 @@ import QuickView from "./QuickView";
 import { useHistory } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import BiggestChange from "./BiggestChange";
+import HexaMenu from "./HexaMenu.js";
 
 
 const Dashboard = () => {
@@ -38,43 +40,21 @@ const Dashboard = () => {
     dispatch(getAllSimData());
   }, [dispatch]);
 
-  // const response = await fetch(`/api/stocks/test`);
-  // const simData = await response.json();
 
-  // let data = []
-  // for (let i = 0; i <= 252; i++) {
-  //   let obj = {}
-  //   obj["name"] = i
-  //   obj["price"] = simData.sim_data[i]
-  //   data.push(obj)
-  // }
-
-
+  // const menu_icons =[
+  //   [faUser, "menu", "onLogout" ],
+  //   [faDoorOpen, "home", "history.push('/home')"]
+  //   [faMoneyBill, "transactionpage", "history.push('/my-transactions')"]
+  // ] 
 
   return (
     <div className="dashboard-wrapper">
       <div className="dashboard">
         <div className="dashboard-title-bar">
           <div className="profile-icon-box-wrapper">
-            <div className="profile-icon-box">
-              <FontAwesomeIcon icon={faUser} className="profile-icon" />
-            </div>
-            <div className="profile-icon-box-menu" onClick={onLogout}>
-              <FontAwesomeIcon
-                icon={faDoorOpen}
-                className="profile-icon"
-              />
-            </div>
-            <div className="profile-icon-box-home" onClick={() => history.push('/home')}>
-              <FontAwesomeIcon
-                icon={faHome}
-                className="profile-icon"
-              />
-            </div>
-
-            
+            <HexaMenu />
           </div>
-          
+
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
         </div>
@@ -94,6 +74,11 @@ const Dashboard = () => {
               <div className="asset-box">
                 <h2>Assets</h2>
                 <AssetChart className="asset-chart" />
+                <div className="asset-box-large">
+                  <div>
+                    <LPieChart className="large-asset-chart" />
+                  </div>
+                </div>
               </div>
               <div className="recent-box">
                 <h2>Recent Change</h2>

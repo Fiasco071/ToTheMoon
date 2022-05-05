@@ -159,6 +159,20 @@
   margin: 16px 0 0 35px;
 }
 
+.profile-icon-box-transactionpage {
+  width: 65px;
+  height: 65px;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  background: linear-gradient(130deg, rgb(43, 228, 142), rgb(71, 135, 207));
+  position: absolute;
+  top: 0px;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0 0 35px;
+}
+
 .profile-icon {
   color: white;
   position: relative;
@@ -179,6 +193,10 @@
 .profile-icon-box-wrapper:hover .profile-icon-box-home {
   animation: movetwo 0.2s linear normal forwards;
 }
+
+.profile-icon-box-wrapper:hover .profile-icon-box-transactionpage {
+  animation: movethree 0.2s linear normal forwards;
+}
 @keyframes move {
   100% {
     transform: translate(50px, 30px);
@@ -189,6 +207,13 @@
 @keyframes movetwo {
   100% {
     transform: translate(-1.5px, 61px);
+    z-index: 1;
+  }
+}
+
+@keyframes movethree {
+  100% {
+    transform: translate(50px, 92px);
     z-index: 1;
   }
 }
@@ -278,4 +303,23 @@ div.dashboard-wrapper
   > svg {
   position: relative;
   top: 10px;
+}
+.asset-box:hover .asset-box-large {
+  animation: blink 0.4s linear normal forwards;
+  z-index: 1;
+}
+
+.asset-box-large {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgb(66, 66, 66);
+  height: 600px;
+  width: 600px;
+  position: absolute;
+  z-index: -1;
+}
+
+.asset-box-large > div {
+  height: 100%;
+  width: 100%;
 }
