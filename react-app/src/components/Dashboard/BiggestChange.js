@@ -41,11 +41,11 @@ const BiggestChange = () => {
             // console.log(stock.long_name)
             if (i === random) {
                 // console.log("Randomly selected first --", random, "Matching index --", i)
-                picked.push(stock?.long_name)
+                picked.push(stock?.ticker)
             }
             if (i === random2) {
                 // console.log("Randomly selected second --", random2, "Matching index --", i)
-                picked.push(stock?.long_name)
+                picked.push(stock?.ticker)
             }
         }
         // return randomNamePicker(stocks)
@@ -57,12 +57,14 @@ const BiggestChange = () => {
             {randomNamePicker(stocks).map(stockName => (
                 <div key={"1"}>
                     <div className='recent-change-wrapper'>
-                        <div>{stockName.split('*')[0]}</div>
+                        <div className='picked'>{stockName.split('*')[0]}</div>
                         <div className='arrow-up'></div>
+                        <div className='percentage'>{randomNum(4)}.{randomNum(99)}%</div>
                     </div>
-                    <div className='recent-change-wrapper'>
-                        <div>{stockName.split('*')[1]}</div>
+                    <div className='recent-change-wrapper' id='down-box'>
+                        <div className='picked'>{stockName.split('*')[1]}</div>
                         <div className='arrow-down'></div>
+                        <div className='percentage'>{randomNum(4)}.{randomNum(100)}%</div>
                     </div>
                 </div>
             ))}

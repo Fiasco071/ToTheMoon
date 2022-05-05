@@ -95,7 +95,7 @@ const Dashboard = () => {
                 <h2>Assets</h2>
                 <AssetChart className="asset-chart" />
               </div>
-              <div className="recent-box">
+              <div className="asset-box">
                 <h2>Recent Change</h2>
                 <BiggestChange />
               </div>
