@@ -59,24 +59,24 @@ const Dashboard = () => {
             <div className="profile-icon-box">
               <FontAwesomeIcon icon={faUser} className="profile-icon" />
             </div>
-            <div className="profile-icon-box-menu">
+            <div className="profile-icon-box-menu" onClick={onLogout}>
               <FontAwesomeIcon
                 icon={faDoorOpen}
                 className="profile-icon"
-                onClick={onLogout}
               />
             </div>
-            <div className="profile-icon-box-home">
+            <div className="profile-icon-box-home" onClick={() => history.push('/home')}>
               <FontAwesomeIcon
                 icon={faHome}
                 className="profile-icon"
-                onClick={() => history.push('/home')}
               />
             </div>
 
-            <SearchBar />
+            
           </div>
+          
           <h2 className="dashboard-username">{user?.username}</h2>
+          <SearchBar />
         </div>
         <div className="dashboard-content-box">
           <div className="dashboard-content-navbar"></div>
