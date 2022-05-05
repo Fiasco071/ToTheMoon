@@ -32,7 +32,7 @@ class Transaction(db.Model):
         return {
             'id': self.id,
             'asset_id': self.asset_id,
-            'num_shares': self.num_shares,
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
             'price_at_transaction': json.dumps(Decimal(self.price_at_transaction), use_decimal=True)
         }
 

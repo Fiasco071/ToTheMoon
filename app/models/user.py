@@ -31,7 +31,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'wallet': self.wallet.to_dict_no_user()
+            'wallet': self.wallet.to_dict_no_user(),
+            'transactions': [transaction.transaction_to_dict_no_user() for transaction in self.transaction]
         }
 
     def to_dict_no_wallet(self):
