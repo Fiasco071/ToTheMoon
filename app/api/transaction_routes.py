@@ -26,9 +26,9 @@ def new_transaction(id): #need to add id back later
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        num_shares = form.data['num_shares']
+        num_shares = Decimal(form.data['num_shares'])
         price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
-        total_price = float(price_at_transaction) * num_shares
+        total_price = Decimal(price_at_transaction) * num_shares
 
 
         if wallet.amount >= total_price:
@@ -84,8 +84,8 @@ def sell_shares(id): #need to add id back later
                 num_shares=num_shares*-1,
                 price_at_transaction=price_at_transaction
             )
-            
-            
+
+
 
             asset.num_shares -= num_shares
 
