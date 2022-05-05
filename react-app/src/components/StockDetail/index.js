@@ -30,10 +30,11 @@ const StockDetail = () => {
 
   let assetOwned = []
   Object.values(assets).forEach(asset => {
-    if (asset.stock.id == id) {
+    if (asset.stock?.id == id) {
       assetOwned.push(asset)
     }
-  })
+  });
+
 
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -89,13 +90,24 @@ const StockDetail = () => {
           <div className="dashboard-content-navbar"></div>
           <div className="dashboard-content stock-details-content">
             <div className="stockDetailContainer">
-              <h2>{stock?.long_name}</h2>
-              <h2>{stock?.ticker}</h2>
-              <p>${stock?.i_price}</p>
-              <div>
-                Your Equity
-                <div>$12,496.87</div>
+              <div className="company-name-header">
+                <h2>Company Name</h2>
+                <h3>{stock?.long_name}</h3>
               </div>
+              <div className="ticker-header">
+                <h2>Ticker</h2>
+                <h3>{stock?.ticker}</h3>
+              </div>
+              <div className="market-price-header">
+                <h2>Current Price Per Share</h2>
+                <h3>${stock?.i_price}</h3>
+              </div>
+              {assetOwned[0]?.num_shares > 0 && (
+                <div className="equity-header">
+                <h2>Your Equity</h2>
+                <h3>${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</h3>
+                </div>
+                )}
             </div>
             <div className="graph-container">
               <div className="stock-graph">
@@ -110,7 +122,7 @@ const StockDetail = () => {
                   >
                     Buy
                   </button>
-                  {assetOwned.length > 0 && (
+                  {assetOwned[0]?.num_shares > 0 && (
                     <button
                       onClick={() => {
                         changeTransactionSell();
@@ -119,7 +131,7 @@ const StockDetail = () => {
                       Sell
                     </button>
                   )}
-                  {assetOwned.length > 0 && (<button onClick={() => {
+                  {assetOwned[0]?.num_shares > 0 && (<button onClick={() => {
                     showCashout();
                   }}>
                     Cashout

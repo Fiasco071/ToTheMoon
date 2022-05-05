@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 
 const TransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { id } = useParams();
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
-
+  const assets = useSelector((state) => state.assets);
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -23,6 +22,13 @@ const TransactionForm = ({ prop }) => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
+  let assetOwned = []
+  Object.values(assets).forEach(asset => {
+    if (asset.stock?.id == id) {
+      assetOwned.push(asset)
+    }
+  });
+
   useEffect(() => {
     dispatch(getAStock(id));
   }, [dispatch]);
@@ -32,7 +38,7 @@ const TransactionForm = ({ prop }) => {
     if (user?.wallet?.amount < num_shares * price_at_transaction) {
       errors.push("Insufficient funds");
     }
-    if (num_shares < 1) {
+    if (num_shares <= 0) {
       errors.push("Must buy at least 1 share");
     }
     setValidationErrors(errors);
@@ -63,14 +69,17 @@ const TransactionForm = ({ prop }) => {
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
         <input
+          className="transaction-form-input"
           type="number"
+          step='.01'
+          min='0'
           placeholder="Number of Shares"
           value={num_shares}
           onChange={(e) => setNumShares(e.target.value)}
         ></input>
-        <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${stock?.i_price * num_shares}</p>
-        <button type="submit" disabled={validationErrors.length > 0}>
+        <h4>Market Price ${stock?.i_price}</h4>
+        <h4>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</h4>
+        <button className="order-btn" type="submit" disabled={validationErrors.length > 0}>
           Make an Order
         </button>
       </form>
