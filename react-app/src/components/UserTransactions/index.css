@@ -39,6 +39,13 @@
     /* flex-direction: column; */
     justify-content: space-between;
     padding: 20px 0px;
+    /* border: 2px purple solid; */
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px grey;
+    border: none;
+    background: linear-gradient(190deg, rgb(255, 255, 255), rgb(241, 241, 241))
 }
 
 #my-transaction-bottom-items {
@@ -59,7 +66,6 @@
 
 .blank {
     border-bottom: 2px solid black;
-    width: 500px;
 }
 
 #green {

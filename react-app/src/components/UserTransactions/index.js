@@ -86,11 +86,13 @@ const UserTransactionHistory = () => {
                                             <div className='my-transaction-items-2' id={(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2) > 0 ? 'green' : 'red'}>
                                                 Transaction: ${(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2)}
                                             </div>
+                                            <div>( + )</div>
                                         </div>
                                         <div id='my-transaction-bottom-items'>
                                             <div className='my-transaction-items-3'>Current Price Per Share: ${transaction?.price_at_transaction}</div>
                                             <div className='my-transaction-items-4' id={transaction?.num_shares > 0 ? 'green' : 'red'}>
-                                                Shares Purchased/Sold: {transaction?.num_shares}
+                                            {transaction?.num_shares > 0 ? 'Shares Purchased: ' : 'Shares Sold: '}
+                                                {transaction?.num_shares}
                                                 </div>
                                             <div className='my-transaction-items-5'>User: {transaction?.user?.username}</div>
                                         </div>
