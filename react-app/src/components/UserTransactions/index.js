@@ -5,11 +5,11 @@ import { getAllTransactions } from '../../store/transaction';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faDoorOpen, faHome } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import WatchList from '../WatchList';
 import SearchBar from '../SearchBar';
-import QuickView from '../Dashboard/QuickView';
+// import QuickView from '../Dashboard/QuickView';
 import HexaMenu from '../Dashboard/HexaMenu';
 import WalletFormModal from '../WalletForm/WalletFormModal';
 import LPieChart from '../Dashboard/LPieChart';
@@ -19,7 +19,7 @@ import BiggestChange from '../Dashboard/BiggestChange';
 import { logout } from '../../store/session';
 import { getAllStocks } from '../../store/stock';
 import { getAWallet } from '../../store/wallet';
-
+import { getAllAssets } from '../../store/asset';
 
 const UserTransactionHistory = () => {
     const dispatch = useDispatch()
@@ -35,14 +35,18 @@ const UserTransactionHistory = () => {
     const user = useSelector((state) => state.session.user);
 
     const history = useHistory();
-    // console.log(transactions)
+
+    console.log(transactions)
     // console.log(stocksObj)
+    // console.log(stocks)
+
     const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
         dispatch(getAllTransactions());
         dispatch(getAWallet());
         dispatch(getAllStocks());
+        dispatch(getAllAssets());
     }, [dispatch]);
 
     // const matchingStock = (stocks) => {
@@ -107,19 +111,22 @@ const UserTransactionHistory = () => {
                             </div>
                         </div>
                         <div className='my-transactions-wrapper'>
-                            <h2>Recent Transactions:</h2>
+                            <div className='my-transaction-header'>
+                                <h2>Recent Transactions:</h2>
+                                <button className='my-transaction-details-btn' onClick={() => setToggle(!toggle)}>{toggle ? 'Less Details' : 'More Details'}</button>
+                            </div>
                             <div className='my-transaction-info'>
                                 {transactions.map((transaction) => (
                                     <div className='my-transaction-items' key={transaction.id}>
                                         <div id='my-transaction-top-items'>
-                                            <div className='my-transaction-items-1'>Company: {stocksObj[transaction?.asset?.stock_id]?.long_name}</div>
+                                            <NavLink to={`/stocks/${stocksObj[transaction?.asset?.stock_id]?.id}`} className='my-transaction-items-1'>Company: {stocksObj[transaction?.asset?.stock_id]?.long_name}</NavLink>
                                             <div className='my-transaction-toggle'>
                                                 <div className='my-transaction-items-2' id={(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2) > 0 ? 'red' : 'green'}>
                                                     {(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2) > 0
                                                         ? `-  $${(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
                                                         : `+  $${Math.abs((transaction?.price_at_transaction * transaction?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}`}
                                                 </div>
-                                                <div id={'plus-' + transaction?.id} onClick={() => setToggle(!toggle)}>( + )</div>
+                                                {/* <div className='expand-triangle' id={'plus-' + transaction?.id} onClick={() => setToggle(!toggle)}></div> */}
                                             </div>
                                         </div>
                                         {toggle ? (
@@ -129,9 +136,9 @@ const UserTransactionHistory = () => {
                                                         <div className='my-transaction-items-3'>Current Price Per Share: ${transaction?.price_at_transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
                                                         <div className='my-transaction-items-4' id={transaction?.num_shares > 0 ? 'red' : 'green'}>
                                                             {transaction?.num_shares > 0 ? 'Shares Purchased: ' : 'Shares Sold: '}
-                                                            {Math.abs(transaction?.num_shares)}
+                                                            {Math.abs(transaction?.num_shares).toFixed(2)}
                                                         </div>
-                                                        <div className='my-transaction-items-5'>Total Shares Owned: ****</div>
+                                                        <div className='my-transaction-items-5'>Total Shares Owned: {transaction?.asset?.num_shares}</div>
                                                     </div>
                                                     <div>
                                                         <div className='my-transaction-items-6'>User:  {transaction?.user?.username}</div>
@@ -145,10 +152,10 @@ const UserTransactionHistory = () => {
                                 ))}
                             </div>
                         </div>
-
+                        {/* 
                         <div>
                             <QuickView />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="dashboard-watchlist-box">
                         <WatchList stocks={stocksObj} />
