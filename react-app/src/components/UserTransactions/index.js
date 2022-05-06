@@ -12,6 +12,7 @@ import SearchBar from '../SearchBar';
 import QuickView from '../Dashboard/QuickView';
 import { logout } from '../../store/session';
 import { getAllStocks } from '../../store/stock';
+import HexaMenu from '../Dashboard/HexaMenu';
 
 
 const UserTransactionHistory = () => {
@@ -46,12 +47,14 @@ const UserTransactionHistory = () => {
         dispatch(getAllTransactions())
     }, [dispatch])
 
+
     return (
         <div className="dashboard-wrapper">
             <div className="dashboard">
                 <div className="dashboard-title-bar">
                     <div className="profile-icon-box-wrapper">
-                        <div className="profile-icon-box">
+                        <HexaMenu />
+                        {/* <div className="profile-icon-box">
                             <FontAwesomeIcon icon={faUser} className="profile-icon" />
                         </div>
                         <div className="profile-icon-box-menu" onClick={onLogout}>
@@ -65,7 +68,7 @@ const UserTransactionHistory = () => {
                                 icon={faHome}
                                 className="profile-icon"
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <h2 className="dashboard-username">{user?.username}</h2>
                     <SearchBar />
