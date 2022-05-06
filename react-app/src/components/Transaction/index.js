@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 
 const TransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { id } = useParams();
 
@@ -14,13 +15,14 @@ const TransactionForm = ({ prop }) => {
   const assets = useSelector((state) => state.assets);
 
   const [isOwned, setIsOwned] = useState(true);
-  const [num_shares, setNumShares] = useState(0);
+  const [num_shares, setNumShares] = useState("");
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
   );
   const [totalPrice, setTotalPrice] = useState(0);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
@@ -41,12 +43,14 @@ const TransactionForm = ({ prop }) => {
     if (num_shares <= 0) {
       errors.push("Must buy at least 1 share");
     }
+
     setValidationErrors(errors);
   }, [num_shares, totalPrice, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
+    setShowErrors(true);
     prop.setNewTransaction(!prop.newTransaction);
 
     const transaction = {
@@ -54,42 +58,55 @@ const TransactionForm = ({ prop }) => {
       price_at_transaction,
     };
 
-    let newTransaction;
-
-    newTransaction = await dispatch(addATransaction(transaction, id));
-    setNumShares(0);
-    setPriceAtTransaction(stock?.i_price);
-    setTotalPrice(0);
-    setHasSubmitted(false);
-    setValidationErrors([]);
+    if (validationErrors.length === 0) {
+      let newTransaction;
+      newTransaction = await dispatch(addATransaction(transaction, id));
+      setNumShares("");
+      setPriceAtTransaction(stock?.i_price);
+      setTotalPrice(0);
+      setHasSubmitted(false);
+      setValidationErrors([]);
+      if (newTransaction) {
+        history.push(`/home`);
+      }
+    }
   };
 
   return (
     <div className="transaction-form-container">
+      <div>
+        {showErrors && (
+          <ul className="errors">
+            {validationErrors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-inner">
           <input
             className="transaction-form-input"
             type="number"
             step=".01"
-            min="0"
-            placeholder="Number of Shares"
+            placeholder="Shares"
             value={num_shares}
             onChange={(e) => setNumShares(e.target.value)}
           ></input>
-          <h4 className="form-text">
-            Total Shares Owned {assetOwned[0]?.num_shares}
-          </h4>
+          {!assetOwned[0]?.num_shares && (
+            <h4 className="form-text">Total Shares Owned 0</h4>
+          )}
+          {assetOwned[0]?.num_shares > 0 && (
+            <h4 className="form-text">
+              Total Shares Owned {assetOwned[0]?.num_shares}
+            </h4>
+          )}
           <h4 className="form-text">Market Price ${stock?.i_price}</h4>
           <h4 className="form-text">
             Total Price ${(stock?.i_price * num_shares).toFixed(2)}
           </h4>
         </div>
-        <button
-          className="order-btn"
-          type="submit"
-          disabled={validationErrors.length > 0}
-        >
+        <button className="order-btn" type="submit">
           Make an Order
         </button>
       </form>

@@ -13,6 +13,7 @@ import { getAllAssets } from "../../store/asset";
 import SellTransactionForm from "../SellTransaction/index";
 import CashoutStockForm from "../CashoutStock";
 import HexaMenu from "../Dashboard/HexaMenu";
+import SearchBar from "../SearchBar";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -87,6 +88,7 @@ const StockDetail = () => {
             </div> */}
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
+          <SearchBar />
         </div>
         <div className="dashboard-content-box">
           <div className="dashboard-content-navbar"></div>

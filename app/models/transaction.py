@@ -2,6 +2,8 @@ from .db import db
 from sqlalchemy import ForeignKey
 import simplejson as json
 from decimal import Decimal
+import datetime
+
 
 
 class Transaction(db.Model):
@@ -12,6 +14,7 @@ class Transaction(db.Model):
     asset_id = db.Column(db.Integer, ForeignKey('assets.id'), nullable=False)
     num_shares = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
     price_at_transaction = db.Column(db.Numeric(precision=8, scale=2), nullable=False)
+    created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.now, nullable=False)
 
     user = db.relationship('User', back_populates='transaction')
     asset = db.relationship('Asset', back_populates='transaction')
