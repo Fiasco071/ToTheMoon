@@ -13,7 +13,14 @@ const SellTransactionForm = ({ prop }) => {
 
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
+  const assets = useSelector((state) => state.assets);
 
+  let assetOwned = [];
+  Object.values(assets).forEach((asset) => {
+    if (asset.stock?.id == id) {
+      assetOwned.push(asset);
+    }
+  });
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState(0);
@@ -31,7 +38,7 @@ const SellTransactionForm = ({ prop }) => {
   useEffect(() => {
     const errors = [];
 
-    if (num_shares < 1) {
+    if (num_shares <= 0) {
       errors.push("Must buy at least 1 share");
     }
     setValidationErrors(errors);
@@ -61,15 +68,30 @@ const SellTransactionForm = ({ prop }) => {
   return (
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Number of Shares"
-          value={num_shares}
-          onChange={(e) => setNumShares(e.target.value)}
-        ></input>
-        <p>Market Price ${stock?.i_price}</p>
-        <p>Total Price ${stock?.i_price * num_shares}</p>
-        <button type="submit" disabled={validationErrors.length > 0}>
+        <div className="form-inner">
+          <input
+            className="transaction-form-input"
+            type="number"
+            step=".01"
+            min="0"
+            max={assetOwned[0]?.num_shares}
+            placeholder="Number of Shares"
+            value={num_shares}
+            onChange={(e) => setNumShares(e.target.value)}
+          ></input>
+          <h4 className="form-text">
+            Total Shares Owned {assetOwned[0]?.num_shares}
+          </h4>
+          <h4 className="form-text">Market Price ${stock?.i_price}</h4>
+          <h4 className="form-text">
+            Total Price ${(stock?.i_price * num_shares).toFixed(2)}
+          </h4>
+        </div>
+        <button
+          className="order-btn"
+          type="submit"
+          disabled={validationErrors.length > 0}
+        >
           Sell Your Order
         </button>
       </form>

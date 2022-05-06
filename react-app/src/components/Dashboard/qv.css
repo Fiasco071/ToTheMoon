@@ -125,3 +125,8 @@
 .qvl-stockgraph-box {
     position: relative;
 }
+
+#root > div.dashboard-wrapper > div > div.dashboard-content-box > div.dashboard-content > div.dashboard-content-box1 > div.asset-box > div.asset-box-large > div > div > svg > g {
+    width: 1000px;
+    height: 1000px;
+}

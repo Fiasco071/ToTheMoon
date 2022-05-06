@@ -26,14 +26,14 @@ const StockDetail = () => {
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
   const [newTransaction, setNewTransaction] = useState(false);
-  const prop = { newTransaction, setNewTransaction, isShown, setIsShown }
+  const prop = { newTransaction, setNewTransaction, isShown, setIsShown };
 
-  let assetOwned = []
-  Object.values(assets).forEach(asset => {
-    if (asset.stock.id == id) {
-      assetOwned.push(asset)
+  let assetOwned = [];
+  Object.values(assets).forEach((asset) => {
+    if (asset.stock?.id == id) {
+      assetOwned.push(asset);
     }
-  })
+  });
 
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -57,7 +57,7 @@ const StockDetail = () => {
 
   const showCashout = () => {
     setIsCashedOut(true);
-    setIsShown(3)
+    setIsShown(3);
   };
 
   return (
@@ -79,7 +79,7 @@ const StockDetail = () => {
               <FontAwesomeIcon
                 icon={faHome}
                 className="profile-icon"
-                onClick={() => history.push('/home')}
+                onClick={() => history.push("/home")}
               />
             </div>
           </div>
@@ -89,13 +89,26 @@ const StockDetail = () => {
           <div className="dashboard-content-navbar"></div>
           <div className="dashboard-content stock-details-content">
             <div className="stockDetailContainer">
-              <h2>{stock?.long_name}</h2>
-              <h2>{stock?.ticker}</h2>
-              <p>${stock?.i_price}</p>
-              <div>
-                Your Equity
-                <div>$12,496.87</div>
+              <div className="company-name-header">
+                <h2>Company Name</h2>
+                <h3>{stock?.long_name}</h3>
               </div>
+              <div className="ticker-header">
+                <h2>Ticker</h2>
+                <h3>{stock?.ticker}</h3>
+              </div>
+              <div className="market-price-header">
+                <h2>Current Price Per Share</h2>
+                <h3>${stock?.i_price}</h3>
+              </div>
+              {assetOwned[0]?.num_shares > 0 && (
+                <div className="equity-header">
+                  <h2>Your Equity</h2>
+                  <h3>
+                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
+                  </h3>
+                </div>
+              )}
             </div>
             <div className="graph-container">
               <div className="stock-graph">
@@ -110,7 +123,7 @@ const StockDetail = () => {
                   >
                     Buy
                   </button>
-                  {assetOwned.length > 0 && (
+                  {assetOwned[0]?.num_shares > 0 && (
                     <button
                       onClick={() => {
                         changeTransactionSell();
@@ -119,34 +132,31 @@ const StockDetail = () => {
                       Sell
                     </button>
                   )}
-                  {assetOwned.length > 0 && (<button onClick={() => {
-                    showCashout();
-                  }}>
-                    Cashout
-                  </button>)}
+                  {assetOwned[0]?.num_shares > 0 && (
+                    <button
+                      onClick={() => {
+                        showCashout();
+                      }}
+                    >
+                      Cashout
+                    </button>
+                  )}
                 </div>
-                {isCashedOut && <CashoutStockForm prop={prop}/>}
-              {isShown === 1 && <TransactionForm prop={prop}/>}
-              {isShown === 2 && assetOwned.length > 0 && <SellTransactionForm prop={prop}/>}
+                {isCashedOut && <CashoutStockForm prop={prop} />}
+                {isShown === 1 && <TransactionForm prop={prop} />}
+                {isShown === 2 && assetOwned.length > 0 && (
+                  <SellTransactionForm prop={prop} />
+                )}
+              </div>
             </div>
-            </div>
-            <div>
-              <section className="about-box" height={400}>
-                About
-                <p>{stock?.info1} Bussin Bussin Corp</p>
-                <p>
-                  {stock?.info2} Bussin Bussin, Co. engages in the design,
-                  manufacture, and sale of smartphones, personal computers,
-                  tablets, wearables and accessories, and other varieties of
-                  related services. It operates through the following
-                  geographical segments: Americas, Europe, Greater China, Japan,
-                  and Rest of Asia Pacific. View more
-                </p>
-                <p>
-                  {stock?.info3}CEO Timothy Donald Cook Employees 154,000
-                  Headquarters Cupertino, California Founded 1976
-                </p>
-              </section>
+
+            <div className="about-box">
+              About
+              <p>{stock?.info1}</p>
+              <div className="stockInfoBox">
+                <p>{stock?.info2}</p>
+              </div>
+              <p>{stock?.info3}</p>
             </div>
           </div>
           <div className="dashboard-watchlist-box">
