@@ -43,51 +43,57 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className="modal-form-container">
+      <form onSubmit={onSignUp}>
+        <div
+        className="errors2">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className="login-container">
+          <input
+            type="text"
+            className="login-input"
+            placeholder="Username"
+            name="username"
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div className="login-container">
+          <input
+            type="text"
+            className="login-input"
+            placeholder="Email"
+            name="email"
+            onChange={updateEmail}
+            value={email}
+          ></input>
+        </div>
+        <div className="login-container">
+          <input
+            type="password"
+            className="login-input"
+            placeholder="Password"
+            name="password"
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div className="login-container">
+          <input
+            type="password"
+            className="login-input"
+            placeholder="Repeat Password"
+            name="repeat_password"
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+          ></input>
+        </div>
+        <button className="modal-btn" type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 };
 

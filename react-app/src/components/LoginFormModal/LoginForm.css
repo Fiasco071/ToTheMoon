@@ -1,0 +1,94 @@
+.modal-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    width: auto;
+    height: auto;
+    text-align: center;
+    background: linear-gradient(110deg, rgb(154, 97, 167), rgb(136, 147, 180));
+    border-radius: 10px;
+}
+
+.login-container {
+    margin: 3%;
+}
+
+.login-container {
+    margin: 3%;
+}
+
+.modal-btn {
+  margin: 2%;
+  margin-top: 5%;
+  font-size: 12px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+
+.demo-btn {
+  margin: 1%;
+  font-size: 12px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.login-input{
+    border-radius: 20px;
+    padding-left: 10px;
+    border: 1px solid black;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.login-input {
+    border-radius: 20px;
+    padding-left: 10px;
+    border: 1px solid black;
+    transition: all 0.3s;
+    outline: none;
+}
+
+
+.login-email:focus {
+  border: 3px solid black;
+  border-radius: 20px;
+  outline: none;
+  cursor: text;
+}
+
+.login-password:focus {
+  border: 3px solid black;
+  border-radius: 20px;
+  outline: none;
+  cursor: text;
+}
+
+.login-email:hover {
+  cursor: pointer;
+}
+
+.login-password:hover {
+  cursor: pointer;
+}
+
+.errors2 {
+  text-align: center;
+  color: black;
+  list-style: none;
+  padding-left: 0px;
+  font-size: 14px;
+}
