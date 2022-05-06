@@ -2,13 +2,15 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import QuickViewGraph from "./QuickViewGraph";
 import "./qv.css"
+import Slider from "../Slider";
+
 
 const QuickView = () => {
     const assets = useSelector(state => state.assets)
     const history = useHistory()
     return (
         <div className="port-quickview-wrapper">
-            {Object.values(assets).map(asset => (
+            {Object.values(assets).slice(0,5).map(asset => (
                 <div className="port-quickview-box" onClick={() => (history.push(`/stocks/${asset.stock.id}`))}>
                     <h2>{asset.stock.ticker}</h2>
                     <div className="qv-text-boxes">
@@ -38,6 +40,7 @@ const QuickView = () => {
                     </div>
                 </div>
             ))}
+            {/* <Slider /> */}
         </div>
     );
 }

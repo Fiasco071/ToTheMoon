@@ -8,7 +8,8 @@ const AssetChart = () => {
   const data = []
   const assets = useSelector(state => state.assets)
   Object.values(assets).forEach(asset => {
-    let value = (+asset.stock.i_price * +asset.num_shares)
+    let value = Number(+asset.stock.i_price * +asset.num_shares)
+    let value2 = value.toFixed(2)
     let obj = { "name": asset.stock.ticker, "value": value  }
     data.push(obj)
   }) 

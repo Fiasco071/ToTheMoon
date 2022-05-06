@@ -77,11 +77,13 @@ const MainGraph = () => {
   const simData = useSelector(state => state.simData)
   const dataArr = simData.sim_data;
 
+  
+
   // console.log(dataArr)
   const data = [];
   if (dataArr) {
     Object.values(dataArr).forEach((pieceOfData, i) => {
-      let cur_price = pieceOfData = pieceOfData * 100 + 100
+      let cur_price = pieceOfData = pieceOfData * 100 + 100        //  100 needs to change into a dynamic values pulled from each stock i_price
       if (cur_price < 0) cur_price = 0
       const plotObj = {
         name: i+1,
