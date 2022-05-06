@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import "../LoginFormModal/LoginForm.css"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -38,16 +39,16 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className="modal-form-container">
       <form onSubmit={onLogin}>
-        <div>
+        <div className="errors2">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="login-container">
           <input
+            className="login-input"
             name="email"
             type="text"
             placeholder="Email"
@@ -55,20 +56,21 @@ const LoginForm = () => {
             onChange={updateEmail}
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="login-container">
           <input
+            className="login-input"
             name="password"
             type="password"
             placeholder="Password"
             value={password}
             onChange={updatePassword}
           />
-          <button type="submit">Login</button>
+          <button className="modal-btn" type="submit">Login</button>
 
         </div>
       </form>
-        <button
+      <button
+        className="demo-btn"
           onClick={demoLogin}
         >
           Demo Login
