@@ -12,6 +12,8 @@ import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard";
 import StockDetail from "./components/StockDetail";
 import TransactionForm from "./components/Transaction";
+import Footer from "./components/About";
+import UserTransactionHistory from "./components/UserTransactions";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,7 +55,11 @@ function App() {
         <ProtectedRoute path="/stocks/:id" exact={true}>
           <StockDetail />
         </ProtectedRoute>
+        <ProtectedRoute path="/my-transactions" exact={true}>
+          <UserTransactionHistory />
+        </ProtectedRoute>
       </Switch>
+      {<Footer />}
     </BrowserRouter>
   );
 }

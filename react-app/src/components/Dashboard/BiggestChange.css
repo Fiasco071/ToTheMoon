@@ -1,24 +1,49 @@
-.arrow-down {
-    margin: 20px;
-    width: 0; 
-    height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #f00;
-  }
+.arrow-up {
+  /* margin: 35px 10px 10px 20px; */
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 0; 
+  height: 0; 
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid green;
+}
 
-  .arrow-up {
-    margin: 20px;
+.arrow-down {
+    /* margin: 20px 10px 10px 20px; */
+    margin-left: 10px;
+    margin-right: 10px;
     width: 0; 
     height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 20px solid green;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #f00;
   }
 
   .recent-change-wrapper {
+      margin: 10px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       font-size: 20px;
+      /* border-top: 1px black solid; */
+      padding-top: 20px;
+  }
+
+  .picked {
+    /* align-self: flex-end; */
+    justify-self: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .percentage {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  #down-box {
+    border-top: 1px black solid;
   }

@@ -19,6 +19,8 @@ import QuickView from "./QuickView";
 import { useHistory } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import BiggestChange from "./BiggestChange";
+import UserTransactionHistory from "../UserTransactions";
+import { getAllTransactions } from "../../store/transaction";
 import HexaMenu from "./HexaMenu.js";
 
 
@@ -38,6 +40,7 @@ const Dashboard = () => {
     dispatch(getAllStocks());
     dispatch(getAllAssets());
     dispatch(getAllSimData());
+    dispatch(getAllTransactions())
   }, [dispatch]);
 
 
@@ -80,7 +83,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="recent-box">
+              <div className="asset-box">
                 <h2>Recent Change</h2>
                 <BiggestChange />
               </div>

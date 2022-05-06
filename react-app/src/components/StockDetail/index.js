@@ -12,6 +12,7 @@ import "./index.css";
 import { getAllAssets } from "../../store/asset";
 import SellTransactionForm from "../SellTransaction/index";
 import CashoutStockForm from "../CashoutStock";
+import HexaMenu from "../Dashboard/HexaMenu";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -60,12 +61,14 @@ const StockDetail = () => {
     setIsShown(3);
   };
 
+
   return (
     <div className="dashboard-wrapper">
       <div className="dashboard">
         <div className="dashboard-title-bar">
           <div className="profile-icon-box-wrapper">
-            <div className="profile-icon-box">
+            <HexaMenu />
+            {/* <div className="profile-icon-box">
               <FontAwesomeIcon icon={faUser} className="profile-icon" />
             </div>
             <div className="profile-icon-box-menu">
@@ -81,7 +84,7 @@ const StockDetail = () => {
                 className="profile-icon"
                 onClick={() => history.push("/home")}
               />
-            </div>
+            </div> */}
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
         </div>

@@ -1,0 +1,77 @@
+.my-transactions-wrapper {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    padding: 30px;
+    height: 560px;
+    /* overflow-y: scroll; */
+    box-shadow: 3px 3px 10px grey;
+}
+
+.my-transactions-wrapper > h2 {
+    margin: 50px;
+    /* padding-top: 80px; */
+}
+
+.my-transaction-info {
+    overflow-y: scroll;
+    padding: 30px;
+    font-size: 18px;
+    width: 700px;
+}
+
+.my-transaction-items {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.my-transaction-items > div {
+    padding: 0 10px;
+}
+
+#my-transaction-top-items {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    padding: 20px 0px;
+    /* border: 2px purple solid; */
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px grey;
+    border: none;
+    background: linear-gradient(190deg, rgb(255, 255, 255), rgb(241, 241, 241))
+}
+
+#my-transaction-bottom-items {
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+.my-transaction-items-1 {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.my-transaction-items-2 {
+    color: rgb(29, 167, 29);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.blank {
+    border-bottom: 2px solid black;
+}
+
+#green {
+    color:rgb(29, 167, 29)
+}
+
+#red {
+    color: red;
+}
