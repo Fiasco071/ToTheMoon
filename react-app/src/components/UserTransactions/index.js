@@ -25,6 +25,7 @@ const UserTransactionHistory = () => {
     const dispatch = useDispatch()
 
     const wallet = useSelector((state) => state.wallet);
+    const assets = useSelector(state => state.assets);
 
     const transactionsObj = useSelector((state) => state.transactions)
     const transactions = Object.values(transactionsObj)
@@ -36,7 +37,7 @@ const UserTransactionHistory = () => {
 
     const history = useHistory();
 
-    console.log(transactions)
+    // console.log(transactions)
     // console.log(stocksObj)
     // console.log(stocks)
 
@@ -102,6 +103,24 @@ const UserTransactionHistory = () => {
                                 <div className="asset-box-large">
                                     <div>
                                         <LPieChart className="large-asset-chart" />
+                                        <p>Asset Break-Down</p>
+                                        <div className="asset-detail-info-box">
+                                            {Object.values(assets).map((asset) => (
+                                                <div className="asset-detail-info-box-child">
+                                                    <p>{asset.stock.ticker}</p>
+                                                    <p>{asset.num_shares} shares </p>
+                                                    <p>Calculated at current price ${(asset.num_shares * asset.stock.i_price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                </div>
+                                            ))}
+                                            <div className="asset-percentage-box">
+                                                <p className="percentage-box-title">% Break-Down</p>
+                                                {Object.values(assets).map((asset) => (
+                                                    <div>
+                                                        <p>{asset.stock.ticker} - {(asset.num_shares * asset.stock.i_price / (Object.values(assets)?.map((asset) => asset.num_shares * asset.stock.i_price)?.reduce((acc, next) => acc + next)) * 100).toFixed(1)}%</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
