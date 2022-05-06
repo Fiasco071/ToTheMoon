@@ -23,13 +23,14 @@ const SellTransactionForm = ({ prop }) => {
   });
 
   const [isOwned, setIsOwned] = useState(true);
-  const [num_shares, setNumShares] = useState(0);
+  const [num_shares, setNumShares] = useState("");
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
   );
   const [totalPrice, setTotalPrice] = useState(0);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   useEffect(() => {
     dispatch(getAStock(id));
@@ -39,7 +40,11 @@ const SellTransactionForm = ({ prop }) => {
     const errors = [];
 
     if (num_shares <= 0) {
-      errors.push("Must buy at least 1 share");
+      errors.push("You must sell at least 1 share");
+    }
+
+    if (assetOwned[0]?.num_shares < num_shares) {
+      errors.push("You cannot sell more shares than you own");
     }
     setValidationErrors(errors);
   }, [num_shares, totalPrice, user]);
@@ -47,35 +52,46 @@ const SellTransactionForm = ({ prop }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
+    setShowErrors(true);
     prop.setNewTransaction(!prop.newTransaction);
 
     const transaction = {
       num_shares,
       price_at_transaction,
     };
-
-    let newTransaction;
-
-    newTransaction = await dispatch(sellTransaction(transaction, id));
-    setNumShares(0);
-    setPriceAtTransaction(stock?.i_price);
-    setTotalPrice(0);
-    setHasSubmitted(false);
-    setValidationErrors([]);
-    dispatch(getAllAssets());
+    if (validationErrors.length === 0) {
+      let newTransaction;
+      newTransaction = await dispatch(sellTransaction(transaction, id));
+      setNumShares("");
+      setPriceAtTransaction(stock?.i_price);
+      setTotalPrice(0);
+      setHasSubmitted(false);
+      setValidationErrors([]);
+      dispatch(getAllAssets());
+      if (newTransaction) {
+        history.push(`/home`);
+      }
+    }
   };
 
   return (
     <div className="transaction-form-container">
+      <div>
+        {showErrors && (
+          <ul className="errors">
+            {validationErrors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-inner">
           <input
             className="transaction-form-input"
             type="number"
             step=".01"
-            min="0"
-            max={assetOwned[0]?.num_shares}
-            placeholder="Number of Shares"
+            placeholder="Shares"
             value={num_shares}
             onChange={(e) => setNumShares(e.target.value)}
           ></input>
@@ -87,11 +103,7 @@ const SellTransactionForm = ({ prop }) => {
             Total Price ${(stock?.i_price * num_shares).toFixed(2)}
           </h4>
         </div>
-        <button
-          className="order-btn"
-          type="submit"
-          disabled={validationErrors.length > 0}
-        >
+        <button className="order-btn" type="submit">
           Sell Your Order
         </button>
       </form>

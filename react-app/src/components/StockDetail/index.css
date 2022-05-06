@@ -35,7 +35,7 @@
   width: 40vw;
   padding: 20px;
   margin: 20px;
-  height: 220px;
+  height: 250px;
   background: white;
   border-radius: 15px;
   box-shadow: 3px 3px 10px grey;
@@ -48,16 +48,31 @@
   width: 30%;
   margin: 20px;
   padding: 20px;
-  height: 220px;
+  height: 250px;
   background: white;
   border-radius: 15px;
   box-shadow: 3px 3px 10px grey;
   justify-content: space-between;
+  text-align: center;
 }
 
 .transaction-form-input {
   margin: 0px;
-  width: 50%;
+  width: 20%;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.transaction-form-input:focus {
+  border: 3px solid black;
+  border-radius: 5px;
+  outline: none;
+  cursor: text;
+}
+.transaction-form-input:hover {
+  cursor: pointer;
 }
 
 .transactions-btns {
@@ -130,4 +145,16 @@
 
 .stockInfoBox::-webkit-scrollbar-thumb {
   border-radius: 25px;
+}
+.errors {
+  text-align: center;
+  color: red;
+  list-style: none;
+  padding-left: 0px;
+  font-size: 14px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
