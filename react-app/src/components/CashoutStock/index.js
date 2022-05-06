@@ -66,7 +66,7 @@ const CashoutStockForm = ({ prop }) => {
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
-    history.push(`/stocks/${id}`);
+    history.push(`/home`);
   };
 
   return (
