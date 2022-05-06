@@ -149,23 +149,14 @@ const StockDetail = () => {
                 )}
               </div>
             </div>
-            <div>
-              <section className="about-box" height={400}>
-                About
-                <p>{stock?.info1} Bussin Bussin Corp</p>
-                <p>
-                  {stock?.info2} Bussin Bussin, Co. engages in the design,
-                  manufacture, and sale of smartphones, personal computers,
-                  tablets, wearables and accessories, and other varieties of
-                  related services. It operates through the following
-                  geographical segments: Americas, Europe, Greater China, Japan,
-                  and Rest of Asia Pacific. View more
-                </p>
-                <p>
-                  {stock?.info3}CEO Timothy Donald Cook Employees 154,000
-                  Headquarters Cupertino, California Founded 1976
-                </p>
-              </section>
+
+            <div className="about-box">
+              About
+              <p>{stock?.info1}</p>
+              <div className="stockInfoBox">
+                <p>{stock?.info2}</p>
+              </div>
+              <p>{stock?.info3}</p>
             </div>
           </div>
           <div className="dashboard-watchlist-box">
