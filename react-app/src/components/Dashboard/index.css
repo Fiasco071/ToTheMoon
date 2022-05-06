@@ -102,6 +102,7 @@
 
 .dashboard-content-box3 {
   padding: 0 40px;
+  position: unset;
 }
 .dashboard-content-box3 > div {
   height: 150px;
@@ -110,75 +111,6 @@
   border-radius: 15px;
 }
 
-.profile-icon-box {
-  width: 65px;
-  height: 65px;
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  background: linear-gradient(30deg, rgb(114, 30, 114), rgb(157, 157, 245));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0 0 35px;
-  z-index: 1;
-}
-
-.profile-icon-box-menu {
-  width: 65px;
-  height: 65px;
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  background: linear-gradient(30deg, rgb(29, 4, 29), rgb(18, 18, 104));
-  position: relative;
-  top: -80px;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0 0 35px;
-}
-
-
-
-.profile-icon {
-  color: white;
-  position: relative;
-  top: -1px;
-  font-size: 30px;
-}
-
-.profile-icon-box-home {
-  width: 65px;
-  height: 65px;
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  background: linear-gradient(130deg, rgb(212, 235, 83), rgb(85, 138, 16));
-  position: absolute;
-  top: 0px;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0 0 35px;
-}
-
-.profile-icon-box-transactionpage {
-  width: 65px;
-  height: 65px;
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  background: linear-gradient(130deg, rgb(43, 228, 142), rgb(71, 135, 207));
-  position: absolute;
-  top: 0px;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0 0 35px;
-}
-
-.profile-icon {
-  color: white;
-  position: relative;
-  top: -1px;
-  font-size: 30px;
-}
 
 
 .profile-icon-box-wrapper {
@@ -187,36 +119,6 @@
   position: absolute;
 }
 
-.profile-icon-box-wrapper:hover .profile-icon-box-menu {
-  animation: move 0.2s linear normal forwards;
-}
-.profile-icon-box-wrapper:hover .profile-icon-box-home {
-  animation: movetwo 0.2s linear normal forwards;
-}
-
-.profile-icon-box-wrapper:hover .profile-icon-box-transactionpage {
-  animation: movethree 0.2s linear normal forwards;
-}
-@keyframes move {
-  100% {
-    transform: translate(50px, 30px);
-    z-index: 1;
-  }
-}
-
-@keyframes movetwo {
-  100% {
-    transform: translate(-1.5px, 61px);
-    z-index: 1;
-  }
-}
-
-@keyframes movethree {
-  100% {
-    transform: translate(50px, 92px);
-    z-index: 1;
-  }
-}
 
 .dashboard-username {
   position: relative;
@@ -306,7 +208,7 @@ div.dashboard-wrapper
 }
 .asset-box:hover .asset-box-large {
   animation: blink 0.4s linear normal forwards;
-  z-index: 1;
+  z-index: 3;
 }
 
 .asset-box-large {
@@ -316,10 +218,83 @@ div.dashboard-wrapper
   height: 600px;
   width: 600px;
   position: absolute;
-  z-index: -1;
+  z-index: -3;
 }
 
 .asset-box-large > div {
   height: 100%;
   width: 100%;
+}
+
+.asset-box-large > div> p{
+    margin: 0;
+    font-size: 23px;    
+    font-weight: bold;
+    position: relative;
+    top: -50px;
+    padding-left: 20px;
+    text-decoration: underline;
+}
+
+.asset-detail-info-box  {
+  position: relative;
+  top:-20px;
+  padding-left: 20px;
+  overflow-y: scroll;
+  height: 520px;
+  width: 600px;
+}
+
+
+.asset-detail-info-box > .asset-detail-info-box-child {
+  width: 260px;
+  padding: 1px 10px;
+  border-radius: 10px;
+  background: #FFBB28;
+  margin-bottom: 10px;
+}
+
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+2) {
+  background: #00C49F;
+}
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+3) {
+  background: #FF8042;
+}
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+4) {
+  background: #0088FE;
+}
+
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+5) {
+  background: #FFBB28;
+}
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+6) {
+  background: #00C49F;
+}
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+7) {
+  background: #FF8042;
+}
+.asset-detail-info-box > .asset-detail-info-box-child:nth-child(n+8) {
+  background: #0088FE;
+}
+
+.asset-percentage-box {
+  width: 180px;
+  position:fixed;
+  left:calc(50% - 15px);
+  top: calc(10% + 330px);
+  border-radius: 0 10px 10px 10px;
+  border: solid 5px #0086c4;
+  padding: 7px 10px;
+  z-index: 2;
+}
+
+.percentage-box-title {
+  position: absolute;
+  border-radius: 5px;
+  background:#036694;
+  color:white;
+  border: 5px solid #036694;
+  z-index: 1;
+  top: -45px;
+  left: -5px;
 }
