@@ -1,0 +1,44 @@
+.my-transactions-wrapper {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    padding: 30px;
+    height: 560px;
+    /* overflow-y: scroll; */
+    box-shadow: 3px 3px 10px grey;
+}
+
+.my-transactions-wrapper > h2 {
+    margin: 50px;
+    /* padding-top: 80px; */
+}
+
+.my-transaction-info {
+    overflow-y: scroll;
+    padding: 30px;
+    font-size: 18px;
+}
+
+.my-transaction-items {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.my-transaction-items > div {
+    padding: 0 10px;
+}
+
+#my-transaction-top-items {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.blank {
+    border-bottom: 2px solid black;
+    width: 500px;
+}

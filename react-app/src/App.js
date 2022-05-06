@@ -55,7 +55,7 @@ function App() {
         <ProtectedRoute path="/stocks/:id" exact={true}>
           <StockDetail />
         </ProtectedRoute>
-        <ProtectedRoute path="/mytransactions" exact={true}>
+        <ProtectedRoute path="/my-transactions" exact={true}>
           <UserTransactionHistory />
         </ProtectedRoute>
       </Switch>

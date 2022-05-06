@@ -73,16 +73,24 @@ const UserTransactionHistory = () => {
                 <div className="dashboard-content-box">
                     <div className="dashboard-content-navbar"></div>
                     <div className="dashboard-content">
-                        <div>
+                        <div className='my-transactions-wrapper'>
                             <h2>Recent Transactions:</h2>
-                            {transactions.map((transaction) => (
-                                <div key={transaction.id}>
-                                    <div>Price: {transaction?.price_at_transaction}</div>
-                                    <div>Shares: {transaction?.num_shares}</div>
-                                    <div>User: {transaction?.user?.username}</div>
-                                    <div>Stock Name: {stocksObj[transaction?.asset?.stock_id]?.long_name}</div>
-                                </div>
-                            ))}
+                            <div className='my-transaction-info'>
+                                {transactions.map((transaction) => (
+                                    <div className='my-transaction-items' key={transaction.id}>
+                                        <div id='my-transaction-top-items'>
+                                            <div className='my-transaction-items-1'>Company Name: {stocksObj[transaction?.asset?.stock_id]?.long_name}</div>
+                                            <div className='my-transaction-items-2'>Total Price: {(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2)}</div>
+                                        </div>
+                                        <div id='my-transaction-bottom-items'>
+                                            <div className='my-transaction-items-3'>Current Price Per Share: {transaction?.price_at_transaction}</div>
+                                            <div className='my-transaction-items-4'>Shares Purchased/Sold: {transaction?.num_shares}</div>
+                                            <div className='my-transaction-items-5'>User: {transaction?.user?.username}</div>
+                                        </div>
+                                        <div className='blank'></div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div>
                             <QuickView />
