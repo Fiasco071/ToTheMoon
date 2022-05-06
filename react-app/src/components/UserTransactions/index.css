@@ -61,3 +61,11 @@
     border-bottom: 2px solid black;
     width: 500px;
 }
+
+#green {
+    color:rgb(29, 167, 29)
+}
+
+#red {
+    color: red;
+}
