@@ -21,6 +21,7 @@
     overflow-y: scroll;
     padding: 30px;
     font-size: 18px;
+    width: 700px;
 }
 
 .my-transaction-items {
@@ -36,6 +37,24 @@
 #my-transaction-top-items {
     display: flex;
     /* flex-direction: column; */
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+#my-transaction-bottom-items {
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+.my-transaction-items-1 {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.my-transaction-items-2 {
+    color: rgb(29, 167, 29);
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .blank {

@@ -79,7 +79,7 @@ const UserTransactionHistory = () => {
                                 {transactions.map((transaction) => (
                                     <div className='my-transaction-items' key={transaction.id}>
                                         <div id='my-transaction-top-items'>
-                                            <div className='my-transaction-items-1'>Company Name: {stocksObj[transaction?.asset?.stock_id]?.long_name}</div>
+                                            <div className='my-transaction-items-1'>Company: {stocksObj[transaction?.asset?.stock_id]?.long_name}</div>
                                             <div className='my-transaction-items-2'>Total Price: {(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2)}</div>
                                         </div>
                                         <div id='my-transaction-bottom-items'>
