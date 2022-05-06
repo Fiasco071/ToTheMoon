@@ -16,12 +16,12 @@ const CashoutStockForm = ({ prop }) => {
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
-  let assetOwned = []
-  Object.values(assets).forEach(asset => {
+  let assetOwned = [];
+  Object.values(assets).forEach((asset) => {
     if (asset.stock.id == id) {
-      assetOwned.push(asset)
+      assetOwned.push(asset);
     }
-  })
+  });
 
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
@@ -33,8 +33,8 @@ const CashoutStockForm = ({ prop }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
-      dispatch(getAStock(id));
-      dispatch(getAllAssets());
+    dispatch(getAStock(id));
+    dispatch(getAllAssets());
   }, [dispatch]);
 
   useEffect(() => {
@@ -66,18 +66,20 @@ const CashoutStockForm = ({ prop }) => {
     setTotalPrice(0);
     setHasSubmitted(false);
     setValidationErrors([]);
-    history.push(`/stocks/${id}`)
+    history.push(`/stocks/${id}`);
   };
 
   return (
     <div className="transaction-form-container">
-        <form onSubmit={handleSubmit}>
-              <h4>Total Shares Owned {assetOwned[0]?.num_shares}</h4>
-            <h4>Market Price ${stock?.i_price}</h4>
-            <h4>Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</h4>
-            <button className="order-btn" type="submit">
-            Make an Order
-            </button>
+      <form onSubmit={handleSubmit}>
+        <h4>Total Shares Owned {assetOwned[0]?.num_shares}</h4>
+        <h4>Market Price ${stock?.i_price}</h4>
+        <h4>
+          Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
+        </h4>
+        <button className="order-btn" type="submit">
+          Cashout Shares
+        </button>
       </form>
     </div>
   );

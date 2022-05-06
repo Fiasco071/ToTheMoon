@@ -10,7 +10,7 @@ class Stock(db.Model):
     long_name = db.Column(db.String(50))
     i_price = db.Column(db.Numeric(precision=8, scale=2))
     info1 = db.Column(db.String(255))
-    info2 = db.Column(db.String(255))
+    info2 = db.Column(db.Text)
     info3 = db.Column(db.String(255))
 
     asset2 = db.relationship('Asset', back_populates='stock')

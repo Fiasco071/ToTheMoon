@@ -26,15 +26,14 @@ const StockDetail = () => {
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
   const [newTransaction, setNewTransaction] = useState(false);
-  const prop = { newTransaction, setNewTransaction, isShown, setIsShown }
+  const prop = { newTransaction, setNewTransaction, isShown, setIsShown };
 
-  let assetOwned = []
-  Object.values(assets).forEach(asset => {
+  let assetOwned = [];
+  Object.values(assets).forEach((asset) => {
     if (asset.stock?.id == id) {
-      assetOwned.push(asset)
+      assetOwned.push(asset);
     }
   });
-
 
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -58,7 +57,7 @@ const StockDetail = () => {
 
   const showCashout = () => {
     setIsCashedOut(true);
-    setIsShown(3)
+    setIsShown(3);
   };
 
   return (
@@ -80,7 +79,7 @@ const StockDetail = () => {
               <FontAwesomeIcon
                 icon={faHome}
                 className="profile-icon"
-                onClick={() => history.push('/home')}
+                onClick={() => history.push("/home")}
               />
             </div>
           </div>
@@ -104,10 +103,12 @@ const StockDetail = () => {
               </div>
               {assetOwned[0]?.num_shares > 0 && (
                 <div className="equity-header">
-                <h2>Your Equity</h2>
-                <h3>${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}</h3>
+                  <h2>Your Equity</h2>
+                  <h3>
+                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
+                  </h3>
                 </div>
-                )}
+              )}
             </div>
             <div className="graph-container">
               <div className="stock-graph">
@@ -131,34 +132,31 @@ const StockDetail = () => {
                       Sell
                     </button>
                   )}
-                  {assetOwned[0]?.num_shares > 0 && (<button onClick={() => {
-                    showCashout();
-                  }}>
-                    Cashout
-                  </button>)}
+                  {assetOwned[0]?.num_shares > 0 && (
+                    <button
+                      onClick={() => {
+                        showCashout();
+                      }}
+                    >
+                      Cashout
+                    </button>
+                  )}
                 </div>
-                {isCashedOut && <CashoutStockForm prop={prop}/>}
-              {isShown === 1 && <TransactionForm prop={prop}/>}
-              {isShown === 2 && assetOwned.length > 0 && <SellTransactionForm prop={prop}/>}
+                {isCashedOut && <CashoutStockForm prop={prop} />}
+                {isShown === 1 && <TransactionForm prop={prop} />}
+                {isShown === 2 && assetOwned.length > 0 && (
+                  <SellTransactionForm prop={prop} />
+                )}
+              </div>
             </div>
-            </div>
-            <div>
-              <section className="about-box" height={400}>
-                About
-                <p>{stock?.info1} Bussin Bussin Corp</p>
-                <p>
-                  {stock?.info2} Bussin Bussin, Co. engages in the design,
-                  manufacture, and sale of smartphones, personal computers,
-                  tablets, wearables and accessories, and other varieties of
-                  related services. It operates through the following
-                  geographical segments: Americas, Europe, Greater China, Japan,
-                  and Rest of Asia Pacific. View more
-                </p>
-                <p>
-                  {stock?.info3}CEO Timothy Donald Cook Employees 154,000
-                  Headquarters Cupertino, California Founded 1976
-                </p>
-              </section>
+
+            <div className="about-box">
+              About
+              <p>{stock?.info1}</p>
+              <div className="stockInfoBox">
+                <p>{stock?.info2}</p>
+              </div>
+              <p>{stock?.info3}</p>
             </div>
           </div>
           <div className="dashboard-watchlist-box">

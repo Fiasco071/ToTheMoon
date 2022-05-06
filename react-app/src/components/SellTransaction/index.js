@@ -15,10 +15,10 @@ const SellTransactionForm = ({ prop }) => {
   let user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
-  let assetOwned = []
-  Object.values(assets).forEach(asset => {
+  let assetOwned = [];
+  Object.values(assets).forEach((asset) => {
     if (asset.stock?.id == id) {
-      assetOwned.push(asset)
+      assetOwned.push(asset);
     }
   });
 
@@ -68,19 +68,30 @@ const SellTransactionForm = ({ prop }) => {
   return (
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          step='.01'
-          min='0'
-          max={assetOwned[0]?.num_shares}
-          placeholder="Number of Shares"
-          value={num_shares}
-          onChange={(e) => setNumShares(e.target.value)}
-        ></input>
-        <h4>Total Shares Owned {assetOwned[0]?.num_shares}</h4>
-        <h4>Market Price ${stock?.i_price}</h4>
-        <h4>Total Price ${(stock?.i_price * num_shares).toFixed(2)}</h4>
-        <button className="order-btn" type="submit" disabled={validationErrors.length > 0}>
+        <div className="form-inner">
+          <input
+            className="transaction-form-input"
+            type="number"
+            step=".01"
+            min="0"
+            max={assetOwned[0]?.num_shares}
+            placeholder="Number of Shares"
+            value={num_shares}
+            onChange={(e) => setNumShares(e.target.value)}
+          ></input>
+          <h4 className="form-text">
+            Total Shares Owned {assetOwned[0]?.num_shares}
+          </h4>
+          <h4 className="form-text">Market Price ${stock?.i_price}</h4>
+          <h4 className="form-text">
+            Total Price ${(stock?.i_price * num_shares).toFixed(2)}
+          </h4>
+        </div>
+        <button
+          className="order-btn"
+          type="submit"
+          disabled={validationErrors.length > 0}
+        >
           Sell Your Order
         </button>
       </form>
