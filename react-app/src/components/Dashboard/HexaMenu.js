@@ -5,10 +5,11 @@ import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
 
+
 const HexaMenu = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    
 
     const onLogout = async (e) => {
         await dispatch(logout());
@@ -36,7 +37,8 @@ const HexaMenu = () => {
                     icon={faMoneyBill}
                     className="profile-icon"
                 />
-            </div></>
+            </div>
+        </>
     );
 }
 

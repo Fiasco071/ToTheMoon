@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import WalletForm from "./index";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function WalletFormModal() {
   const [showModal, setShowModal] = useState(false);
