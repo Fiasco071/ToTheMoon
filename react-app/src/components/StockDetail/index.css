@@ -82,15 +82,19 @@
 }
 
 .transactions-btns > button {
-  margin: 2%;
+  margin: 1px;
   font-size: 12px;
   color: white;
   background-color: black;
   text-decoration: none;
   padding: 5px 15px;
   border: 1px solid black;
-  border-radius: 25px;
   font-weight: bold;
+  transition: all 1s;
+}
+.transactions-btns > button:focus {
+  background-color: lavender;
+  color: black;
 }
 
 .ticker-header {
