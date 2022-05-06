@@ -5,16 +5,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin: 0 40px;
     padding: 30px;
-    height: 560px;
+    height: 440px;
     /* overflow-y: scroll; */
     box-shadow: 3px 3px 10px grey;
 }
 
 .my-transactions-wrapper > h2 {
-    margin: 50px;
+    /* margin: 50px; */
     /* padding-top: 80px; */
+    letter-spacing: 1px;
 }
 
 .my-transaction-info {
@@ -51,6 +52,10 @@
 #my-transaction-bottom-items {
     padding: 10px 0px;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .my-transaction-items-1 {
@@ -58,10 +63,16 @@
     letter-spacing: 1px;
 }
 
+.my-transaction-toggle {
+    display: flex;
+}
+
 .my-transaction-items-2 {
-    color: rgb(29, 167, 29);
     font-weight: bold;
+    font-size: 16px;
     letter-spacing: 1px;
+    padding-right: 20px;
+    align-items: center;
 }
 
 .blank {

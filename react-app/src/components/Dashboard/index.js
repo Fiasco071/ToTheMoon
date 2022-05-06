@@ -84,7 +84,7 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="asset-box">
-                <h2>Recent Change</h2>
+                <h2>Recent Changes</h2>
                 <BiggestChange />
               </div>
             </div>
