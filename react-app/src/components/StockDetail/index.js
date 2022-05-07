@@ -15,6 +15,11 @@ import CashoutStockForm from "../CashoutStock";
 import HexaMenu from "../Dashboard/HexaMenu";
 import SearchBar from "../SearchBar";
 import { getAWallet } from "../../store/wallet";
+import WalletFormModal from "../WalletForm/WalletFormModal";
+import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
+import LPieChart from "../Dashboard/LPieChart";
+import AssetChart from "../Dashboard/PieChart";
+import BiggestChange from "../Dashboard/BiggestChange";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -74,30 +79,78 @@ const StockDetail = () => {
         <div className="dashboard-title-bar">
           <div className="profile-icon-box-wrapper">
             <HexaMenu />
-            {/* <div className="profile-icon-box">
-              <FontAwesomeIcon icon={faUser} className="profile-icon" />
-            </div>
-            <div className="profile-icon-box-menu">
-              <FontAwesomeIcon
-                icon={faDoorOpen}
-                className="profile-icon"
-                onClick={onLogout}
-              />
-            </div>
-            <div className="profile-icon-box-home">
-              <FontAwesomeIcon
-                icon={faHome}
-                className="profile-icon"
-                onClick={() => history.push("/home")}
-              />
-            </div> */}
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
         </div>
-        <div className="dashboard-content-box">
+        <div className="dashboard-content-box stock-content">
           <div className="dashboard-content-navbar"></div>
           <div className="dashboard-content stock-details-content">
+          <div className="stock-details-box1">
+              <div className="wallet-box stock-wallet">
+                <WalletFormModalWithdraw />
+                <h2 className="wallet-title">Wallet</h2>
+                <WalletFormModal />
+                <div>
+                  <p className="wallet-title">$</p>
+                  <p className="wallet-title">
+                    {wallet[1]?.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </p>
+                </div>
+              </div>
+              <div className="asset-box stock-percentage">
+                <h2>Assets</h2>
+                <AssetChart className="asset-chart" />
+                <div className="asset-box-large">
+                  <div>
+                    <LPieChart className="large-asset-chart" />
+                    <p>Asset Break-Down</p>
+                    <div className="asset-detail-info-box">
+                      {Object.values(assets).map((asset) => (
+                        <div className="asset-detail-info-box-child">
+                          <p>{asset.stock.ticker}</p>
+                          <p>{asset.num_shares} shares </p>
+                          <p>
+                            Calculated at current price $
+                            {(asset.num_shares * asset.stock.i_price)
+                              .toFixed(2)
+                              .toString()
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          </p>
+                        </div>
+                      ))}
+                      <div className="asset-percentage-box">
+                        <p className="percentage-box-title">% Break-Down</p>
+                        {Object.values(assets).map((asset) => (
+                          <div>
+                            <p>
+                              {asset.stock.ticker} -{" "}
+                              {(
+                                ((asset.num_shares * asset.stock.i_price) /
+                                  Object.values(assets)
+                                    ?.map(
+                                      (asset) =>
+                                        asset.num_shares * asset.stock.i_price
+                                    )
+                                    ?.reduce((acc, next) => acc + next)) *
+                                100
+                              ).toFixed(1)}
+                              %
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div className="asset-box stock-asset">
+                  <h2>Recent Changes</h2>
+                  <BiggestChange />
+                </div>
+            </div>
             <div className="stockDetailContainer">
               <div className="company-name-header">
                 <h2>Company Name</h2>
@@ -171,7 +224,6 @@ const StockDetail = () => {
                 )}
               </div>
             </div>
-
             <div className="about-box">
               About
               <p>{stock?.info1}</p>
