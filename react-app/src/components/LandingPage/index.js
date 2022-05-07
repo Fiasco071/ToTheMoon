@@ -1,20 +1,28 @@
 import "./index.css";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
+import iconImage from "../../img/icon.png";
 
 const LandingPage = () => {
   return (
     <div className="landing-wrapper">
       <div className="landing">
         <div className="landing-nav-bar">
-          <div className="landing-nav-bar-icon">To The Moon</div>
+          <img className="home-iconImage" src={iconImage} />
+          <div className="home-iconImage-text">To The Moon</div>
 
           <div className="landing-nav-bar-nav">
             <div className="landing-nav-bar-nav-links">
-              <a href="https://www.linkedin.com/in/arianna-robinson/">Arianna Robinson</a>
-              <a href="https://www.linkedin.com/in/kristen-reid-a4b499202/">Kristen Reid</a>
-              <a href="https://www.linkedin.com/in/rami-martinez-2931099b/">Rami Martinez</a>
-              <a href="https://www.linkedin.com/in/schoi017/">Steve Choi</a>
+              {/* <a href="https://www.linkedin.com/in/arianna-robinson/">
+                Arianna Robinson
+              </a>
+              <a href="https://www.linkedin.com/in/kristen-reid-a4b499202/">
+                Kristen Reid
+              </a>
+              <a href="https://www.linkedin.com/in/rami-martinez-2931099b/">
+                Rami Martinez
+              </a>
+              <a href="https://www.linkedin.com/in/schoi017/">Steve Choi</a> */}
             </div>
             <div className="landing-nav-bar-log-buttons">
               <LoginFormModal />
@@ -26,38 +34,36 @@ const LandingPage = () => {
         <div className="landing-content-box-1">
           <div className="landing-content-box-1-textbox">
             <h1>
-              Simulate <br /> Stock Data
+              Join a new generation <br /> of investors
             </h1>
-            <p>
+            {/* <p>
               Commission-free investing, plus the tools you need to put your
               money in motion. Sign up and get your first stock for free.
               Certain limitations and fees apply.
-            </p>
+            </p> */}
 
-            <a href="#" className="landing-button">
-              Sign Up
-            </a>
+            <SignUpFormModal />
           </div>
-          <div className="landing-content-box-1-animationbox">
-            <div class="css-1ed05sj">
-              <img
-                class="css-6qh47t"
-                draggable="false"
-                role="presentation"
-                src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__36a396f664677ed80a2459d1dca75f00.png"
-                srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__36a396f664677ed80a2459d1dca75f00.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__c7dcadbbb72fc298e85e94844f68342c.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__7c5da6ba049983f3558423906f16f0af.png 3x"
-              />
-              <div className="css-idtc8">
-                <img
+          {/* <div className="landing-content-box-1-animationbox"> */}
+          {/* <div class="css-1ed05sj"> */}
+          <img
+            class="css-6qh47t"
+            // draggable="false"
+            // role="presentation"
+            src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png"
+            // srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png 3x"
+          />
+          {/* <div className="css-idtc8"> */}
+          {/* <img
                   class="css-6qh47t"
                   draggable="false"
                   role="presentation"
                   src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__284c8d0c799d3c9649ca021c00228275.png"
                   srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__284c8d0c799d3c9649ca021c00228275.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__ff9c36e27d7018cf707b95d8675793a3.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__45f00d7b296cb52968f1bca4ef766fc1.png 3x"
-                />
-              </div>
-            </div>
-          </div>
+                /> */}
+          {/* </div> */}
+          {/* </div> */}
+          {/* </div> */}
         </div>
 
         <div className="landing-content-box-2">
@@ -111,18 +117,18 @@ const LandingPage = () => {
         {/* <div className="box-4-wrapper"> */}
         <div className="box-4-wrapper">
           <div className="landing-content-box-4">
-            <div className="landing-content-box-1-textbox">
+            <div className="landing-content-box-2-textbox">
               <h1>Our Products</h1>
               <h2>Stocks & Funds </h2>
-              <p>Options Gold | Crypto</p>
+              {/* <p>Options Gold | Crypto</p> */}
               <p>
-                Get mobile access to the markets. Invest commission-free in
-                individual companies or bundles of investments (ETFs).
+                Get access to the markets. Invest commission-free in individual
+                companies or bundles of investments (ETFs).
               </p>
 
-              <a href="#" className="landing-button">
+              {/* <a href="#" className="landing-button">
                 Learn about Stocks & Funds
-              </a>
+              </a> */}
             </div>
             <div>
               <img
