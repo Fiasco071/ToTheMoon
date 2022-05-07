@@ -13,6 +13,7 @@ import StockDetail from "./components/StockDetail";
 // import TransactionForm from "./components/Transaction";
 import Footer from "./components/About";
 import UserTransactionHistory from "./components/UserTransactions";
+import { ReactComponent as SadFace } from '../src/svgImg/sadFace.svg'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +57,15 @@ function App() {
         <ProtectedRoute path="/my-transactions" exact={true}>
           <UserTransactionHistory />
         </ProtectedRoute>
+        <Route>
+          <div className=" landing-wrapper">
+            <div className="pageNotFoundContainer">
+            <h1 className="pageNotFound">PAGE NOT FOUND</h1>
+              <SadFace className='sad-face'/>
+              <a href='/home'><button className="landing-button">Go Back</button></a>
+            </div>
+          </div>
+        </Route>
       </Switch>
       {<Footer />}
     </BrowserRouter>

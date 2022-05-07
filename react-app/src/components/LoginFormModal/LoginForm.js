@@ -66,7 +66,6 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
           <button className="modal-btn" type="submit">Login</button>
-
         </div>
       </form>
       <button

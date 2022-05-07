@@ -17,7 +17,7 @@ const SellTransactionForm = ({ prop }) => {
 
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
-    if (asset.stock?.id === id) {
+    if (asset.stock?.id == id) {
       assetOwned.push(asset);
     }
   });
@@ -95,9 +95,14 @@ const SellTransactionForm = ({ prop }) => {
             value={num_shares}
             onChange={(e) => setNumShares(e.target.value)}
           ></input>
-          <h4 className="form-text">
-            Total Shares Owned {assetOwned[0]?.num_shares}
-          </h4>
+          {!assetOwned[0]?.num_shares && (
+            <h4 className="form-text">Total Shares Owned 0</h4>
+          )}
+          {assetOwned[0]?.num_shares > 0 && (
+            <h4 className="form-text">
+              Total Shares Owned {assetOwned[0]?.num_shares}
+            </h4>
+          )}
           <h4 className="form-text">Market Price ${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
           <h4 className="form-text">
             Total Price ${(stock?.i_price * num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

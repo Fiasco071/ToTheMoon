@@ -1,7 +1,17 @@
 .stock-details-content {
   justify-content: space-evenly;
   align-items: center;
+  overflow-y: scroll;
+
 }
+
+.stock-details-box1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  margin-top: 26%;
+}
+
 
 .about-box {
   width: 50vw;
@@ -17,7 +27,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 55vw;
+  width: 95%;
   padding: 5px;
   margin: 20px;
   height: 10vh;
@@ -32,7 +42,7 @@
 }
 
 .stock-graph {
-  width: 40vw;
+  width: 90%;
   padding: 20px;
   margin: 20px;
   height: 250px;
@@ -161,4 +171,33 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+.stock-wallet {
+  background: linear-gradient(230deg, rgb(255, 207, 96), rgb(238, 123, 71));
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 3px 3px 7px grey;
+}
+
+.stock-percentage {
+  background: linear-gradient(230deg, rgb(131, 200, 223), rgb(83, 130, 184));
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 3px 3px 7px grey;
+  margin-left: 2%;
+}
+.stock-asset {
+  background: linear-gradient(230deg, rgb(157, 208, 190), rgb(39, 145, 108));
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 3px 3px 7px grey;
+  margin-left: 2%;
 }
