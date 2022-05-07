@@ -22,7 +22,8 @@ import BiggestChange from "./BiggestChange";
 import UserTransactionHistory from "../UserTransactions";
 import { getAllTransactions } from "../../store/transaction";
 import HexaMenu from "./HexaMenu.js";
-
+import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
+import iconImage from "../../img/icon.png";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -30,29 +31,21 @@ const Dashboard = () => {
   const user = useSelector((state) => state.session.user);
   const wallet = useSelector((state) => state.wallet);
   const stocks = useSelector((state) => state.stocks);
-  const assets = useSelector(state => state.assets);
-
-
+  const assets = useSelector((state) => state.assets);
 
   useEffect(() => {
     dispatch(getAWallet());
     dispatch(getAllStocks());
     dispatch(getAllAssets());
     dispatch(getAllSimData());
-    dispatch(getAllTransactions())
-
+    dispatch(getAllTransactions());
   }, [dispatch]);
-
-
- 
-
-
 
   // const menu_icons =[
   //   [faUser, "menu", "onLogout" ],
   //   [faDoorOpen, "home", "history.push('/home')"]
   //   [faMoneyBill, "transactionpage", "history.push('/my-transactions')"]
-  // ] 
+  // ]
 
   return (
     <div className="dashboard-wrapper">
@@ -64,17 +57,24 @@ const Dashboard = () => {
 
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
+          <img className="nav-iconImage" src={iconImage} />
+          <p className="nav-iconImage-text">To The Moon</p>
         </div>
         <div className="dashboard-content-box">
           <div className="dashboard-content-navbar"></div>
           <div className="dashboard-content">
             <div className="dashboard-content-box1">
               <div className="wallet-box">
-                <h2>Wallet</h2>
+                <WalletFormModalWithdraw />
+                <h2 className="wallet-title">Wallet</h2>
                 <WalletFormModal />
                 <div>
-                  <p>$</p>
-                  <p>{wallet[1]?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                  <p className="wallet-title">$</p>
+                  <p className="wallet-title">
+                    {wallet[1]?.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </p>
                 </div>
                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}
               </div>
@@ -90,18 +90,36 @@ const Dashboard = () => {
                         <div className="asset-detail-info-box-child">
                           <p>{asset.stock.ticker}</p>
                           <p>{asset.num_shares} shares </p>
-                          <p>Calculated at current price ${(asset.num_shares * asset.stock.i_price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                          <p>
+                            Calculated at current price $
+                            {(asset.num_shares * asset.stock.i_price)
+                              .toFixed(2)
+                              .toString()
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          </p>
                         </div>
                       ))}
                       <div className="asset-percentage-box">
                         <p className="percentage-box-title">% Break-Down</p>
                         {Object.values(assets).map((asset) => (
                           <div>
-                            <p>{asset.stock.ticker} - {(asset.num_shares * asset.stock.i_price / (Object.values(assets)?.map((asset) => asset.num_shares * asset.stock.i_price)?.reduce((acc, next) => acc + next)) * 100).toFixed(1)}%</p>
+                            <p>
+                              {asset.stock.ticker} -{" "}
+                              {(
+                                ((asset.num_shares * asset.stock.i_price) /
+                                  Object.values(assets)
+                                    ?.map(
+                                      (asset) =>
+                                        asset.num_shares * asset.stock.i_price
+                                    )
+                                    ?.reduce((acc, next) => acc + next)) *
+                                100
+                              ).toFixed(1)}
+                              %
+                            </p>
                           </div>
                         ))}
                       </div>
-
                     </div>
                   </div>
                 </div>

@@ -10,7 +10,7 @@ import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard";
 import StockDetail from "./components/StockDetail";
-import TransactionForm from "./components/Transaction";
+// import TransactionForm from "./components/Transaction";
 import Footer from "./components/About";
 import UserTransactionHistory from "./components/UserTransactions";
 import { ReactComponent as SadFace } from '../src/svgImg/sadFace.svg'

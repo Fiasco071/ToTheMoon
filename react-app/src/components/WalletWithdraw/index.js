@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { cashMeOutside, addAWallet } from "../../store/wallet";
-import "./index.css";
+import { cashMeOutside, walletWithdraw } from "../../store/wallet";
+// import "./index.css";
 
-const WalletForm = ({ prop }) => {
+const WalletFormWithdraw = ({ prop }) => {
   const dispatch = useDispatch();
 
   const redux_wallet = useSelector((state) => state.wallet);
   const currentUser = useSelector((state) => state.session.user);
+
+  // console.log(redux_wallet[1].amount);
 
   const [amount, setAmount] = useState(0.0);
   const [validationErrors, setValidationErrors] = useState([]);
@@ -17,6 +19,9 @@ const WalletForm = ({ prop }) => {
   useEffect(() => {
     const errors = [];
     if (amount < 0) errors.push("Please enter a valid amount.");
+    if (amount > redux_wallet[1].amount) {
+      errors.push("amount must be less than balance");
+    }
     setValidationErrors(errors);
   }, [amount]);
 
@@ -32,11 +37,12 @@ const WalletForm = ({ prop }) => {
     setHasSubmitted(true);
     setShowErrors(true);
     // if (validationErrors.length)
-    //   return alert("Your submit has errors, cannot submit!");
+    // return alert("Your submit has errors, cannot submit!");
 
     const wallet = {
-      amount: amount,
+      amount: amount * -1,
     };
+
     // console.log("-----------CURRENT WALLET AMT:", +currentUser.wallet.amount);
     // console.log("-----------CHANGE WALLET AMT:", amount);
     // console.log(
@@ -47,10 +53,9 @@ const WalletForm = ({ prop }) => {
     // await dispatch(somesortofcreatethunkactioncall(wallet));
 
     if (validationErrors.length === 0) {
-      let update = await dispatch(addAWallet(wallet));
+      let update = await dispatch(walletWithdraw(wallet));
       if (update) {
-        // history.push(``);
-        setValidationErrors([]);
+        // history.push(``);setValidationErrors([]);
         setHasSubmitted(false);
         prop.setShowModal(false);
       }
@@ -62,7 +67,7 @@ const WalletForm = ({ prop }) => {
       <form onSubmit={(e) => submitForm(e)}>
         <h3 className="wallet-form-title">Wallet</h3>
         <div className="wallet-form-input-box">
-          <p> Add funds </p>
+          <p> Withdraw funds </p>
           <p> Invest In </p>
           <p> Amount </p>
 
@@ -71,7 +76,7 @@ const WalletForm = ({ prop }) => {
           </select>
 
           <input
-            name="amount"
+            name="amount2"
             className="wallet-form-input"
             type="number"
             step="0.01"
@@ -79,15 +84,15 @@ const WalletForm = ({ prop }) => {
             value={amount}
             placeholder="0.00"
           ></input>
-        </div>
-        <div>
-          {showErrors && (
-            <ul className="errors wallet-error">
-              {validationErrors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          )}
+          <div>
+            {showErrors && (
+              <ul className="errors wallet-error">
+                {validationErrors.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
         <button type="submit" className="wallet-button">
           SUBMIT
@@ -100,4 +105,4 @@ const WalletForm = ({ prop }) => {
   );
 };
 
-export default WalletForm;
+export default WalletFormWithdraw;

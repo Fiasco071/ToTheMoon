@@ -14,6 +14,7 @@ import SellTransactionForm from "../SellTransaction/index";
 import CashoutStockForm from "../CashoutStock";
 import HexaMenu from "../Dashboard/HexaMenu";
 import SearchBar from "../SearchBar";
+import { getAWallet } from "../../store/wallet";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -24,6 +25,7 @@ const StockDetail = () => {
   const stock = useSelector((state) => state.stocks[id]);
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
+  const wallet = useSelector((state) => state.wallet);
 
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
@@ -36,6 +38,9 @@ const StockDetail = () => {
       assetOwned.push(asset);
     }
   });
+  const getWallet = async () => {
+    await dispatch(getAWallet());
+  };
 
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -45,6 +50,7 @@ const StockDetail = () => {
     dispatch(getAStock(id));
     dispatch(getAllStocks());
     dispatch(getAllAssets());
+    dispatch(getAWallet());
   }, [dispatch, newTransaction]);
 
   const changeTransactionBuy = () => {
@@ -61,7 +67,6 @@ const StockDetail = () => {
     setIsCashedOut(true);
     setIsShown(3);
   };
-
 
   return (
     <div className="dashboard-wrapper">
@@ -104,13 +109,13 @@ const StockDetail = () => {
               </div>
               <div className="market-price-header">
                 <h2>Current Price Per Share</h2>
-                <h3>${stock?.i_price}</h3>
+                <h3>${(stock?.i_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
               </div>
               {assetOwned[0]?.num_shares > 0 && (
                 <div className="equity-header">
                   <h2>Your Equity</h2>
                   <h3>
-                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
+                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </h3>
                 </div>
               )}
@@ -124,6 +129,7 @@ const StockDetail = () => {
                   <button
                     onClick={() => {
                       changeTransactionBuy();
+                      getWallet();
                     }}
                   >
                     Buy
@@ -132,6 +138,7 @@ const StockDetail = () => {
                     <button
                       onClick={() => {
                         changeTransactionSell();
+                        getWallet();
                       }}
                     >
                       Sell
@@ -141,6 +148,7 @@ const StockDetail = () => {
                     <button
                       onClick={() => {
                         showCashout();
+                        getWallet();
                       }}
                     >
                       Cashout
