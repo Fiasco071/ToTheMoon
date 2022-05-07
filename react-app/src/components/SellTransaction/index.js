@@ -17,7 +17,7 @@ const SellTransactionForm = ({ prop }) => {
 
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
-    if (asset.stock?.id == id) {
+    if (asset.stock?.id === id) {
       assetOwned.push(asset);
     }
   });

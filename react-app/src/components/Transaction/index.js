@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
+import { getAWallet } from "../../store/wallet";
+import { getAllAssets } from "../../store/asset";
 
 const TransactionForm = ({ prop }) => {
   const dispatch = useDispatch();
@@ -13,6 +15,8 @@ const TransactionForm = ({ prop }) => {
   let stock = useSelector((state) => state.stocks[id]);
   let user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
+  const walletState = useSelector((state) => state.wallet);
+  const wallet = walletState[1]?.amount;
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState("");
@@ -33,11 +37,13 @@ const TransactionForm = ({ prop }) => {
 
   useEffect(() => {
     dispatch(getAStock(id));
-  }, [dispatch]);
+    dispatch(getAllAssets());
+    dispatch(getAWallet());
+  }, [dispatch, prop.newTransaction]);
 
   useEffect(() => {
     const errors = [];
-    if (user?.wallet?.amount < num_shares * price_at_transaction) {
+    if (wallet < num_shares * price_at_transaction) {
       errors.push("Insufficient funds");
     }
     if (num_shares <= 0) {
@@ -106,7 +112,13 @@ const TransactionForm = ({ prop }) => {
             Total Price ${(stock?.i_price * num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </h4>
         </div>
-        <button className="order-btn" type="submit">
+        <button
+          onClick={() => {
+            prop.setNewTransaction(!prop.newTransaction);
+          }}
+          className="order-btn"
+          type="submit"
+        >
           Make an Order
         </button>
       </form>

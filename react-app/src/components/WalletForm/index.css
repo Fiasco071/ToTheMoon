@@ -1,65 +1,76 @@
 .wallet-form-box {
-    width: 300px;
-    height: 320px;
-    border-radius: 5px;
-    background: linear-gradient(230deg, rgb(182, 217, 245), rgb(248, 252, 255));
-    font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 3px 3px 7px rgb(29, 29, 29);
+  width: 300px;
+  height: 320px;
+  border-radius: 5px;
+  background: linear-gradient(230deg, rgb(182, 217, 245), rgb(248, 252, 255));
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 3px 3px 7px rgb(29, 29, 29);
 }
 
-
 .wallet-form-title {
-    font-size: 25px;
-    border-bottom: 2px solid grey;
-    padding: 7px 25px;
+  font-size: 25px;
+  border-bottom: 2px solid grey;
+  padding: 7px 25px;
+  margin: 0;
 }
 
 .wallet-form-input-box > p {
-    font-weight: bolder;
-    font-size: 17px;
-    padding-left: 22px;
+  font-weight: bolder;
+  font-size: 17px;
+  padding-left: 22px;
 }
 
 .dollar-input {
-    position: relative;
-    top: -78px;
-    left: 180px;
-    width: 109px;
-    height:29px;
-    border: 1px solid grey;
+  position: relative;
+  top: -78px;
+  left: 180px;
+  width: 109px;
+  height: 29px;
+  border: 1px solid grey;
 }
 
 .wallet-form-input {
-    position: relative;
-    top: -40px;
-    left: 72px;
-    width: 100px;
-    height:25px;
-    background-color: rgb(230, 230, 230);
-    border: 1px solid grey;
+  position: relative;
+  top: -40px;
+  left: 72px;
+  width: 100px;
+  height: 25px;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid grey;
 }
 
 .wallet-button {
-    border-radius: 25px;
-    font-size: 20px;
-    padding: 7px 71px;
-    position: relative;
-    left: 39px;
-    color: purple;
-    border: 4px solid purple;
-    background:transparent;
+  border-radius: 25px;
+  font-size: 20px;
+  padding: 7px 71px;
+  position: relative;
+  left: 39px;
+  color: purple;
+  border: 4px solid purple;
+  background: transparent;
 }
 
-
 .cashout-link {
-    position: relative;
-    top:15px;
-    left: 40px;
-    font-size: 20px;
-    border-radius: 25px;
-    padding: 7px 60px;
-    border:none;
-    color:  rgb(78, 165, 6);
-    border: 4px solid rgb(78, 165, 6);
-    background: transparent;
+  position: relative;
+  top: 15px;
+  left: 40px;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 7px 60px;
+  border: none;
+  color: rgb(78, 165, 6);
+  border: 4px solid rgb(78, 165, 6);
+  background: transparent;
+}
+.wallet-title {
+  position: relative;
+  top: -20px;
+}
+
+.wallet-error {
+  position: absolute;
+  top: 160px;
+  left: 72px;
+  font-size: 20px;
+  color: red;
 }
