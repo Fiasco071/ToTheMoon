@@ -128,7 +128,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15px;
+  /* padding-top: -15px; */
+  position: relative;
+
   box-sizing: border-box;
 }
 
@@ -157,7 +159,7 @@
   background-color: white;
   position: relative;
   left: 100px;
-  top: -35px;
+  top: -55px;
   padding: 5px 8px;
   border: none;
 }
@@ -167,7 +169,7 @@
   background-color: white;
   position: relative;
   right: 100px;
-  top: 67px;
+  top: 47px;
   height: 50px;
   padding: 5px 9px;
   border: none;

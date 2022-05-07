@@ -63,11 +63,11 @@ const Dashboard = () => {
             <div className="dashboard-content-box1">
               <div className="wallet-box">
                 <WalletFormModalWithdraw />
-                <h2>Wallet</h2>
+                <h2 className="wallet-title">Wallet</h2>
                 <WalletFormModal />
                 <div>
-                  <p>$</p>
-                  <p>
+                  <p className="wallet-title">$</p>
+                  <p className="wallet-title">
                     {wallet[1]?.amount
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

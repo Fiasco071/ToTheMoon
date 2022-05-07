@@ -11,7 +11,7 @@ function WalletFormModalWithdraw() {
   return (
     <>
       <button onClick={() => setShowModal(true)} className="minus-button">
-        <FontAwesomeIcon icon={faMinus} className="add-icon" />
+        <FontAwesomeIcon icon={faMinus} className="add-icon " />
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
