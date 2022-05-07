@@ -306,8 +306,6 @@ div.dashboard-wrapper
   top: -45px;
   left: -5px;
 }
-<<<<<<< HEAD
-=======
 
 .asset-detail-info-box-child > p:first-child {
   color: white;
@@ -316,11 +314,11 @@ div.dashboard-wrapper
 }
 
 .nav-iconImage {
-  position:absolute;
+  position: absolute;
   top: 45px;
   left: 87%;
   width: 65px;
-  height: 65px; 
+  height: 65px;
 }
 
 .nav-iconImage-text {
@@ -331,6 +329,6 @@ div.dashboard-wrapper
   /* background-color: white; */
   font-weight: bold;
   font-size: 18px;
-  text-shadow: 1.5px 1.5px rgb(80, 24, 94), -1.5px -1.5px rgb(80, 24, 94), 1.5px -1.5px rgb(80, 24, 94), -1.5px 1.5px rgb(101, 37, 117);
+  text-shadow: 1.5px 1.5px rgb(80, 24, 94), -1.5px -1.5px rgb(80, 24, 94),
+    1.5px -1.5px rgb(80, 24, 94), -1.5px 1.5px rgb(101, 37, 117);
 }
->>>>>>> main
