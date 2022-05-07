@@ -37,7 +37,7 @@ const UserTransactionHistory = () => {
 
     const history = useHistory();
 
-    // console.log(transactions)
+    console.log(transactions)
     // console.log(stocksObj)
     // console.log(stocks)
 
@@ -135,10 +135,12 @@ const UserTransactionHistory = () => {
                                 <button className='my-transaction-details-btn' onClick={() => setToggle(!toggle)}>{toggle ? 'Less Details' : 'More Details'}</button>
                             </div>
                             <div className='my-transaction-info'>
-                                {transactions.map((transaction) => (
-                                    <div className='my-transaction-items' key={transaction.id}>
+                                {transactions.reverse().map((transaction) => (
+                                    <div className='my-transaction-items' key={transaction?.id}>
                                         <div id='my-transaction-top-items'>
-                                            <NavLink to={`/stocks/${stocksObj[transaction?.asset?.stock_id]?.id}`} className='my-transaction-items-1'>Company: {stocksObj[transaction?.asset?.stock_id]?.long_name}</NavLink>
+                                            <NavLink to={`/stocks/${stocksObj[transaction?.asset?.stock_id]?.id}`} className='my-transaction-items-1'>
+                                                Company: {stocksObj[transaction?.asset?.stock_id]?.long_name}
+                                            </NavLink>
                                             <div className='my-transaction-toggle'>
                                                 <div className='my-transaction-items-2' id={(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2) > 0 ? 'red' : 'green'}>
                                                     {(transaction?.price_at_transaction * transaction?.num_shares).toFixed(2) > 0
@@ -152,7 +154,9 @@ const UserTransactionHistory = () => {
                                             <div>
                                                 <div id='my-transaction-bottom-items'>
                                                     <div>
-                                                        <div className='my-transaction-items-3'>Current Price Per Share: ${transaction?.price_at_transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+                                                        <div className='my-transaction-items-3'>
+                                                            Current Price Per Share: ${transaction?.price_at_transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                        </div>
                                                         <div className='my-transaction-items-4' id={transaction?.num_shares > 0 ? 'red' : 'green'}>
                                                             {transaction?.num_shares > 0 ? 'Shares Purchased: ' : 'Shares Sold: '}
                                                             {Math.abs(transaction?.num_shares).toFixed(2)}
@@ -161,7 +165,9 @@ const UserTransactionHistory = () => {
                                                     </div>
                                                     <div>
                                                         <div className='my-transaction-items-6'>User:  {transaction?.user?.username}</div>
-                                                        <div className='my-transaction-items-7'>Date & Time: ****</div>
+                                                        <div className='my-transaction-items-7'>
+                                                            {transaction?.created_at.split(' ')[0]} {transaction?.created_at.split(' ')[2]} {transaction?.created_at.split(' ')[1]}, {transaction?.created_at.split(' ')[3]} at {Number(transaction?.created_at.split(' ')[4].split(':')[0]) <= 12 ? transaction?.created_at.split(' ')[4].split(':')[0] : Number(transaction?.created_at.split(' ')[4].split(':')[0]) - 12}:{transaction?.created_at.split(' ')[4].split(':')[1]}
+                                                            </div>
                                                     </div>
                                                 </div>
                                                 <div className='blank'></div>
