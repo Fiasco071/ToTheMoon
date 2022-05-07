@@ -61,7 +61,8 @@ function App() {
           <div className=" landing-wrapper">
             <div className="pageNotFoundContainer">
             <h1 className="pageNotFound">PAGE NOT FOUND</h1>
-            <SadFace />
+              <SadFace className='sad-face'/>
+              <a href='/home'><button className="landing-button">Home</button></a>
             </div>
           </div>
         </Route>
