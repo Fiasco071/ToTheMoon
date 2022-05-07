@@ -213,5 +213,5 @@
 
 
 .port-quickview-wrapper {
-
+    overflow-x: scroll;
 }
