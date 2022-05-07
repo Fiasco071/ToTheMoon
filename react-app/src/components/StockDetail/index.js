@@ -104,13 +104,13 @@ const StockDetail = () => {
               </div>
               <div className="market-price-header">
                 <h2>Current Price Per Share</h2>
-                <h3>${stock?.i_price}</h3>
+                <h3>${(stock?.i_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
               </div>
               {assetOwned[0]?.num_shares > 0 && (
                 <div className="equity-header">
                   <h2>Your Equity</h2>
                   <h3>
-                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
+                    ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </h3>
                 </div>
               )}

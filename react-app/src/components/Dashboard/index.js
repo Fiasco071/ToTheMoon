@@ -22,6 +22,7 @@ import BiggestChange from "./BiggestChange";
 import UserTransactionHistory from "../UserTransactions";
 import { getAllTransactions } from "../../store/transaction";
 import HexaMenu from "./HexaMenu.js";
+import iconImage from '../../img/icon.png'
 
 
 const Dashboard = () => {
@@ -64,6 +65,8 @@ const Dashboard = () => {
 
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
+          <img className="nav-iconImage" src={iconImage}/>
+          <p className="nav-iconImage-text" >To The Moon</p>
         </div>
         <div className="dashboard-content-box">
           <div className="dashboard-content-navbar"></div>

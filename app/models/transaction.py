@@ -28,7 +28,8 @@ class Transaction(db.Model):
             'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
             'price_at_transaction': json.dumps(Decimal(self.price_at_transaction), use_decimal=True),
             'user': self.user.to_dict_no_wallet(),
-            'asset': self.asset.asset_to_dict_no_user()
+            'asset': self.asset.asset_to_dict_no_user(),
+            'created_at':self.created_at
         }
 
     def transaction_to_dict_no_user(self):
@@ -43,6 +44,6 @@ class Transaction(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'num_shares': self.num_shares,
+            'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
             'price_at_transaction': json.dumps(Decimal(self.price_at_transaction), use_decimal=True)
         }

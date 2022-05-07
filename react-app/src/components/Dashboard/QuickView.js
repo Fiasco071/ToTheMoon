@@ -23,14 +23,14 @@ const QuickView = () => {
                     </div>
 
                     <div className="port-quickview-large-box">
-                        <h2>{asset.stock.ticker} ${asset.stock.i_price * asset.num_shares}</h2>
+                        <h2>{asset.stock.ticker} ${(asset.stock.i_price * asset.num_shares).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
                  
                             <QuickViewGraph className='qvl-chart' />
                         
                         <div className="port-qv-info-box">
                             <div className="qv-text-lboxes">
                                 <p>Price</p>
-                                <p className="qvl-value">${asset.stock.i_price}</p>
+                                <p className="qvl-value">${asset.stock.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                             </div>
                             <div className="qv-text-lboxes">
                                 <p>Shares</p>
