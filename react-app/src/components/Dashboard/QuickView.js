@@ -30,7 +30,7 @@ const QuickView = () => {
                         <div className="port-qv-info-box">
                             <div className="qv-text-lboxes">
                                 <p>Price</p>
-                                <p className="qvl-value">${asset.stock.i_price}</p>
+                                <p className="qvl-value">${asset.stock.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                             </div>
                             <div className="qv-text-lboxes">
                                 <p>Shares</p>
