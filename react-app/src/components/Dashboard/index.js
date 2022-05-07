@@ -135,7 +135,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="dashboard-content-box3">
-              <div>
+              <div className="quickview-container">
                 <QuickView />
               </div>
             </div>

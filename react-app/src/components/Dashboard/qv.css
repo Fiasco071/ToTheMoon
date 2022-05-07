@@ -15,6 +15,24 @@
     padding: 10px 10px;
 }
 
+.quickview-container {
+   justify-content: center;
+   align-items: center;
+   overflow-x: scroll;
+   overflow-y: hidden;
+}
+
+
+.quickview-container::-webkit-scrollbar-track {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.quickview-container::-webkit-scrollbar-thumb {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
 .port-quickview-box > h2 {
     font-size: 20px;
     margin: 0 0 12px 0;
@@ -167,7 +185,7 @@
     display: flex;
     justify-content: space-between;
 }
-.port-quickview-large-box {}
+
 
 @keyframes blink {
     100% {
@@ -212,6 +230,6 @@
 }
 
 
-.port-quickview-wrapper {
+/* .port-quickview-wrapper {
     overflow-x: scroll;
-}
+} */
