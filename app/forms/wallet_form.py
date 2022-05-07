@@ -10,4 +10,5 @@ def invalid_amount(form, field):
         raise ValidationError('Value cannot be negative.')
 
 class WalletForm(FlaskForm):
-    amount = DecimalField('amount', places=2, rounding=ROUND_HALF_UP, validators=[DataRequired(), invalid_amount])
+    amount = DecimalField('amount', places=2, rounding=ROUND_HALF_UP, validators=[DataRequired()])
+    # amount2 = DecimalField('amount2', places=2, rounding=ROUND_HALF_UP, validators=[DataRequired()])

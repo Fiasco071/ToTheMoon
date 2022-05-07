@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { cashMeOutside, addAWallet } from "../../store/wallet";
-import "./index.css";
+import { cashMeOutside, walletWithdraw } from "../../store/wallet";
+// import "./index.css";
 
-const WalletForm = ({ prop }) => {
+const WalletFormWithdraw = ({ prop }) => {
   const dispatch = useDispatch();
 
   const redux_wallet = useSelector((state) => state.wallet);
@@ -33,8 +33,9 @@ const WalletForm = ({ prop }) => {
       return alert("Your submit has errors, cannot submit!");
 
     const wallet = {
-      amount: amount,
+      amount: amount * -1,
     };
+
     console.log("-----------CURRENT WALLET AMT:", +currentUser.wallet.amount);
     console.log("-----------CHANGE WALLET AMT:", amount);
     console.log(
@@ -45,7 +46,7 @@ const WalletForm = ({ prop }) => {
     // await dispatch(somesortofcreatethunkactioncall(wallet));
 
     if (validationErrors.length === 0) {
-      let update = await dispatch(addAWallet(wallet));
+      let update = await dispatch(walletWithdraw(wallet));
       if (update) {
         // history.push(``);
       }
@@ -61,7 +62,7 @@ const WalletForm = ({ prop }) => {
       <form onSubmit={(e) => submitForm(e)}>
         <h3 className="wallet-form-title">Wallet</h3>
         <div className="wallet-form-input-box">
-          <p> Add funds </p>
+          <p> Withdraw funds </p>
           <p> Invest In </p>
           <p> Amount </p>
 
@@ -70,7 +71,7 @@ const WalletForm = ({ prop }) => {
           </select>
 
           <input
-            name="amount"
+            name="amount2"
             className="wallet-form-input"
             type="number"
             min="0.01"
@@ -89,4 +90,4 @@ const WalletForm = ({ prop }) => {
   );
 };
 
-export default WalletForm;
+export default WalletFormWithdraw;

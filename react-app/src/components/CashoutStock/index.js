@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { addATransaction } from "../../store/transaction";
+// import { addATransaction } from "../../store/transaction";
 import { getAStock } from "../../store/stock";
 import { getAllAssets } from "../../store/asset";
 import { cashoutTransaction } from "../../store/transaction";
@@ -18,7 +18,7 @@ const CashoutStockForm = ({ prop }) => {
 
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
-    if (asset.stock.id == id) {
+    if (asset.stock.id === id) {
       assetOwned.push(asset);
     }
   });
@@ -37,6 +37,11 @@ const CashoutStockForm = ({ prop }) => {
     dispatch(getAllAssets());
   }, [dispatch]);
 
+  const getAssets = async () => {
+    await dispatch(getAllAssets());
+  };
+  console.log(assetOwned);
+
   useEffect(() => {
     const errors = [];
     if (user?.wallet?.amount < num_shares * price_at_transaction) {
@@ -51,7 +56,6 @@ const CashoutStockForm = ({ prop }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
-    prop.setNewTransaction(!prop.newTransaction);
 
     const transaction = {
       num_shares: assets[id]?.num_shares,
@@ -77,7 +81,7 @@ const CashoutStockForm = ({ prop }) => {
         <h4>
           Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2)}
         </h4>
-        <button className="order-btn" type="submit">
+        <button onClick={getAssets} className="order-btn" type="submit">
           Cashout Shares
         </button>
       </form>

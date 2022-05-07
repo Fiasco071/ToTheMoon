@@ -20,11 +20,11 @@ export const getAllAssets = () => async (dispatch) => {
 const assetReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_ASSET:
-      const getAllAssets = {};
-      action.payload.assets.forEach((assets) => {
-        getAllAssets[assets.id] = assets;
+      const allAssets = {};
+      action.payload.assets.forEach((asset) => {
+        allAssets[asset.id] = asset;
       });
-      return { ...getAllAssets, ...state };
+      return allAssets;
     default:
       return state;
   }
