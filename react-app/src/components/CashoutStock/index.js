@@ -16,12 +16,14 @@ const CashoutStockForm = ({ prop }) => {
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
+
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
-    if (asset.stock.id === id) {
+    if (asset.stock?.id == id) {
       assetOwned.push(asset);
     }
   });
+  console.log(assetOwned)
 
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
@@ -35,11 +37,12 @@ const CashoutStockForm = ({ prop }) => {
   useEffect(() => {
     dispatch(getAStock(id));
     dispatch(getAllAssets());
-  }, [dispatch]);
+  }, [dispatch, prop.newTransaction]);
 
   const getAssets = async () => {
     await dispatch(getAllAssets());
   };
+
   console.log(assetOwned);
 
   useEffect(() => {
@@ -56,6 +59,7 @@ const CashoutStockForm = ({ prop }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
+    prop.setNewTransaction(!prop.newTransaction);
 
     const transaction = {
       num_shares: assets[id]?.num_shares,
@@ -76,7 +80,14 @@ const CashoutStockForm = ({ prop }) => {
   return (
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
-        <h4>Total Shares Owned {assetOwned[0]?.num_shares}</h4>
+        {!assetOwned[0]?.num_shares && (
+            <h4 className="form-text">Total Shares Owned 0</h4>
+          )}
+          {assetOwned[0]?.num_shares > 0 && (
+            <h4 className="form-text">
+              Total Shares Owned {assetOwned[0]?.num_shares}
+            </h4>
+          )}
         <h4>Market Price ${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
         <h4>
           Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
