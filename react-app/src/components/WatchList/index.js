@@ -18,7 +18,7 @@ const WatchList = ({ stocks }) => {
           >
             <div>
               <h2 className="stock-ticker">{stock?.ticker}</h2>
-              <h2 className="stock-price">${stock?.i_price}</h2>
+              <h2 className="stock-price">${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
             </div>
             <div>
               <p className="stock-lname">{stock?.long_name}</p>

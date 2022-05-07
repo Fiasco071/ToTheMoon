@@ -107,9 +107,9 @@ const TransactionForm = ({ prop }) => {
               Total Shares Owned {assetOwned[0]?.num_shares}
             </h4>
           )}
-          <h4 className="form-text">Market Price ${stock?.i_price}</h4>
+          <h4 className="form-text">Market Price ${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
           <h4 className="form-text">
-            Total Price ${(stock?.i_price * num_shares).toFixed(2)}
+            Total Price ${(stock?.i_price * num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </h4>
         </div>
         <button
