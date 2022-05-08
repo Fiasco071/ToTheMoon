@@ -24,6 +24,7 @@ import { getAllTransactions } from "../../store/transaction";
 import HexaMenu from "./HexaMenu.js";
 import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
 import iconImage from "../../img/icon.png";
+import NewsWheel from "./NewsWheel";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,10 @@ const Dashboard = () => {
           <p className="nav-iconImage-text">To The Moon</p>
         </div>
         <div className="dashboard-content-box">
-          <div className="dashboard-content-navbar"></div>
+          <div className="dashboard-content-navbar">
+              <h2>News</h2>
+              <NewsWheel />
+          </div>
           <div className="dashboard-content">
             <div className="dashboard-content-box1">
               <div className="wallet-box">

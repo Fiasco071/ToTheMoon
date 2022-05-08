@@ -37,6 +37,7 @@
   background-color: white;
   border-radius: 0 0 0 15px;
   border-right: rgb(204, 204, 204) solid 4px;
+  overflow-y: scroll;
 }
 
 .dashboard-content {
@@ -331,4 +332,10 @@ div.dashboard-wrapper
   font-size: 18px;
   text-shadow: 1.5px 1.5px rgb(80, 24, 94), -1.5px -1.5px rgb(80, 24, 94),
     1.5px -1.5px rgb(80, 24, 94), -1.5px 1.5px rgb(101, 37, 117);
+}
+
+.dashboard-content-navbar > h2 {
+  margin-left: 10px;
+  color: white;
+  text-shadow: 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
 }
