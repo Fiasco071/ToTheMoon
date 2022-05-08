@@ -20,7 +20,9 @@ import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
 import LPieChart from "../Dashboard/LPieChart";
 import AssetChart from "../Dashboard/PieChart";
 import BiggestChange from "../Dashboard/BiggestChange";
-import StockWatchlist from '../StockWatchlist';
+import StockWatchlist from "../StockWatchlist";
+import { getAWatchlist } from "../../store/watchlist";
+import WatchlistView from "../WatchlistView/index.js";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -57,6 +59,7 @@ const StockDetail = () => {
     dispatch(getAllStocks());
     dispatch(getAllAssets());
     dispatch(getAWallet());
+    dispatch(getAWatchlist());
   }, [dispatch, newTransaction]);
 
   const changeTransactionBuy = () => {
@@ -88,7 +91,7 @@ const StockDetail = () => {
         <div className="dashboard-content-box stock-content">
           <div className="dashboard-content-navbar"></div>
           <div className="dashboard-content stock-details-content">
-          <div className="stock-details-box1">
+            <div className="stock-details-box1">
               <div className="wallet-box stock-wallet">
                 <WalletFormModalWithdraw />
                 <h2 className="wallet-title">Wallet</h2>
@@ -148,10 +151,10 @@ const StockDetail = () => {
                   </div>
                 </div>
               </div>
-                <div className="asset-box stock-asset">
-                  <h2>Recent Changes</h2>
-                  <BiggestChange />
-                </div>
+              <div className="asset-box stock-asset">
+                <h2>Recent Changes</h2>
+                <BiggestChange />
+              </div>
             </div>
             <div className="stockDetailContainer">
               <div className="company-name-header">
@@ -237,6 +240,7 @@ const StockDetail = () => {
           </div>
           <div className="dashboard-watchlist-box">
             <WatchList stocks={stocks} />
+            {/* <WatchlistView /> */}
           </div>
         </div>
       </div>

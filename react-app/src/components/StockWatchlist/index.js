@@ -12,39 +12,37 @@ const WatchListButton = () => {
 
   const user = useSelector((state) => state.session.user);
   const watchlist = useSelector((state) => state.watchlist);
-  const this_watchlist = Object.values(watchlist).find(el => el.user_id == user?.id && el.stock_id == id)
-
-
-  const [clicked, setClicked] = useState(false);
-  if (this_watchlist) {
-    setClicked(true)
-  }
-
-  const buttonToggle = () => {
-    setClicked(!clicked);
-  };
+  const this_watchlist = Object.values(watchlist)?.filter(
+    (watch) => watch?.user_id == user?.id && watch?.stock_id == id
+  )[0];
 
   const watch = {
     user_id: user?.id,
     stock_id: id,
   };
 
-  useEffect(() => {
-    clicked ? dispatch(addAWatch(watch, id)) : dispatch(delAWatch(this_watchlist?.id));
-  }, [clicked]);
+  const addToWatchList = () => {
+    dispatch(addAWatch(watch, id));
+  };
+
+  const deleteFromWatchList = () => {
+    dispatch(delAWatch(this_watchlist?.id));
+  };
 
   return (
     <>
-      {clicked == false && (
-        <button onClick={buttonToggle} className="watchlist-button">
+      {Object.values(watchlist)?.length == 0 && (
+        <button onClick={addToWatchList} className="watchlist-button">
           <FontAwesomeIcon icon={faPlus} />
         </button>
       )}
-      {this_watchlist && clicked == true && (
-        <button onClick={buttonToggle} className="watchlist-button">
+      {/* {this_watchlist && clicked == true && ( */}
+      {Object.values(watchlist)?.length > 0 && (
+        <button onClick={deleteFromWatchList} className="watchlist-button">
           <FontAwesomeIcon icon={faMinus} />
         </button>
       )}
+      {/* )} */}
     </>
   );
 };
