@@ -27,9 +27,6 @@ def get_one_stock(id):
 
 
 
-
-
-
 #graph testing
 @stock_routes.route('/test')
 
