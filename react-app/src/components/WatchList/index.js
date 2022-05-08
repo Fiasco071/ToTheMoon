@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 const WatchList = ({ stocks }) => {
   const history = useHistory();
-  // console.log(stocks)
   return (
     <div>
       <h2 className="watch-list-title">Stock List</h2>

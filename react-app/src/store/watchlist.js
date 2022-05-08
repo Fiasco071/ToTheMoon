@@ -45,12 +45,12 @@ export const addAWatch = (data, id) => async (dispatch) => {
   }
 };
 
-export const delAWatch = (watch) => async (dispatch) => {
-  const response = await fetch(`/api/watchlist/del/${watch.id}`, {
+export const delAWatch = (id) => async (dispatch) => {
+  const response = await fetch(`/api/watchlist/del/${id}`, {
     method: "DELETE",
   });
   if (response.ok) {
-    dispatch(delWatch(watch));
+    dispatch(delWatch(id));
   }
 };
 

@@ -10,15 +10,15 @@ const WatchListButton = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  console.log(id);
-
   const user = useSelector((state) => state.session.user);
-
   const watchlist = useSelector((state) => state.watchlist);
+  const this_watchlist = Object.values(watchlist).find(el => el.user_id == user?.id && el.stock_id == id)
 
-  console.log(watchlist);
 
   const [clicked, setClicked] = useState(false);
+  if (this_watchlist) {
+    setClicked(true)
+  }
 
   const buttonToggle = () => {
     setClicked(!clicked);
@@ -30,7 +30,7 @@ const WatchListButton = () => {
   };
 
   useEffect(() => {
-    clicked ? dispatch(addAWatch(watch, id)) : dispatch(delAWatch(watch));
+    clicked ? dispatch(addAWatch(watch, id)) : dispatch(delAWatch(this_watchlist?.id));
   }, [clicked]);
 
   return (
@@ -40,7 +40,7 @@ const WatchListButton = () => {
           <FontAwesomeIcon icon={faPlus} />
         </button>
       )}
-      {clicked == true && (
+      {this_watchlist && clicked == true && (
         <button onClick={buttonToggle} className="watchlist-button">
           <FontAwesomeIcon icon={faMinus} />
         </button>
