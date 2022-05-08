@@ -20,6 +20,7 @@ import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
 import LPieChart from "../Dashboard/LPieChart";
 import AssetChart from "../Dashboard/PieChart";
 import BiggestChange from "../Dashboard/BiggestChange";
+import StockWatchlist from '../StockWatchlist';
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -82,6 +83,7 @@ const StockDetail = () => {
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
+          <StockWatchlist />
         </div>
         <div className="dashboard-content-box stock-content">
           <div className="dashboard-content-navbar"></div>

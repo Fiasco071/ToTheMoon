@@ -6,6 +6,7 @@ import stockReducer from "./stock";
 import transactionReducer from "./transaction";
 import assetReducer from "./asset";
 import simReducer from "./simulation_data";
+import watchlistReducer from "./watchlist";
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   transactions: transactionReducer,
   assets: assetReducer,
   simData: simReducer,
+  watchlist: watchlistReducer
 });
 
 let enhancer;

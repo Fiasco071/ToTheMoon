@@ -14,6 +14,7 @@ class Stock(db.Model):
     info3 = db.Column(db.String(255))
 
     asset2 = db.relationship('Asset', back_populates='stock')
+    users = db.relationship("Watchlist", back_populates="stock")
 
 
     def stock_to_dict(self):

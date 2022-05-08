@@ -201,3 +201,10 @@ input::-webkit-inner-spin-button {
   box-shadow: 3px 3px 7px grey;
   margin-left: 2%;
 }
+
+.watchlist-button {
+  border-radius: 50%;
+  height: 25px;
+  background-color: black;
+  color: white;
+}

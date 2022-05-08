@@ -22,9 +22,7 @@ class Asset(db.Model):
             'user_id': self.user_id,
             'stock_id': self.stock_id,
             'num_shares': json.dumps(Decimal(self.num_shares), use_decimal=True),
-            # 'user': self.user.to_dict_no_wallet(),
-            'stock': self.stock.stock_to_dict(),
-            # 'transaction': self.transaction.transaction_to_dict_no_asset()
+            'stock': self.stock.stock_to_dict()
         }
 
     def asset_to_dict_no_user(self):
