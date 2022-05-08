@@ -1,6 +1,7 @@
 from .db import db
 import simplejson as json
 from decimal import Decimal
+from .jtable import watchlist_table
 
 class Stock(db.Model):
     __tablename__= "stocks"
@@ -14,6 +15,7 @@ class Stock(db.Model):
     info3 = db.Column(db.String(255))
 
     asset2 = db.relationship('Asset', back_populates='stock')
+    user = db.relationship('User', secondary=watchlist_table, back_populates='stock')
 
 
     def stock_to_dict(self):
