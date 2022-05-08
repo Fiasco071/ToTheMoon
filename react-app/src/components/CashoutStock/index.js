@@ -23,7 +23,7 @@ const CashoutStockForm = ({ prop }) => {
       assetOwned.push(asset);
     }
   });
-  console.log(assetOwned)
+
 
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price

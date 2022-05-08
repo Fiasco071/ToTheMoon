@@ -9,7 +9,6 @@ const WalletFormWithdraw = ({ prop }) => {
   const redux_wallet = useSelector((state) => state.wallet);
   const currentUser = useSelector((state) => state.session.user);
 
-  // console.log(redux_wallet[1].amount);
 
   const [amount, setAmount] = useState(0.0);
   const [validationErrors, setValidationErrors] = useState([]);
@@ -36,26 +35,15 @@ const WalletFormWithdraw = ({ prop }) => {
 
     setHasSubmitted(true);
     setShowErrors(true);
-    // if (validationErrors.length)
-    // return alert("Your submit has errors, cannot submit!");
 
     const wallet = {
       amount: amount * -1,
     };
 
-    // console.log("-----------CURRENT WALLET AMT:", +currentUser.wallet.amount);
-    // console.log("-----------CHANGE WALLET AMT:", amount);
-    // console.log(
-    //   "-----------CHANGE WALLET AMT:",
-    //   +currentUser.wallet.amount + +amount
-    // );
-    // Will need to construct Thunk and dispatch calls
-    // await dispatch(somesortofcreatethunkactioncall(wallet));
 
     if (validationErrors.length === 0) {
       let update = await dispatch(walletWithdraw(wallet));
       if (update) {
-        // history.push(``);setValidationErrors([]);
         setHasSubmitted(false);
         prop.setShowModal(false);
       }

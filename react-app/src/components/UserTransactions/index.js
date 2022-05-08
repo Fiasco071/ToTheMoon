@@ -38,10 +38,6 @@ const UserTransactionHistory = () => {
 
   const history = useHistory();
 
-  console.log(transactions);
-  // console.log(stocksObj)
-  // console.log(stocks)
-
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -51,12 +47,7 @@ const UserTransactionHistory = () => {
     dispatch(getAllAssets());
   }, [dispatch]);
 
-  // const matchingStock = (stocks) => {
-  //     let result = stocks?.filter(stock => {
-  //         // return stock.id === transaction.asset.stock_id
-  //     })
-  //     return result?.ticker
-  // }
+
   const onLogout = async (e) => {
     await dispatch(logout());
   };
@@ -67,21 +58,6 @@ const UserTransactionHistory = () => {
         <div className="dashboard-title-bar">
           <div className="profile-icon-box-wrapper">
             <HexaMenu />
-            {/* <div className="profile-icon-box">
-                            <FontAwesomeIcon icon={faUser} className="profile-icon" />
-                        </div>
-                        <div className="profile-icon-box-menu" onClick={onLogout}>
-                            <FontAwesomeIcon
-                                icon={faDoorOpen}
-                                className="profile-icon"
-                            />
-                        </div>
-                        <div className="profile-icon-box-home" onClick={() => history.push('/home')}>
-                            <FontAwesomeIcon
-                                icon={faHome}
-                                className="profile-icon"
-                            />
-                        </div> */}
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
@@ -210,7 +186,6 @@ const UserTransactionHistory = () => {
                                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                               )}`}
                         </div>
-                        {/* <div className='expand-triangle' id={'plus-' + transaction?.id} onClick={() => setToggle(!toggle)}></div> */}
                       </div>
                     </div>
                     {toggle ? (
