@@ -58,7 +58,7 @@ const watchlistReducer = (state = [], action) => {
   switch (action.type) {
     case GET_WATCHLIST: {
       const getAll = {};
-      action.payload.forEach((watch) => {
+      action.payload.watchlist.forEach((watch) => {
         getAll[watch.id] = watch;
       });
       return getAll;
