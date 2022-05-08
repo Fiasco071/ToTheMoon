@@ -2,7 +2,6 @@
   justify-content: space-evenly;
   align-items: center;
   overflow-y: scroll;
-
 }
 
 .stock-details-box1 {
@@ -11,7 +10,6 @@
   padding: 20px 40px;
   margin-top: 26%;
 }
-
 
 .about-box {
   width: 50vw;
@@ -173,7 +171,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
 .stock-wallet {
   background: linear-gradient(230deg, rgb(255, 207, 96), rgb(238, 123, 71));
   width: 300px;
@@ -203,8 +200,36 @@ input::-webkit-inner-spin-button {
 }
 
 .watchlist-button {
-  border-radius: 50%;
+  border-radius: 15px;
   height: 25px;
   background-color: black;
   color: white;
+  position: relative;
+  right: 80px;
+  top: 440px;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.p-container > button {
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: black;
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
+  width: 90px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.p-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.p-container > .selected {
+  background-color: lavender;
+  color: black;
 }

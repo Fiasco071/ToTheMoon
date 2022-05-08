@@ -31,15 +31,15 @@ const WatchListButton = () => {
 
   return (
     <>
-      {Object.values(watchlist)?.length == 0 && (
+      {!this_watchlist && (
         <button onClick={addToWatchList} className="watchlist-button">
-          <FontAwesomeIcon icon={faPlus} />
+          Add To WatchList
         </button>
       )}
       {/* {this_watchlist && clicked == true && ( */}
-      {Object.values(watchlist)?.length > 0 && (
+      {this_watchlist && (
         <button onClick={deleteFromWatchList} className="watchlist-button">
-          <FontAwesomeIcon icon={faMinus} />
+          Remove From WatchList
         </button>
       )}
       {/* )} */}
