@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllStocks, getAStock } from "../../store/stock";
 import { useHistory, useParams } from "react-router-dom";
 import StockGraph from "./stockGraph";
@@ -23,6 +23,8 @@ import BiggestChange from "../Dashboard/BiggestChange";
 import StockWatchlist from "../StockWatchlist";
 import { getAWatchlist } from "../../store/watchlist";
 import WatchlistView from "../WatchlistView/index.js";
+import NewsWheel from "../Dashboard/NewsWheel";
+import iconImage from "../../img/icon.png";
 
 const StockDetail = () => {
   let dispatch = useDispatch();
@@ -38,6 +40,10 @@ const StockDetail = () => {
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
   const [newTransaction, setNewTransaction] = useState(false);
+  const [flag, setFlag] = useState("stock list");
+
+  const ref = useRef(null);
+
   const prop = { newTransaction, setNewTransaction, isShown, setIsShown };
 
   let assetOwned = [];
@@ -77,6 +83,16 @@ const StockDetail = () => {
     setIsShown(3);
   };
 
+  const handleClickS = () => {
+    setFlag("stock list");
+    ref.current.classList.add("selected");
+  };
+
+  const handleClickW = () => {
+    setFlag("watch list");
+    ref.current.classList.add("selected");
+  };
+
   return (
     <div className="dashboard-wrapper">
       <div className="dashboard">
@@ -86,10 +102,15 @@ const StockDetail = () => {
           </div>
           <h2 className="dashboard-username">{user?.username}</h2>
           <SearchBar />
+          <img className="nav-iconImage" src={iconImage} />
+          <p className="nav-iconImage-text">To The Moon</p>
           <StockWatchlist />
         </div>
         <div className="dashboard-content-box stock-content">
-          <div className="dashboard-content-navbar"></div>
+          <div className="dashboard-content-navbar">
+            <h2>News</h2>
+            <NewsWheel />
+          </div>
           <div className="dashboard-content stock-details-content">
             <div className="stock-details-box1">
               <div className="wallet-box stock-wallet">
@@ -239,8 +260,24 @@ const StockDetail = () => {
             </div>
           </div>
           <div className="dashboard-watchlist-box">
-            <WatchList stocks={stocks} />
-            {/* <WatchlistView /> */}
+            <div className="p-container">
+              <button
+                onClick={handleClickS}
+                ref={ref}
+                className={flag === "stock list" ? "selected" : null}
+              >
+                Stock List
+              </button>
+              <button
+                onClick={handleClickW}
+                ref={ref}
+                className={flag === "watch list" ? "selected" : null}
+              >
+                Watch List
+              </button>
+            </div>
+            {flag === "stock list" && <WatchList stocks={stocks} />}
+            {flag === "watch list" && <WatchlistView />}
           </div>
         </div>
       </div>

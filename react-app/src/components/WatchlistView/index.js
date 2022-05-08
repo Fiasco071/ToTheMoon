@@ -19,11 +19,9 @@ const WatchlistView = () => {
   const stocks = Object.values(stockss)?.filter((stock) =>
     stock_id_arr.includes(stock?.id)
   );
-  console.log(stocks);
 
   return (
     <div>
-      <h2 className="watch-list-title">Watch List</h2>
       <div className="stocks-list">
         {stocks?.map((stock) => (
           <div

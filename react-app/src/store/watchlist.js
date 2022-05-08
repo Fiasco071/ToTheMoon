@@ -69,7 +69,7 @@ const watchlistReducer = (state = [], action) => {
       return newState;
     }
     case DEL_WATCH: {
-      const newState = {};
+      const newState = { ...state };
       delete newState[action.payload];
       return newState;
     }

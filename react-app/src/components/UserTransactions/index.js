@@ -16,6 +16,7 @@ import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
 import LPieChart from "../Dashboard/LPieChart";
 import AssetChart from "../Dashboard/PieChart";
 import BiggestChange from "../Dashboard/BiggestChange";
+import NewsWheel from "../Dashboard/NewsWheel";
 
 import { logout } from "../../store/session";
 import { getAllStocks } from "../../store/stock";
@@ -47,7 +48,6 @@ const UserTransactionHistory = () => {
     dispatch(getAllAssets());
   }, [dispatch]);
 
-
   const onLogout = async (e) => {
     await dispatch(logout());
   };
@@ -63,7 +63,10 @@ const UserTransactionHistory = () => {
           <SearchBar />
         </div>
         <div className="dashboard-content-box">
-          <div className="dashboard-content-navbar"></div>
+          <div className="dashboard-content-navbar">
+            <h2>News</h2>
+            <NewsWheel />
+          </div>
           <div className="dashboard-content">
             <div className="dashboard-content-box1">
               <div className="wallet-box">
