@@ -10,7 +10,7 @@ const QuickView = () => {
     const history = useHistory()
     return (
         <div className="port-quickview-wrapper">
-            {Object.values(assets).slice(0,5).map(asset => (
+            {Object.values(assets).map(asset => (
                 <div className="port-quickview-box" onClick={() => (history.push(`/stocks/${asset.stock.id}`))}>
                     <h2>{asset.stock.ticker}</h2>
                     <div className="qv-text-boxes">
@@ -24,9 +24,9 @@ const QuickView = () => {
 
                     <div className="port-quickview-large-box">
                         <h2>{asset.stock.ticker} ${(asset.stock.i_price * asset.num_shares).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
-                 
+
                             <QuickViewGraph className='qvl-chart' />
-                        
+
                         <div className="port-qv-info-box">
                             <div className="qv-text-lboxes">
                                 <p>Price</p>
