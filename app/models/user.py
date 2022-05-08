@@ -2,6 +2,8 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .jtable import association_table
+from .watchlist import Watchlist
+from app.models.stock import Stock
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -14,6 +16,8 @@ class User(db.Model, UserMixin):
     wallet = db.relationship("Wallet", back_populates="user", uselist=False)
     asset = db.relationship('Asset', secondary=association_table, back_populates='user')
     transaction = db.relationship('Transaction', back_populates='user')
+    stocks = db.relationship("Watchlist", back_populates="user")
+
 
     @property
     def password(self):
