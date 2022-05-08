@@ -11,19 +11,6 @@ const BiggestChange = () => {
         return Math.floor(Math.random() * num)
     }
 
-    // const randomNamePicker = (stocks) => {
-    //     const random = randomNum(stocks?.length);
-    //     for (let i = 0; i < stocks?.length; i++) {
-    //         let stock = stocks[i]
-    //         if (i === random) {
-    //             // console.log("Randomly selected --", random, "Matching index --", i)
-    //             return stock?.long_name
-    //         }
-    //     }
-    //     // return stocks[7]?.long_name
-    //     // return randomNamePicker(stocks)
-    // }
-
     const randomNamePicker = (stocks) => {
         const picked = []
         const random = randomNum(stocks?.length)
@@ -36,20 +23,18 @@ const BiggestChange = () => {
             }
         }
         for (let i = 0; i < stocks.length; i++) {
-            // console.log(random)
             let stock = stocks[i]
-            // console.log(stock.long_name)
             if (i === random) {
-                // console.log("Randomly selected first --", random, "Matching index --", i)
+
                 picked.push(stock?.ticker)
             }
             if (i === random2) {
-                // console.log("Randomly selected second --", random2, "Matching index --", i)
+
                 picked.push(stock?.ticker)
             }
         }
-        // return randomNamePicker(stocks)
-        return [picked.join('*')]; // returns [ stock0, stock1]****
+
+        return [picked.join('*')]; 
     }
 
     return (

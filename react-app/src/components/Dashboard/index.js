@@ -37,7 +37,7 @@ const Dashboard = () => {
     dispatch(getAWallet());
     dispatch(getAllStocks());
     dispatch(getAllAssets());
-    dispatch(getAllSimData());
+    // dispatch(getAllSimData());
     dispatch(getAllTransactions());
   }, [dispatch]);
 

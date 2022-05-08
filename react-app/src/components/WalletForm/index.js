@@ -31,25 +31,15 @@ const WalletForm = ({ prop }) => {
 
     setHasSubmitted(true);
     setShowErrors(true);
-    // if (validationErrors.length)
-    //   return alert("Your submit has errors, cannot submit!");
 
     const wallet = {
       amount: amount,
     };
-    // console.log("-----------CURRENT WALLET AMT:", +currentUser.wallet.amount);
-    // console.log("-----------CHANGE WALLET AMT:", amount);
-    // console.log(
-    //   "-----------CHANGE WALLET AMT:",
-    //   +currentUser.wallet.amount + +amount
-    // );
-    // Will need to construct Thunk and dispatch calls
-    // await dispatch(somesortofcreatethunkactioncall(wallet));
+
 
     if (validationErrors.length === 0) {
       let update = await dispatch(addAWallet(wallet));
       if (update) {
-        // history.push(``);
         setValidationErrors([]);
         setHasSubmitted(false);
         prop.setShowModal(false);

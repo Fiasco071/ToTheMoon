@@ -2,8 +2,16 @@ import "./index.css";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
 import iconImage from "../../img/icon.png";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllSimData } from "../../store/simulation_data";
+
 
 const LandingPage = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllSimData());
+  }, [dispatch]);
   return (
     <div className="landing-wrapper">
       <div className="landing">
