@@ -13,12 +13,12 @@ Rocket Note is a clone of Evernotes. Rocket notes is where you can save all your
    
 <h2> Features </h2> <a name="features"></a>
  
-    With our application, you can simulate stock datas on different real stocks at a current value.
-         * You can add funds to your wallet.
-         * With sufficient funds in your wallet, you are able to browse through and select stocks you want to "purchase".
-         * You can see a projection of the said data set in a projection of a year. 
-         * You can view all your assets that you have
-         * You can view your history of all the transactions made in the application.
+With our application, you can simulate stock datas on different real stocks at a current value.
+   * You can add funds to your wallet.
+   * With sufficient funds in your wallet, you are able to browse through and select stocks you want to "purchase".
+   * You can see a projection of the said data set in a projection of a year. 
+   * You can view all your assets that you have
+   * You can view your history of all the transactions made in the application.
 
 <h2>Technologies Used</h2> <a name="tech"></a>
    
