@@ -15,7 +15,7 @@ const QuickView = () => {
                     <h2>{asset.stock.ticker}</h2>
                     <div className="qv-text-boxes">
                         <p>Price</p>
-                        <p className="qv-value">${asset.stock.i_price}</p>
+                        <p className="qv-value">${asset.stock.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                     </div>
                     <div className="qv-text-boxes">
                         <p>Shares</p>
