@@ -1,12 +1,45 @@
-# Flask React Project
+<h1 align="center"> 🌕🚀: To The Moon 🚀🌕 </h1> <a name="top"> </a>
 
-This is the starter for the Flask React project.
+<h5 align="center">  By: <a href="https://github.com/AriannaNRobinson">Arianna Robinson</a> - <a href="https://github.com/Kristen-Reid">Kristen Reid</a> - <a href="https://github.com/rammartinez00">Rami Martinez</a> - <a href="https://github.com/Fiasco071">Steve Choi</a> - <a href="https://tothemoon-investment-app.herokuapp.com/"><i>Live site</i></h5>
 
-## Getting started
+<h2> About </h2>
+Rocket Note is a clone of Evernotes. Rocket notes is where you can save all your important thoughts in an organized way!
+
+   - [Features](#features)
+   - [Technologies Used](#tech)
+   - [How to use our application](#howto)
+   
+   
+   
+<h2> Features </h2> <a name="features"></a>
+ 
+With our application, you can simulate stock datas on different real stocks at a current value.
+   * You can add funds to your wallet.
+   * With sufficient funds in your wallet, you are able to browse through and select stocks you want to "purchase".
+   * You can see a projection of the said data set in a projection of a year. 
+   * You can view all your assets that you have
+   * You can view your history of all the transactions made in the application.
+
+<h2>Technologies Used</h2> <a name="tech"></a>
+   
+   <img src="https://user-images.githubusercontent.com/93681149/167308732-afeeb5f2-d9a1-47ab-b8d9-82cd44b00b7e.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308602-b05ea259-dd61-4df9-8f45-d7daeece6491.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308754-79d7f324-d62d-461e-aa15-32487f495403.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308772-5912f7f3-522a-4fe5-b176-575a91455823.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308802-46d28d53-dc35-4146-86f1-2afa9fdcbac0.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308823-588c1cbe-ef15-47ba-8d3f-944710a00ac6.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308846-24aa684c-2a5d-4d32-b365-4a0de8714408.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308866-01f03689-0b65-4ddd-803f-4a23a0253e35.svg" width="60px" align="left">
+   <img src="https://user-images.githubusercontent.com/93681149/167308908-2aacacf3-d30a-4b00-97ed-3c034e5bcadd.svg" width="60px">
+  
+   
+   
+
+<h2> Getting started </h2><a name="howto"></a>
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/Fiasco071/ToTheMoon.git
    ```
 
 2. Install dependencies
