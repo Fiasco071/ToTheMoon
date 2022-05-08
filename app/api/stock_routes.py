@@ -32,7 +32,7 @@ def get_one_stock(id):
 
 #graph testing
 @stock_routes.route('/test')
-@login_required
+
 def get_sim_data():
     
     stocks = Stock.query.all()
