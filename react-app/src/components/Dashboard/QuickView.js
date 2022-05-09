@@ -38,7 +38,7 @@ const QuickView = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h2>
 
-            <QuickViewGraph className="qvl-chart" />
+            <QuickViewGraph className="qvl-chart" id={asset.stock.id}/>
 
             <div className="port-qv-info-box">
               <div className="qv-text-lboxes">
