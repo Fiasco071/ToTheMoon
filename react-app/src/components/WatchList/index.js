@@ -13,7 +13,6 @@ const WatchList = ({ stocks }) => {
 
   return (
     <div>
-      <h2 className="watch-list-title">Stock List</h2>
       <div className="stocks-list">
         {Object.values(stocks).map((stock) => (
           <div
