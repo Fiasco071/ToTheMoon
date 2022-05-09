@@ -14,7 +14,7 @@ const WalletFormWithdraw = ({ prop }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
-  console.log(Object.values(redux_wallet)[0]?.amount);
+  // console.log(Object.values(redux_wallet)[0]?.amount);
 
   useEffect(() => {
     const errors = [];
