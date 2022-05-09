@@ -11,7 +11,6 @@ const WatchList = ({ stocks }) => {
   const watchlist = useSelector((state) => state.watchlist);
   const user = useSelector((state) => state.session.user);
 
-
   return (
     <div>
       <h2 className="watch-list-title">Stock List</h2>

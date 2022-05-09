@@ -2,7 +2,7 @@ import "./index.css";
 // import LogoutButton from '../auth/LogoutButton';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faUser, faDoorOpen, faHome, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAWallet } from "../../store/wallet";
 //, addAWallet removed from "../../store/wallet" import to remove console warnings
@@ -25,10 +25,14 @@ import HexaMenu from "./HexaMenu.js";
 import WalletFormModalWithdraw from "../WalletWithdraw/WalletModal";
 import iconImage from "../../img/icon.png";
 import NewsWheel from "./NewsWheel";
+import WatchlistView from "../WatchlistView";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const ref = useRef(null);
+  const [flag, setFlag] = useState("stock list");
+  
   const user = useSelector((state) => state.session.user);
   const wallet = useSelector((state) => state.wallet);
   const stocks = useSelector((state) => state.stocks);
@@ -38,15 +42,20 @@ const Dashboard = () => {
     dispatch(getAWallet());
     dispatch(getAllStocks());
     dispatch(getAllAssets());
-    // dispatch(getAllSimData());
     dispatch(getAllTransactions());
   }, [dispatch]);
 
-  // const menu_icons =[
-  //   [faUser, "menu", "onLogout" ],
-  //   [faDoorOpen, "home", "history.push('/home')"]
-  //   [faMoneyBill, "transactionpage", "history.push('/my-transactions')"]
-  // ]
+ 
+
+  const handleClickS = () => {
+    setFlag("stock list");
+    ref.current.classList.add("selected");
+  };
+
+  const handleClickW = () => {
+    setFlag("watch list");
+    ref.current.classList.add("selected");
+  };
 
   return (
     <div className="dashboard-wrapper">
@@ -148,7 +157,24 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="dashboard-watchlist-box">
-            <WatchList stocks={stocks} />
+            <div className="p-container">
+              <button
+                onClick={handleClickS}
+                ref={ref}
+                className={flag === "stock list" ? "selected" : null}
+              >
+                Stock List
+              </button>
+              <button
+                onClick={handleClickW}
+                ref={ref}
+                className={flag === "watch list" ? "selected" : null}
+              >
+                Watch List
+              </button>
+            </div>
+            {flag === "stock list" && <WatchList stocks={stocks} />}
+            {flag === "watch list" && <WatchlistView />}
           </div>
         </div>
       </div>

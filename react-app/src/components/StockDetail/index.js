@@ -104,7 +104,6 @@ const StockDetail = () => {
           <SearchBar />
           <img className="nav-iconImage" src={iconImage} />
           <p className="nav-iconImage-text">To The Moon</p>
-          <StockWatchlist />
         </div>
         <div className="dashboard-content-box stock-content">
           <div className="dashboard-content-navbar">
