@@ -9,52 +9,28 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export const data = [
-  {
-    name: "Page A",
-    uv: 3000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 4000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 1700,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1500,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 1200,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 1000,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import { useSelector } from "react-redux";
 
-const QuickViewGraph = () => {
+
+const QuickViewGraph = ({id}) => {
+
+  const simData = useSelector(state => state.simData)
+  const dataArr = simData.sim_data;
+  const newId = id - 1 
+
+  const data = [];
+  if (dataArr) {
+    Object.values(dataArr)[newId].forEach((pieceOfData, i) => {
+     let cur_price = pieceOfData  
+      if (cur_price < 0) cur_price = 0
+      const plotObj = {
+        name: i+1,
+        uv: cur_price
+      }
+      data.push(plotObj)
+    })
+    data[0].uv = 100
+  }
 
     return (
       <ResponsiveContainer width="80%" height="50%">
