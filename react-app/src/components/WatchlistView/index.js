@@ -1,9 +1,13 @@
 import { useHistory, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addAWatch, delAWatch } from "../../store/watchlist";
+
+
 
 const WatchlistView = () => {
   const history = useHistory();
   const { id } = useParams();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const watchlist = useSelector((state) => state.watchlist);
   const my_watchlist = Object.values(watchlist)?.filter(
@@ -39,8 +43,29 @@ const WatchlistView = () => {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </h2>
-            </div>
-            <div>
+              </div>
+            <div className="quickadd-stockln-box">
+              <div>
+                {!Object.values(watchlist)?.filter(
+                  (watch) => watch?.user_id == user?.id && watch?.stock_id == stock?.id
+                )[0] && (
+                    <button onClick={() => dispatch(addAWatch({
+                      user_id: user?.id,
+                      stock_id: stock?.id,
+                    }, stock?.id))} className="quickadd-button">
+                      +
+                    </button>
+                  )}
+                {Object.values(watchlist)?.filter(
+                  (watch) => watch?.user_id == user?.id && watch?.stock_id == stock?.id
+                )[0] && (
+                    <button onClick={() => dispatch(delAWatch(Object.values(watchlist)?.filter(
+                      (watch) => watch?.user_id == user?.id && watch?.stock_id == stock?.id
+                    )[0]?.id))} className="quickadd-button remove">
+                      -
+                    </button>
+                  )}
+              </div>
               <p className="stock-lname">{stock?.long_name}</p>
             </div>
           </div>

@@ -68,6 +68,7 @@
     background: transparent;
     font-weight: bolder;
     color: green;
+    padding: 10px 10px;
 }
 
 .quickadd-button.remove {
