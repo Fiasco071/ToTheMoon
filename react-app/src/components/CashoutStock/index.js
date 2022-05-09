@@ -16,14 +16,12 @@ const CashoutStockForm = ({ prop }) => {
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
 
-
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
     if (asset.stock?.id == id) {
       assetOwned.push(asset);
     }
   });
-
 
   const [price_at_transaction, setPriceAtTransaction] = useState(
     stock?.i_price
@@ -42,8 +40,6 @@ const CashoutStockForm = ({ prop }) => {
   const getAssets = async () => {
     await dispatch(getAllAssets());
   };
-
-  console.log(assetOwned);
 
   useEffect(() => {
     const errors = [];
@@ -81,16 +77,23 @@ const CashoutStockForm = ({ prop }) => {
     <div className="transaction-form-container">
       <form onSubmit={handleSubmit}>
         {!assetOwned[0]?.num_shares && (
-            <h4 className="form-text">Total Shares Owned 0</h4>
-          )}
-          {assetOwned[0]?.num_shares > 0 && (
-            <h4 className="form-text">
-              Total Shares Owned {assetOwned[0]?.num_shares}
-            </h4>
-          )}
-        <h4>Market Price ${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
+          <h4 className="form-text">Total Shares Owned 0</h4>
+        )}
+        {assetOwned[0]?.num_shares > 0 && (
+          <h4 className="form-text">
+            Total Shares Owned {assetOwned[0]?.num_shares}
+          </h4>
+        )}
         <h4>
-          Total Price ${(stock?.i_price * assetOwned[0]?.num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          Market Price $
+          {stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h4>
+        <h4>
+          Total Price $
+          {(stock?.i_price * assetOwned[0]?.num_shares)
+            .toFixed(2)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </h4>
         <button onClick={getAssets} className="order-btn" type="submit">
           Cashout Shares
