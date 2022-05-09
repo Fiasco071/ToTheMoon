@@ -14,15 +14,15 @@ const WalletFormWithdraw = ({ prop }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
-  console.log(Object.values(redux_wallet)[0]?.amount)
+  // console.log(Object.values(redux_wallet)[0]?.amount);
 
   useEffect(() => {
     const errors = [];
     if (amount < 0) errors.push("Please enter a valid amount.");
-    if (amount > Object.values(redux_wallet)[0]?.amount) {
+    if (Number(amount) > Number(Object.values(redux_wallet)[0]?.amount)) {
       errors.push("amount must be less than balance");
     }
-    console.log(amount > Object.values(redux_wallet)[0]?.amount)
+    // console.log(Object.values(redux_wallet)[0]?.amount);
     setValidationErrors(errors);
   }, [amount]);
 
@@ -41,7 +41,6 @@ const WalletFormWithdraw = ({ prop }) => {
     const wallet = {
       amount: amount * -1,
     };
-
 
     if (validationErrors.length === 0) {
       let update = await dispatch(walletWithdraw(wallet));
