@@ -10,6 +10,7 @@
     height: 440px;
     /* overflow-y: scroll; */
     box-shadow: 3px 3px 10px grey;
+    z-index: 1;
 }
 
 .my-transactions-wrapper > h2 {

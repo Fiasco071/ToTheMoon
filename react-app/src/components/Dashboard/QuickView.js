@@ -1,12 +1,40 @@
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import QuickViewGraph from "./QuickViewGraph";
 import "./qv.css";
-import Slider from "../Slider";
+
 
 const QuickView = () => {
   const assets = useSelector((state) => state.assets);
   const history = useHistory();
+  // const simData = useSelector(state => state.simData)
+  // const dataArr = simData.sim_data;
+  // const [price, setPrice] = useState();
+
+  // const dataset = [];
+  // if (dataArr) {
+  //   Object.values(dataArr)[id-1].forEach((pieceOfData, i) => {
+  //    let cur_price = pieceOfData  
+  //     if (cur_price < 0) cur_price = 0
+  //     const plotObj = {
+  //       name: i+1,
+  //       uv: cur_price
+  //     }
+  //     dataset.push(plotObj)
+  //   })
+  //   dataset[0].uv = stock_price
+  // }
+  
+  // let i = 252
+
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     i+=1;
+  //     setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv)
+  //   },3000)
+  // })
+
   return (
     <div className="port-quickview-wrapper">
       {Object.values(assets).map((asset) => (
@@ -32,10 +60,7 @@ const QuickView = () => {
 
           <div className="port-quickview-large-box">
             <h2>
-              {asset.stock.ticker} $
-              {(asset.stock.i_price * asset.num_shares)
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              {asset.stock.ticker}
             </h2>
 
             <QuickViewGraph className="qvl-chart" id={asset.stock.id}/>

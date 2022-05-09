@@ -15,6 +15,35 @@ const CashoutStockForm = ({ prop }) => {
   const stock = useSelector((state) => state.stocks[id]);
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
+  const simData = useSelector(state => state.simData)
+  const dataArr = simData.sim_data;
+  const stock_price = useSelector(state => Object.values(state.stocks).filter(stock => stock.id == id)[0]?.i_price)
+  const [price, setPrice] = useState();
+  const dataset = [];
+  if (dataArr) {
+    Object.values(dataArr)[id-1].forEach((pieceOfData, i) => {
+     let cur_price = pieceOfData  
+      if (cur_price < 0) cur_price = 0
+      const plotObj = {
+        name: i+1,
+        uv: cur_price
+      }
+      dataset.push(plotObj)
+    })
+    dataset[0].uv = stock_price
+  }
+
+  let i = 252;
+
+  useEffect(() => {
+    setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2))
+    const loop = setInterval(() => {
+      i+=1;
+      setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2))
+    },3000)
+    return () => clearInterval(loop);
+  }, [])
+
 
   let assetOwned = [];
   Object.values(assets).forEach((asset) => {
@@ -22,10 +51,6 @@ const CashoutStockForm = ({ prop }) => {
       assetOwned.push(asset);
     }
   });
-
-  const [price_at_transaction, setPriceAtTransaction] = useState(
-    stock?.i_price
-  );
 
   const [num_shares, setNum_Shares] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -43,7 +68,7 @@ const CashoutStockForm = ({ prop }) => {
 
   useEffect(() => {
     const errors = [];
-    if (user?.wallet?.amount < num_shares * price_at_transaction) {
+    if (user?.wallet?.amount < num_shares * price) {
       errors.push("Insufficient funds");
     }
     if (num_shares < 1) {
@@ -59,13 +84,12 @@ const CashoutStockForm = ({ prop }) => {
 
     const transaction = {
       num_shares: assets[id]?.num_shares,
-      price_at_transaction,
+      price_at_transaction: price,
     };
 
     let cashedOutTransaction;
 
     cashedOutTransaction = await dispatch(cashoutTransaction(transaction, id));
-    setPriceAtTransaction(stock?.i_price);
     setNum_Shares(0);
     setTotalPrice(0);
     setHasSubmitted(false);
@@ -86,11 +110,11 @@ const CashoutStockForm = ({ prop }) => {
         )}
         <h4>
           Market Price $
-          {stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </h4>
         <h4>
           Total Price $
-          {(stock?.i_price * assetOwned[0]?.num_shares)
+          {(price * assetOwned[0]?.num_shares)
             .toFixed(2)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

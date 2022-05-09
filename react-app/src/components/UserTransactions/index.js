@@ -180,16 +180,16 @@ const UserTransactionHistory = () => {
                           className="my-transaction-items-2"
                           id={
                             (
-                              transaction?.price_at_transaction *
-                              transaction?.num_shares
+                              +transaction?.price_at_transaction *
+                              +transaction?.num_shares
                             ).toFixed(2) > 0
                               ? "red"
                               : "green"
                           }
                         >
                           {(
-                            transaction?.price_at_transaction *
-                            transaction?.num_shares
+                            +transaction?.price_at_transaction *
+                            +transaction?.num_shares
                           ).toFixed(2) > 0
                             ? `-  $${(
                                 transaction?.price_at_transaction *
@@ -198,15 +198,15 @@ const UserTransactionHistory = () => {
                                 .toFixed(2)
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-                            : `+  $${Math.abs(
+                            : `+  $${
                                 (
-                                  transaction?.price_at_transaction *
-                                  transaction?.num_shares
+                                  +transaction?.price_at_transaction *
+                                  +transaction?.num_shares * -1
                                 )
                                   .toFixed(2)
                                   .toString()
                                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                              )}`}
+                              }`}
                         </div>
                       </div>
                     </div>

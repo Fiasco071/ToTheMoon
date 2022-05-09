@@ -233,3 +233,12 @@
 /* .port-quickview-wrapper {
     overflow-x: scroll;
 } */
+
+
+.update-price {
+    position: absolute;
+    background: white;
+    padding: 5px 10px;
+    top:330px;
+    left:40px;
+}
