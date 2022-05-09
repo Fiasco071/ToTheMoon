@@ -4,7 +4,7 @@ import { faUser, faDoorOpen, faHome, faMoneyBill } from "@fortawesome/free-solid
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
-
+import { removeWalletonLogout } from '../../store/wallet';
 
 const HexaMenu = () => {
     const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const HexaMenu = () => {
 
     const onLogout = async (e) => {
         await dispatch(logout());
+        await dispatch(removeWalletonLogout())
       };
 
     return (

@@ -45,7 +45,6 @@ const Dashboard = () => {
     dispatch(getAllTransactions());
   }, [dispatch]);
 
- 
 
   const handleClickS = () => {
     setFlag("stock list");
@@ -84,9 +83,7 @@ const Dashboard = () => {
                 <div>
                   <p className="wallet-title">$</p>
                   <p className="wallet-title">
-                    {wallet[1]?.amount
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    {Object.values(wallet)[0]?.amount}
                   </p>
                 </div>
                 {/* <div className='add-button'><FontAwesomeIcon icon={faArrowUp} className='add-icon' /></div> */}

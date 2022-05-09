@@ -73,7 +73,7 @@ def sign_up():
 
     ###Creating Wallet Upon Sign Up###
         wallet = Wallet(
-            amount=0,
+            amount=0.00,
             user_id=user.id
         )
         db.session.add(wallet)
