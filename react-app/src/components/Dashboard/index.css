@@ -197,6 +197,11 @@
   position: relative;
   top: -30px;
   height: 300px;
+  z-index: 1;
+}
+
+.stockDetailContainer {
+  z-index: 1;
 }
 
 .recharts-wrapper {

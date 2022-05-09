@@ -1,6 +1,6 @@
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAllTransactions } from "../../store/transaction";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,9 +22,13 @@ import { logout } from "../../store/session";
 import { getAllStocks } from "../../store/stock";
 import { getAWallet } from "../../store/wallet";
 import { getAllAssets } from "../../store/asset";
+import WatchlistView from "../WatchlistView";
 
 const UserTransactionHistory = () => {
   const dispatch = useDispatch();
+
+  const [flag, setFlag] = useState("stock list");
+  const ref = useRef(null);
 
   const wallet = useSelector((state) => state.wallet);
   const assets = useSelector((state) => state.assets);
@@ -51,6 +55,18 @@ const UserTransactionHistory = () => {
   const onLogout = async (e) => {
     await dispatch(logout());
   };
+
+
+  const handleClickS = () => {
+    setFlag("stock list");
+    ref.current.classList.add("selected");
+  };
+
+  const handleClickW = () => {
+    setFlag("watch list");
+    ref.current.classList.add("selected");
+  };
+
 
   return (
     <div className="dashboard-wrapper">
@@ -267,7 +283,24 @@ const UserTransactionHistory = () => {
                         </div> */}
           </div>
           <div className="dashboard-watchlist-box">
-            <WatchList stocks={stocksObj} />
+            <div className="p-container">
+              <button
+                onClick={handleClickS}
+                ref={ref}
+                className={flag === "stock list" ? "selected" : null}
+              >
+                Stock List
+              </button>
+              <button
+                onClick={handleClickW}
+                ref={ref}
+                className={flag === "watch list" ? "selected" : null}
+              >
+                Watch List
+              </button>
+            </div>
+            {flag === "stock list" && <WatchList stocks={stocks} />}
+            {flag === "watch list" && <WatchlistView />}
           </div>
         </div>
       </div>
