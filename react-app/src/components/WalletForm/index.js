@@ -9,7 +9,7 @@ const WalletForm = ({ prop }) => {
   const redux_wallet = useSelector((state) => state.wallet);
   const currentUser = useSelector((state) => state.session.user);
 
-  const [amount, setAmount] = useState(0.0);
+  const [amount, setAmount] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);

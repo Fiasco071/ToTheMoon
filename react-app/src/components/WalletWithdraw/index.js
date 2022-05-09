@@ -9,18 +9,20 @@ const WalletFormWithdraw = ({ prop }) => {
   const redux_wallet = useSelector((state) => state.wallet);
   const currentUser = useSelector((state) => state.session.user);
 
-
-  const [amount, setAmount] = useState(0.0);
+  const [amount, setAmount] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
+  console.log(Object.values(redux_wallet)[0]?.amount)
+
   useEffect(() => {
     const errors = [];
     if (amount < 0) errors.push("Please enter a valid amount.");
-    if (amount > redux_wallet[1].amount) {
+    if (amount > Object.values(redux_wallet)[0]?.amount) {
       errors.push("amount must be less than balance");
     }
+    console.log(amount > Object.values(redux_wallet)[0]?.amount)
     setValidationErrors(errors);
   }, [amount]);
 
