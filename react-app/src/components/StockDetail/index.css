@@ -233,3 +233,8 @@ input::-webkit-inner-spin-button {
   background-color: lavender;
   color: black;
 }
+
+
+.stockDetailContainer > div > h2 {
+  color: rgb(25, 25, 124);
+}

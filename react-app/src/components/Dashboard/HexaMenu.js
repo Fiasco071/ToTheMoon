@@ -1,6 +1,6 @@
 import './hexamenu.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faDoorOpen, faHome, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faDoorOpen, faHome, faReceipt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
@@ -35,7 +35,7 @@ const HexaMenu = () => {
             </div>
             <div className="profile-icon-box-transactionpage" onClick={() => history.push('/my-transactions')}>
                 <FontAwesomeIcon
-                    icon={faMoneyBill}
+                    icon={faReceipt}
                     className="profile-icon"
                 />
             </div>

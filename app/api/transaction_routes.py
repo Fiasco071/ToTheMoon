@@ -17,6 +17,8 @@ def get_all_transactions():
 @login_required
 def new_transaction(id): #need to add id back later
     curr_user = current_user.to_dict()
+    data = request.json["price_at_transaction"]
+    print('..............................................',data)
     # wallet_amount = curr_user['wallet']['amount']
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     asset = Asset.query.filter(Asset.stock_id == id, Asset.user_id == curr_user['id']).first()
@@ -27,7 +29,7 @@ def new_transaction(id): #need to add id back later
 
     if form.validate_on_submit():
         num_shares = Decimal(form.data['num_shares'])
-        price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+        price_at_transaction = data
         total_price = Decimal(price_at_transaction) * num_shares
 
 
@@ -63,6 +65,7 @@ def new_transaction(id): #need to add id back later
 @transaction_routes.route('/<int:id>/sell', methods=['GET','POST'])
 @login_required
 def sell_shares(id): #need to add id back later
+    data = request.json["price_at_transaction"]
     curr_user = current_user.to_dict()
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     asset = Asset.query.filter(Asset.stock_id == id, Asset.user_id == curr_user['id']).first()
@@ -72,7 +75,7 @@ def sell_shares(id): #need to add id back later
 
     if form.validate_on_submit():
         num_shares = Decimal(form.data['num_shares'])
-        price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+        price_at_transaction = data
         total_price = Decimal(price_at_transaction) * num_shares
 
         if asset.num_shares >= num_shares:
@@ -105,12 +108,14 @@ def sell_shares(id): #need to add id back later
 @login_required
 def cash_out(id): #will add id back later
     curr_user = current_user.to_dict()
+    data = request.json["price_at_transaction"]
+    
     wallet = Wallet.query.filter(Wallet.user_id == current_user.to_dict()['id']).one()
     # wallet_amount = curr_user['wallet']['amount']
     user_id = curr_user['id']
     asset = Asset.query.filter(Asset.stock_id == id, Asset.user_id == user_id).one()
     # num_shares = asset['num_shares']
-    price_at_transaction = Stock.query.get(id).stock_to_dict()['i_price']
+    price_at_transaction = data
     total_price = Decimal(price_at_transaction) * Decimal(asset.num_shares)
 
     wallet.amount += Decimal(total_price)

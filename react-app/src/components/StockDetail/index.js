@@ -36,6 +36,11 @@ const StockDetail = () => {
   const user = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
   const wallet = useSelector((state) => state.wallet);
+  const simData = useSelector(state => state.simData)
+  const dataArr = simData.sim_data;
+  const stock_price = Object.values(stocks).filter(stock => stock.id == id)[0]?.i_price
+  const [price, setPrice] = useState();
+
 
   const [isShown, setIsShown] = useState(1);
   const [isCashedOut, setIsCashedOut] = useState(false);
@@ -59,6 +64,33 @@ const StockDetail = () => {
   const onLogout = async (e) => {
     await dispatch(logout());
   };
+
+  const dataset = [];
+  if (dataArr) {
+    Object.values(dataArr)[id-1].forEach((pieceOfData, i) => {
+     let cur_price = pieceOfData  
+      if (cur_price < 0) cur_price = 0
+      const plotObj = {
+        name: i+1,
+        uv: cur_price
+      }
+      dataset.push(plotObj)
+    })
+    dataset[0].uv = stock_price
+  }
+
+  let i = 252;
+
+  useEffect(() => {
+    setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2).toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    const loop = setInterval(() => {
+      i+=1;
+      setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2).toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    },3000)
+    return () => clearInterval(loop);
+  }, [id])
 
   useEffect(() => {
     dispatch(getAStock(id));
@@ -181,32 +213,30 @@ const StockDetail = () => {
             </div>
             <div className="stockDetailContainer">
               <div className="company-name-header">
-                <h2>Company Name</h2>
-                <h3>{stock?.long_name}</h3>
+                <h3>Company Name</h3>
+                <h2>{stock?.long_name}</h2>
               </div>
               <div className="ticker-header">
-                <h2>Ticker</h2>
-                <h3>{stock?.ticker}</h3>
+                <h3>Ticker</h3>
+                <h2>{stock?.ticker}</h2>
               </div>
               <div className="market-price-header">
-                <h2>Current Price Per Share</h2>
-                <h3>
+                <h3>Current Price Per Share</h3>
+                <h2>
                   $
-                  {stock?.i_price
-                    ?.toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                </h3>
+                  {price}
+                </h2>
               </div>
               {assetOwned[0]?.num_shares > 0 && (
                 <div className="equity-header">
-                  <h2>Your Equity</h2>
-                  <h3>
+                  <h3>Your Equity</h3>
+                  <h2>
                     $
                     {(stock?.i_price * assetOwned[0]?.num_shares)
                       .toFixed(2)
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  </h3>
+                  </h2>
                 </div>
               )}
             </div>

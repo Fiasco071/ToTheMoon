@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   AreaChart,
@@ -15,25 +15,36 @@ const MainGraph = () => {
 
   const simData = useSelector(state => state.simData)
   const dataArr = simData.sim_data;
+  const stock_price = useSelector(state => Object.values(state.stocks).filter(stock => stock.id == 1)[0]?.i_price)
+  const [data, setData] = useState()
 
-  const data = [];
+  
+  const dataset = [];
   if (dataArr) {
-    Object.values(dataArr)["1"].forEach((pieceOfData, i) => {
+    Object.values(dataArr)[0].forEach((pieceOfData, i) => {
      let cur_price = pieceOfData  
       if (cur_price < 0) cur_price = 0
       const plotObj = {
         name: i+1,
         uv: cur_price
       }
-      data.push(plotObj)
+      dataset.push(plotObj)
     })
-    data[0].uv = 100
+    dataset[0].uv = stock_price
   }
 
-  // {
-  //   name: "Day 1",
-  //   uv: 4000
-  // }
+  let i = 252;
+
+  useEffect(() => {
+    setData(dataset.slice(0,i))
+    const loop = setInterval(() => {
+      i+=1;
+      setData(dataset.slice(0,i))
+    },3000)
+    return () => clearInterval(loop);
+  }, [])
+
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart

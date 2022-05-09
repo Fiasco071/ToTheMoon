@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AreaChart,
   Area,
@@ -16,23 +16,42 @@ const QuickViewGraph = ({id}) => {
 
   const simData = useSelector(state => state.simData)
   const dataArr = simData.sim_data;
-  const newId = id - 1 
+  const stock_price = useSelector(state => Object.values(state.stocks).filter(stock => stock.id == id)[0]?.i_price)
+  const newId = id - 1;
+  const [data, setData] = useState();
+  const [price, setPrice] = useState();
 
-  const data = [];
+  const dataset = [];
   if (dataArr) {
-    Object.values(dataArr)[newId].forEach((pieceOfData, i) => {
+    Object.values(dataArr)[id-1].forEach((pieceOfData, i) => {
      let cur_price = pieceOfData  
       if (cur_price < 0) cur_price = 0
       const plotObj = {
         name: i+1,
         uv: cur_price
       }
-      data.push(plotObj)
+      dataset.push(plotObj)
     })
-    data[0].uv = 100
+    dataset[0].uv = stock_price
   }
 
+  let i = 252;
+
+  useEffect(() => {
+    setData(dataset.slice(0,i))
+    const loop = setInterval(() => {
+      i+=1;
+      setData(dataset.slice(0,i))
+      setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2).toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    },3000)
+    return () => clearInterval(loop);
+  }, [])
+
     return (
+      <>
+      
+      <p className="update-price qvl-value">${price}</p>
       <ResponsiveContainer width="80%" height="50%">
         <AreaChart
           width={730}
@@ -64,6 +83,7 @@ const QuickViewGraph = ({id}) => {
           {/* <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" /> */}
         </AreaChart>
       </ResponsiveContainer>
+      </>
     );
   }
 

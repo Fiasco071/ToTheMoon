@@ -17,12 +17,41 @@ const TransactionForm = ({ prop }) => {
   const assets = useSelector((state) => state.assets);
   const walletState = useSelector((state) => state.wallet);
   const wallet = walletState[1]?.amount;
+  const simData = useSelector(state => state.simData)
+
+  const dataArr = simData.sim_data;
+  const stock_price = useSelector(state => Object.values(state.stocks).filter(stock => stock.id == id)[0]?.i_price)
+  const [price, setPrice] = useState();
+
+  const dataset = [];
+  if (dataArr) {
+    Object.values(dataArr)[id-1].forEach((pieceOfData, i) => {
+     let cur_price = pieceOfData  
+      if (cur_price < 0) cur_price = 0
+      const plotObj = {
+        name: i+1,
+        uv: cur_price
+      }
+      dataset.push(plotObj)
+    })
+    dataset[0].uv = stock_price
+  }
+
+  let i = 252;
+
+  useEffect(() => {
+    setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2))
+    const loop = setInterval(() => {
+      i+=1;
+      setPrice(dataset.slice(0,i)[dataset.slice(0,i).length - 1].uv.toFixed(2))
+    },3000)
+    return () => clearInterval(loop);
+  }, [])
+
+
 
   const [isOwned, setIsOwned] = useState(true);
   const [num_shares, setNumShares] = useState("");
-  const [price_at_transaction, setPriceAtTransaction] = useState(
-    stock?.i_price
-  );
   const [totalPrice, setTotalPrice] = useState(0);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -43,7 +72,7 @@ const TransactionForm = ({ prop }) => {
 
   useEffect(() => {
     const errors = [];
-    if (wallet < num_shares * price_at_transaction) {
+    if (wallet < num_shares * price) {
       errors.push("Insufficient funds");
     }
     if (num_shares <= 0) {
@@ -61,14 +90,13 @@ const TransactionForm = ({ prop }) => {
 
     const transaction = {
       num_shares,
-      price_at_transaction,
+      price_at_transaction: price,
     };
 
     if (validationErrors.length === 0) {
       let newTransaction;
       newTransaction = await dispatch(addATransaction(transaction, id));
       setNumShares("");
-      setPriceAtTransaction(stock?.i_price);
       setTotalPrice(0);
       setHasSubmitted(false);
       setValidationErrors([]);
@@ -107,9 +135,9 @@ const TransactionForm = ({ prop }) => {
               Total Shares Owned {assetOwned[0]?.num_shares}
             </h4>
           )}
-          <h4 className="form-text">Market Price ${stock?.i_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
+          <h4 className="form-text">Market Price ${price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
           <h4 className="form-text">
-            Total Price ${(stock?.i_price * num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            Total Price ${(price * num_shares).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </h4>
         </div>
         <button
