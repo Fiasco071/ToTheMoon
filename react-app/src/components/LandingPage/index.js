@@ -6,9 +6,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllSimData } from "../../store/simulation_data";
 
-
 const LandingPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllSimData());
   }, [dispatch]);
@@ -20,18 +19,7 @@ const LandingPage = () => {
           <div className="home-iconImage-text">To The Moon</div>
 
           <div className="landing-nav-bar-nav">
-            <div className="landing-nav-bar-nav-links">
-              {/* <a href="https://www.linkedin.com/in/arianna-robinson/">
-                Arianna Robinson
-              </a>
-              <a href="https://www.linkedin.com/in/kristen-reid-a4b499202/">
-                Kristen Reid
-              </a>
-              <a href="https://www.linkedin.com/in/rami-martinez-2931099b/">
-                Rami Martinez
-              </a>
-              <a href="https://www.linkedin.com/in/schoi017/">Steve Choi</a> */}
-            </div>
+            <div className="landing-nav-bar-nav-links"></div>
             <div className="landing-nav-bar-log-buttons">
               <LoginFormModal />
               <SignUpFormModal />
@@ -44,34 +32,14 @@ const LandingPage = () => {
             <h1>
               Join a new generation <br /> of investors
             </h1>
-            {/* <p>
-              Commission-free investing, plus the tools you need to put your
-              money in motion. Sign up and get your first stock for free.
-              Certain limitations and fees apply.
-            </p> */}
 
             <SignUpFormModal />
           </div>
-          {/* <div className="landing-content-box-1-animationbox"> */}
-          {/* <div class="css-1ed05sj"> */}
+
           <img
-            class="css-6qh47t"
-            // draggable="false"
-            // role="presentation"
+            className="css-6qh47t"
             src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png"
-            // srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/intro-background@1x__a7e1489efad180ee10a6e4d50c56d857.png 3x"
           />
-          {/* <div className="css-idtc8"> */}
-          {/* <img
-                  class="css-6qh47t"
-                  draggable="false"
-                  role="presentation"
-                  src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__284c8d0c799d3c9649ca021c00228275.png"
-                  srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__284c8d0c799d3c9649ca021c00228275.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__ff9c36e27d7018cf707b95d8675793a3.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__45f00d7b296cb52968f1bca4ef766fc1.png 3x"
-                /> */}
-          {/* </div> */}
-          {/* </div> */}
-          {/* </div> */}
         </div>
 
         <div className="landing-content-box-2">
@@ -144,7 +112,7 @@ const LandingPage = () => {
                 draggable="false"
                 role="presentation"
                 src="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png"
-                srcset="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__5df2bc2eacf940aec8941d4618def751.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__7bdf5f4619ac7fb88345295d59f41c12.png 3x"
+                srcSet="https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/1x__b8f3a854780a088fe18bebe63df09581.png, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/2x__5df2bc2eacf940aec8941d4618def751.png 2x, https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/3x__7bdf5f4619ac7fb88345295d59f41c12.png 3x"
               />
             </div>
           </div>

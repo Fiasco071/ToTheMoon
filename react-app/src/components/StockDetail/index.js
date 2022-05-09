@@ -135,7 +135,10 @@ const StockDetail = () => {
                     <p>Asset Break-Down</p>
                     <div className="asset-detail-info-box">
                       {Object.values(assets).map((asset) => (
-                        <div className="asset-detail-info-box-child">
+                        <div
+                          className="asset-detail-info-box-child"
+                          key={asset.id}
+                        >
                           <p>{asset.stock.ticker}</p>
                           <p>{asset.num_shares} shares </p>
                           <p>
@@ -150,7 +153,7 @@ const StockDetail = () => {
                       <div className="asset-percentage-box">
                         <p className="percentage-box-title">% Break-Down</p>
                         {Object.values(assets).map((asset) => (
-                          <div>
+                          <div key={asset.id}>
                             <p>
                               {asset.stock.ticker} -{" "}
                               {(

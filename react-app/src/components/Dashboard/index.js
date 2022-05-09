@@ -63,8 +63,8 @@ const Dashboard = () => {
         </div>
         <div className="dashboard-content-box">
           <div className="dashboard-content-navbar">
-              <h2>News</h2>
-              <NewsWheel />
+            <h2>News</h2>
+            <NewsWheel />
           </div>
           <div className="dashboard-content">
             <div className="dashboard-content-box1">
@@ -91,7 +91,10 @@ const Dashboard = () => {
                     <p>Asset Break-Down</p>
                     <div className="asset-detail-info-box">
                       {Object.values(assets).map((asset) => (
-                        <div className="asset-detail-info-box-child">
+                        <div
+                          className="asset-detail-info-box-child"
+                          key={asset.id}
+                        >
                           <p>{asset.stock.ticker}</p>
                           <p>{asset.num_shares} shares </p>
                           <p>
@@ -106,7 +109,7 @@ const Dashboard = () => {
                       <div className="asset-percentage-box">
                         <p className="percentage-box-title">% Break-Down</p>
                         {Object.values(assets).map((asset) => (
-                          <div>
+                          <div key={asset.id}>
                             <p>
                               {asset.stock.ticker} -{" "}
                               {(
