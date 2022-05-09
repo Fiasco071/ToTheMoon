@@ -61,3 +61,24 @@
 .watch-list-title {
     margin: 18px 0 0 38px;
 }
+
+.quickadd-button {
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    font-weight: bolder;
+    color: green;
+}
+
+.quickadd-button.remove {
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    font-weight: bolder;
+    color: crimson;
+}
+
+.stock-box > div.quickadd-stockln-box {
+    display: flex;
+    justify-content: space-between;
+}

@@ -246,6 +246,11 @@ const UserTransactionHistory = () => {
                                   .split(" ")[4]
                                   .split(":")[1]
                               }
+                              { Number(
+                                transaction?.created_at
+                                  .split(" ")[4]
+                                  .split(":")[0]
+                              ) > 12 ? 'PM' : 'AM'}
                             </div>
                           </div>
                         </div>
