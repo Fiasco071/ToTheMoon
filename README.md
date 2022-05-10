@@ -3,7 +3,7 @@
 <h5 align="center">  By: <a href="https://github.com/AriannaNRobinson">Arianna Robinson</a> - <a href="https://github.com/Kristen-Reid">Kristen Reid</a> - <a href="https://github.com/rammartinez00">Rami Martinez</a> - <a href="https://github.com/Fiasco071">Steve Choi</a> - <a href="https://tothemoon-investment-app.herokuapp.com/"><i>Live site</i></h5>
 
 <h2> About </h2>
-Rocket Note is a clone of Evernotes. Rocket notes is where you can save all your important thoughts in an organized way!
+To The Moon is a clone of Robinhood. To The Moon is a site where you can buy and sell stock shares!
 
    - [Features](#features)
    - [Technologies Used](#tech)
