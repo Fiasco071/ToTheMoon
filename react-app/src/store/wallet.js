@@ -2,7 +2,6 @@ const GET_WALLET = "wallet/GET_WALLET";
 const POST_WALLET = "wallet/POST_WALLET";
 const REMOVE_WALLET = "wallet/REMOVE_WALLET";
 
-
 const getWallet = (wallet) => {
   return {
     type: GET_WALLET,
@@ -19,11 +18,9 @@ const addWallet = (wallet) => {
 
 const removeWallet = () => {
   return {
-    type: REMOVE_WALLET
-  }
-}
-
-
+    type: REMOVE_WALLET,
+  };
+};
 
 export const getAWallet = () => async (dispatch) => {
   const response = await fetch(`/api/wallet/`);
@@ -75,11 +72,10 @@ export const cashMeOutside = () => async (dispatch) => {
   }
 };
 
-
 export const removeWalletonLogout = () => async (dispatch) => {
   dispatch(removeWallet());
-  return 'hello'
-}
+  return "hello";
+};
 
 const walletReducer = (state = {}, action) => {
   switch (action.type) {
